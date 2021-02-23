@@ -289,7 +289,7 @@ input {
 }
 
 input[type=search] {
-	background: #ededed url(img/search-icon.png) no-repeat 9px center;
+	background: #ededed url(../img/search-icon.png) no-repeat 9px center;
 	border: solid 1px #ccc;
 	border-radius: 25px;
 	padding: 9px 10px 9px 32px;
