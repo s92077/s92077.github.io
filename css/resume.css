@@ -1,7 +1,7 @@
 body {
   font-family: 'Open Sans', serif;
   padding-top: 54px;
-  color: #333333;
+  color: #868e96;
 }
 
 @media (min-width: 992px) {
@@ -114,12 +114,6 @@ section.resume-section {
   padding-bottom: 5rem !important;
 }
 
-section.d-flexed {
-  border-bottom: 1px solid #dee2e6;
-  padding-top: 5rem !important;
-  padding-bottom: 5rem !important;
-}
-
 section.resume-section .resume-item .resume-date {
   min-width: none;
 }
@@ -154,20 +148,4 @@ a {
 
 a:hover, a:focus, a:active {
   color: #824027;
-}
-
-img {
-  max-width:80%;
-}
-
-input {
-	outline: none;
-}
-
-input[type=search] {
-	background: #ededed url(img/search-icon.png) no-repeat 9px center;
-	border: solid 1px #ccc;
-	border-radius: 25px;
-	padding: 9px 10px 9px 32px;
-	width: 85%;
 }
