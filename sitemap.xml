@@ -2,7 +2,37 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
 <url>
+    <loc>https://s92077.github.io/blog/julia-learning/basics/index.html</loc>
+    <lastmod>2023-06-07</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+</url>
+<url>
+    <loc>https://s92077.github.io/blog/index.html</loc>
+    <lastmod>2023-06-07</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+</url>
+<url>
     <loc>https://s92077.github.io/index.html</loc>
+    <lastmod>2023-06-07</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+</url>
+<url>
+    <loc>https://s92077.github.io/blog/julia-learning/index.html</loc>
+    <lastmod>2023-06-07</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+</url>
+<url>
+    <loc>https://s92077.github.io/blog/julia-learning/advanced-topics/index.html</loc>
+    <lastmod>2023-06-07</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+</url>
+<url>
+    <loc>https://s92077.github.io/blog/julia-learning/installation/index.html</loc>
     <lastmod>2023-06-07</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
