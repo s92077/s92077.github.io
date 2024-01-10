@@ -1,1 +1,151 @@
-<!doctype html> <html lang=en > <meta charset=UTF-8 > <meta name=viewport  content="width=device-width, initial-scale=1"> <link rel=stylesheet  href="/css/franklin.css"> <link rel=stylesheet  href="/css/poole_hyde.css"> <style> body,html{height: 100%;} .franklin-content {position: relative; padding-left: 0%; padding-right: 0%;overflow-y: hidden; height: 100%;} .content.container {margin-right: 0%; margin-bottom: 0%; padding-bottom: 0%;overflow-y: hidden; height: 100%;} @media (min-width: 940px) { .franklin-content {width: 100%; margin-left: auto; margin-right: auto;overflow-y: hidden;} } @media (max-width: 768px) { .franklin-content {padding-left: 0%; padding-right: 0%;overflow-y: hidden;} } </style> <link rel=icon  href="/assets/favicon.png"> <title>Maybe | Tutorial 3</title> <div class=sidebar > <div class="container sidebar-sticky"> <div class=sidebar-about > <h1><a href="/">Maybe</a></h1> </div> <nav class=sidebar-nav > <a class="sidebar-nav-item " href="/">Home</a> <a class="sidebar-nav-item " href="/publications/">Publications</a> <a class="sidebar-nav-item active" href="/blog/">Blog</a> </nav> <p class=lead >&copy; <a href="http://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA 4.0</a> Website built with <a href="https://github.com/tlienart/Franklin.jl">Franklin.jl</a> and the <a href="https://julialang.org">Julia programming language</a>.</p> </div> </div> <div class=breadcrumbs-div > <nav class=breadcrumbs ><a href="/blog" class=breadcrumbs__item >Blog</a><a href="/blog/julia-learning" class=breadcrumbs__item >Julia Learning</a><a class="breadcrumbs__item is-active">Tutorial 3</a></nav> </div> <div class="content container"> <div class=franklin-content > <div class=pluto ><iframe height="100%" width="100%" frameBorder=0  src="../../../assets/julia-learning/tutorial03.html"></iframe></div> </div>
+<!doctype html> <html lang=en > <meta charset=UTF-8 > <meta name=viewport  content="width=device-width, initial-scale=1"> <link rel=stylesheet  href="/libs/highlight/styles/github.min.css"> <link rel=stylesheet  href="/css/franklin.css"> <link rel=stylesheet  href="/css/poole_hyde.css"> <style> .franklin-content {position: relative; padding-left: 8%; padding-right: 5%;} .content.container {margin-right: 0%} @media (min-width: 940px) { .franklin-content {width: 100%; margin-left: auto; margin-right: auto;} } @media (max-width: 768px) { .franklin-content {padding-left: 6%; padding-right: 6%;} } </style> <link rel=icon  href="/assets/favicon.png"> <title>Maybe | Tutorial 3</title> <div class=sidebar > <div class="container sidebar-sticky"> <div class=sidebar-about > <h1><a href="/">Maybe</a></h1> </div> <input type=checkbox  id=sub-nav  style="display: none;"> <div id=navigation-links > <label for=sub-nav  class=sub-nav-toggle >&#9776;</label> </div> <nav class=sidebar-nav  id=sub-navigation > <a class="sidebar-nav-item " href="/">Home</a> <a class="sidebar-nav-item " href="/publications/">Publications</a> <a class="sidebar-nav-item active" href="/blog/">Blog</a> </nav> <p class=lead >&copy; <a href="http://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA 4.0</a> Website built with <a href="https://github.com/tlienart/Franklin.jl">Franklin.jl</a> and the <a href="https://julialang.org">Julia programming language</a>.</p> </div> </div> <div class=breadcrumbs-div > <nav class=breadcrumbs ><a href="/blog" class=breadcrumbs__item >Blog</a><a href="/blog/julia-learning" class=breadcrumbs__item >Julia Learning</a><a class="breadcrumbs__item is-active">Tutorial 3</a></nav> </div> <div class="content container"> <div class=franklin-content > <h1 id=tutorial_3_franklin ><a href="#tutorial_3_franklin" class=header-anchor >Tutorial 3: Franklin</a></h1> <p><div class=franklin-toc ><ol><li><a href="#installation">Installation</a><li><a href="#quick_start">Quick start</a><ol><li><a href="#create_your_first_page">Create your first page</a></ol><li><a href="#a_closer_look_into_franklin">A closer look into Franklin</a><ol><li><a href="#configmd">config.md</a><li><a href="#latex">LaTeX</a><li><a href="#html">HTML</a><li><a href="#css">CSS</a><li><a href="#function">Function</a></ol><li><a href="#deploy_your_website_to_github_pages">Deploy your website to github pages</a><ol><li><a href="#create_you_github_account">Create you GitHub account</a><li><a href="#install_github_cli">Install GitHub CLI</a><li><a href="#create_repositories">Create repositories</a><li><a href="#add_git_action_files">Add git action files</a><li><a href="#deploy_the_site">Deploy the site</a></ol><li><a href="#final_notes">Final notes</a></ol></div> According to its <a href="https://franklinjl.org/">website</a>, &quot;Franklin is a simple, customisable static site generator oriented towards technical blogging and light, fast-loading pages.&quot;</p> <p>Here are some features of the package:</p> <ul> <li><p>LaTeX maths expressions rendered via KaTeX, code via highlight.js both can be pre-rendered</p> <li><p>Can live-evaluate Julia code blocks</p> <li><p>Live preview of modifications</p> </ul> <h2 id=installation ><a href="#installation" class=header-anchor >Installation</a></h2> <p>To install Pluto &#91;2&#93;, type &#93; to enter package manager Pkg in Julia:</p> <pre><code class="julia-repl hljs"><span class="hljs-meta prompt_">julia&gt;</span><span class=language-julia > ]</span></code></pre>
+<p>Enter <code>add Franklin</code> to add the package:</p>
+<pre><code class="julia-repl hljs"><span class=hljs-metap>(@v1.9) pkg&gt;</span> add Franklin</code></pre>
+<p>To exit package manager, press Ctrl&#43;C or Backspace</p>
+<pre><code class="julia-repl hljs"><span class=hljs-metap>(@v1.9) pkg&gt;</span> ^C</code></pre>
+<h2 id=quick_start ><a href="#quick_start" class=header-anchor >Quick start</a></h2>
+<p>We may create your website &#40;say, for example, titled \&quot;TestWebsite\&quot;&#41; from the existing template. It will create a folder with the name \&quot;TestWebsite\&quot; under the current folder <sup id="fnref:1"><a href="#fndef:1" class=fnref >[1]</a></sup>.</p>
+<pre><code class="julia-repl hljs"><span class="hljs-meta prompt_">julia&gt;</span><span class=language-julia > <span class=hljs-keyword >using</span> Franklin
+</span><span class="hljs-meta prompt_">julia&gt;</span><span class=language-julia > newsite(<span class=hljs-string >&quot;TestWebsite&quot;</span>; template=<span class=hljs-string >&quot;vela&quot;</span>)</span></code></pre>
+<p>Have a look at <a href="https://github.com/tlienart/FranklinTemplates.jl#fixingadding-a-template">here</a> to learn more about the available templates.</p>
+<p>To have a live preview of the site we can call the following function:</p>
+<pre><code class="julia-repl hljs"><span class="hljs-meta prompt_">julia&gt;</span><span class=language-julia > cd(<span class=hljs-string >&quot;TestWebsite&quot;</span>)
+</span><span class="hljs-meta prompt_">julia&gt;</span><span class=language-julia > serve()</span></code></pre>
+<p>The functionality re-renders the site whenever changes are made.</p>
+<h3 id=create_your_first_page ><a href="#create_your_first_page" class=header-anchor >Create your first page</a></h3>
+<p>If you create a page <code>&#91;path&#93;/page.md</code>, it will create a page in <code>__site/&#91;path&#93;/page.md</code>, which could be access at <code>&#91;website&#93;/page/</code> after deployment. For example, you can create a page <code>blog.md</code>:</p>
+<pre><code class="yml hljs"><span class=hljs-string >+++</span>
+<span class=hljs-string >title</span> <span class=hljs-string >=</span> <span class=hljs-string >&quot;Blog&quot;</span>
+<span class=hljs-string >date</span> <span class=hljs-string >=</span> <span class=hljs-string >Date(2023,</span> <span class=hljs-number >6</span><span class=hljs-string >,</span> <span class=hljs-number >7</span><span class=hljs-string >)</span>
+<span class=hljs-string >tags</span> <span class=hljs-string >=</span> [<span class=hljs-string >&quot;blog&quot;</span>]
+<span class=hljs-string >+++</span>
+<span class=hljs-comment ># Blog</span>
+<span class=hljs-bullet >-</span> [<span class=hljs-string >Julia</span> <span class=hljs-string >Learning</span>]<span class=hljs-string >(julia-learning/)</span> <span class=hljs-bullet >-</span> <span class=hljs-string >personal</span> <span class=hljs-string >note</span> <span class=hljs-string >for</span> <span class=hljs-string >Julia.</span></code></pre>
+<p>You will see an HTML file at <code>__site/blog/index.html</code>, which can be accessed at http://s92077.github.io/blog/.</p>
+<h2 id=a_closer_look_into_franklin ><a href="#a_closer_look_into_franklin" class=header-anchor >A closer look into Franklin</a></h2>
+<p>After generating the site, you will see the folowing folder structure:</p>
+<pre><code class="plaintext hljs">├── __site/: the path for the rendered site
+├── _assets/: the path for the files/images/videos/etc for the site
+├── _css/: the path of css files
+├── _layout/: the path of html components of the site
+├── _libs/: the path of javascript codes, including katex.js and highlight.js
+├── _rss/: the path of rss
+├── 404.md: the 404 page
+├── config.md: the configuration file for the site
+├── index.md
+└── utils.jl</code></pre>
+<h3 id=configmd ><a href="#configmd" class=header-anchor >config.md</a></h3>
+<p>To make your site rendered properly, you need to properly set the variable <code>website_url</code> to the url of your github page &#40;You need to replace <code>AccountName</code> by your actual GitHub account&#41;:</p>
+<pre><code class="bash hljs">website_url = <span class=hljs-string >&quot;https://AccountName.github.io/&quot;</span></code></pre>
+<h3 id=latex ><a href="#latex" class=header-anchor >LaTeX</a></h3>
+<p>In your created markdown page, you can use &#36;...&#36; to type math in LaTeX.</p>
+<h3 id=html ><a href="#html" class=header-anchor >HTML</a></h3>
+<p>In your created markdown page, you can use ... to enclose HTML code.</p>
+<h3 id=css ><a href="#css" class=header-anchor >CSS</a></h3>
+<p>Cascading Style Sheets &#40;CSS&#41; is a style sheet language used for describing the presentation of a document written in a markup language such as HTML or XML. In a nutshell, it allows you to tweak how your website look. For more information, have a look at <a href="https://franklinjl.org/styling/templates/#adapting_the_stylesheet">here</a>.</p>
+<h3 id=function ><a href="#function" class=header-anchor >Function</a></h3>
+<p>You can define your own functions and call them from your markdown pages. To learn more about it, check out <a href="https://franklinjl.org/syntax/utils/index.html">here</a>.</p>
+<h2 id=deploy_your_website_to_github_pages ><a href="#deploy_your_website_to_github_pages" class=header-anchor >Deploy your website to github pages</a></h2>
+<h3 id=create_you_github_account ><a href="#create_you_github_account" class=header-anchor >Create you GitHub account</a></h3>
+<p>Create a new account at <a href="https://github.com">https://github.com</a> if you do not have one. Note that your account name will be used in the url of your github page &#40;in this case, your website&#41;.</p>
+<h3 id=install_github_cli ><a href="#install_github_cli" class=header-anchor >Install GitHub CLI</a></h3>
+<p>Go to <a href="https://cli.github.com">https://cli.github.com</a> to download the latest GitHub command-line interface &#40;GitHub CLI&#41; and install it.</p>
+<blockquote>
+<ul>
+<li><p>For <strong><em>Windows</em></strong> users, it is recommanded download <code>git</code> from <a href="https://git-scm.com/download/win">here</a>.</p>
+
+<li><p>For <strong><em>Mac</em></strong> users, you may follow <a href="https://git-scm.com/download/mac">this guide</a> to install <code>git</code>.</p>
+
+<li><p>For <strong><em>Linux</em></strong> users, you may follow <a href="https://git-scm.com/download/linux">this guide</a> to install <code>git</code>.</p>
+
+</ul>
+</blockquote>
+<h3 id=create_repositories ><a href="#create_repositories" class=header-anchor >Create repositories</a></h3>
+<p>Suppose your account name is <code>AccountName</code>. In this tutorial, we will need two repositories.</p>
+<blockquote>
+<ul>
+<li><p><code>blog</code>: a private repository for your pre-rendered files</p>
+
+<li><p><code>AccountName.github.io</code>: a public repository for your github page</p>
+
+</ul>
+</blockquote>
+<p>Since we need to set up the automatic deployment later, at this point we should follow <a href="https://github.com/marketplace/actions/github-pages-action#&#37;EF&#37;B8&#37;8F-create-ssh-deploy-key">this guide</a> to set public key for <code>AccountName.github.io</code> and private key for <code>blog</code>. If you don&#39;t have ssh-keygen installed, you may use online RSA key generator &#40;e.g. <a href="https://cryptotools.net/rsagen">here</a>&#41; to generate 4096-bit public and private keys.</p>
+<p>After creating the website, we clone the former repository to local.</p>
+<pre><code class="bash hljs">git <span class=hljs-built_in >clone</span> https://github.com/AccountName/blog.git</code></pre>
+<p>We may now copy all files from the folder <code>TestWebsite</code> of the generated site to the local git repository folder <code>blog</code>.</p>
+<h3 id=add_git_action_files ><a href="#add_git_action_files" class=header-anchor >Add git action files</a></h3>
+<p>We need to create a file the automatically deploy the website for us. To this end, create, under folder <code>blog</code>, a file at <code>.github/workflow/deploy.yml</code> &#40;You need to replace <code>AccountName</code> by you actual name of account, and replace <code>publish_branch</code> by your actual branch&#41;:</p>
+<pre><code class="yml hljs"><span class=hljs-attr >name:</span> <span class=hljs-string >Build</span> <span class=hljs-string >and</span> <span class=hljs-string >Deploy</span>
+<span class=hljs-attr >on:</span>
+  <span class=hljs-attr >push:</span>
+    <span class=hljs-attr >branches:</span>
+      <span class=hljs-bullet >-</span> <span class=hljs-string >Franklin</span>
+<span class=hljs-attr >jobs:</span>
+  <span class=hljs-attr >build-and-deploy:</span>
+    <span class=hljs-attr >runs-on:</span> <span class=hljs-string >ubuntu-latest</span>
+    <span class=hljs-attr >permissions:</span>
+      <span class=hljs-attr >contents:</span> <span class=hljs-string >write</span>
+    <span class=hljs-attr >steps:</span>
+    <span class=hljs-bullet >-</span> <span class=hljs-attr >name:</span> <span class=hljs-string >Checkout</span>
+      <span class=hljs-attr >uses:</span> <span class=hljs-string >actions/checkout@v3</span>
+      <span class=hljs-attr >with:</span>
+        <span class=hljs-attr >persist-credentials:</span> <span class=hljs-literal >false</span>
+    <span class=hljs-comment ># <span class=hljs-doctag >NOTE:</span> Python is necessary for the pre-rendering (minification) step</span>
+    <span class=hljs-bullet >-</span> <span class=hljs-attr >name:</span> <span class=hljs-string >Install</span> <span class=hljs-string >python</span>
+      <span class=hljs-attr >uses:</span> <span class=hljs-string >actions/setup-python@v2</span>
+      <span class=hljs-attr >with:</span>
+        <span class=hljs-attr >python-version:</span> <span class=hljs-string >&#x27;3.8&#x27;</span>
+    <span class=hljs-comment ># <span class=hljs-doctag >NOTE:</span> Here you can install dependencies such as matplotlib if you use</span>
+    <span class=hljs-comment ># packages such as PyPlot.</span>
+    <span class=hljs-comment ># - run: pip install matplotlib</span>
+    <span class=hljs-bullet >-</span> <span class=hljs-attr >name:</span> <span class=hljs-string >Install</span> <span class=hljs-string >Julia</span>
+      <span class=hljs-attr >uses:</span> <span class=hljs-string >julia-actions/setup-julia@v1</span>
+      <span class=hljs-attr >with:</span>
+        <span class=hljs-attr >version:</span> <span class=hljs-string >&#x27;1&#x27;</span> <span class=hljs-comment ># Latest stable Julia release.</span>
+    <span class=hljs-bullet >-</span> <span class=hljs-attr >name:</span> <span class=hljs-string >Cache</span> <span class=hljs-string >Julia</span>
+      <span class=hljs-attr >uses:</span> <span class=hljs-string >julia-actions/cache@v1</span>
+      <span class=hljs-attr >with:</span>
+        <span class=hljs-attr >cache-registries:</span> <span class=hljs-string >&quot;true&quot;</span>
+    <span class=hljs-comment ># NOTE</span>
+    <span class=hljs-comment >#   The steps below ensure that NodeJS and Franklin are loaded then it</span>
+    <span class=hljs-comment >#   installs highlight.js which is needed for the prerendering step</span>
+    <span class=hljs-comment >#   (code highlighting + katex prerendering).</span>
+    <span class=hljs-comment >#   Then the environment is activated and instantiated to install all</span>
+    <span class=hljs-comment >#   Julia packages which may be required to successfully build your site.</span>
+    <span class=hljs-comment >#   The last line should be `optimize()` though you may want to give it</span>
+    <span class=hljs-comment >#   specific arguments, see the documentation or ?optimize in the REPL.</span>
+    <span class=hljs-bullet >-</span> <span class=hljs-attr >run:</span> <span class=hljs-string >julia</span> <span class=hljs-string >-e</span> <span class=hljs-string >&#x27;
+            using Pkg; Pkg.activate(&quot;.&quot;); Pkg.instantiate();
+            using NodeJS; run(`$(npm_cmd()) install highlight.js`);
+            using Franklin;
+            optimize()&#x27;</span>
+    <span class=hljs-bullet >-</span> <span class=hljs-attr >name:</span> <span class=hljs-string >Build</span> <span class=hljs-string >and</span> <span class=hljs-string >Deploy</span>
+      <span class=hljs-attr >uses:</span> <span class=hljs-string >peaceiris/actions-gh-pages@v3</span>
+      <span class=hljs-attr >with:</span>
+        <span class=hljs-attr >GITHUB_TOKEN:</span> <span class=hljs-string >${{</span> <span class=hljs-string >secrets.GITHUB_TOKEN</span> <span class=hljs-string >}}</span>
+        <span class=hljs-attr >deploy_key:</span> <span class=hljs-string >${{</span> <span class=hljs-string >secrets.ACTIONS_DEPLOY_KEY</span> <span class=hljs-string >}}</span>
+        <span class=hljs-attr >external_repository:</span> <span class=hljs-string >AccountName/AccountName.github.io</span>
+        <span class=hljs-attr >publish_branch:</span> <span class=hljs-string >master</span>
+        <span class=hljs-attr >publish_dir:</span> <span class=hljs-string >./__site</span></code></pre>
+<h3 id=deploy_the_site ><a href="#deploy_the_site" class=header-anchor >Deploy the site</a></h3>
+<p>We now can push our website. To this end, we need to confirm our changes to the folder <code>blog</code>.</p>
+<pre><code class="bash hljs">git add .
+git commit -m <span class=hljs-string >&quot;first commit &quot;</span></code></pre>
+<p>After that, you can push the repository to the remote.</p>
+<pre><code class="bash hljs">git push</code></pre>
+<h2 id=final_notes ><a href="#final_notes" class=header-anchor >Final notes</a></h2>
+<table class=fndef  id="fndef:1">
+    <tr>
+        <td class=fndef-backref ><a href="#fnref:1">[1]</a>
+        <td class=fndef-content >You may use the command <code>pwd&#40;&#41;</code> to print your working directory, and use <code>cd&#40;path&#41;</code> to change your working directory to <code>path</code>.
+    
+</table>
+
+
+
+</div>
+    
+    
+        <script src="/libs/highlight/highlight.min.js"></script>
+<script>hljs.highlightAll();hljs.configure({tabReplace: '    '});</script>

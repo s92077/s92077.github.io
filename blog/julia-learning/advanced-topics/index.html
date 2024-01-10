@@ -1,1 +1,537 @@
-<!doctype html> <html lang=en > <meta charset=UTF-8 > <meta name=viewport  content="width=device-width, initial-scale=1"> <link rel=stylesheet  href="/css/franklin.css"> <link rel=stylesheet  href="/css/poole_hyde.css"> <style> body,html{height: 100%;} .franklin-content {position: relative; padding-left: 0%; padding-right: 0%;overflow-y: hidden; height: 100%;} .content.container {margin-right: 0%; margin-bottom: 0%; padding-bottom: 0%;overflow-y: hidden; height: 100%;} @media (min-width: 940px) { .franklin-content {width: 100%; margin-left: auto; margin-right: auto;overflow-y: hidden;} } @media (max-width: 768px) { .franklin-content {padding-left: 0%; padding-right: 0%;overflow-y: hidden;} } </style> <link rel=icon  href="/assets/favicon.png"> <title>Maybe | Advanced Topics</title> <div class=sidebar > <div class="container sidebar-sticky"> <div class=sidebar-about > <h1><a href="/">Maybe</a></h1> </div> <nav class=sidebar-nav > <a class="sidebar-nav-item " href="/">Home</a> <a class="sidebar-nav-item " href="/publications/">Publications</a> <a class="sidebar-nav-item active" href="/blog/">Blog</a> </nav> <p class=lead >&copy; <a href="http://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA 4.0</a> Website built with <a href="https://github.com/tlienart/Franklin.jl">Franklin.jl</a> and the <a href="https://julialang.org">Julia programming language</a>.</p> </div> </div> <div class=breadcrumbs-div > <nav class=breadcrumbs ><a href="/blog" class=breadcrumbs__item >Blog</a><a href="/blog/julia-learning" class=breadcrumbs__item >Julia Learning</a><a class="breadcrumbs__item is-active">Advanced Topics</a></nav> </div> <div class="content container"> <div class=franklin-content > <div class=pluto ><iframe height="100%" width="100%" frameBorder=0  src="../../../assets/julia-learning/advanced-topics.html"></iframe></div> </div>
+<!doctype html> <html lang=en > <meta charset=UTF-8 > <meta name=viewport  content="width=device-width, initial-scale=1"> <link rel=stylesheet  href="/libs/highlight/styles/github.min.css"> <link rel=stylesheet  href="/css/franklin.css"> <link rel=stylesheet  href="/css/poole_hyde.css"> <style> .franklin-content {position: relative; padding-left: 8%; padding-right: 5%;} .content.container {margin-right: 0%} @media (min-width: 940px) { .franklin-content {width: 100%; margin-left: auto; margin-right: auto;} } @media (max-width: 768px) { .franklin-content {padding-left: 6%; padding-right: 6%;} } </style> <link rel=icon  href="/assets/favicon.png"> <title>Maybe | Advanced Topics</title> <div class=sidebar > <div class="container sidebar-sticky"> <div class=sidebar-about > <h1><a href="/">Maybe</a></h1> </div> <input type=checkbox  id=sub-nav  style="display: none;"> <div id=navigation-links > <label for=sub-nav  class=sub-nav-toggle >&#9776;</label> </div> <nav class=sidebar-nav  id=sub-navigation > <a class="sidebar-nav-item " href="/">Home</a> <a class="sidebar-nav-item " href="/publications/">Publications</a> <a class="sidebar-nav-item active" href="/blog/">Blog</a> </nav> <p class=lead >&copy; <a href="http://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA 4.0</a> Website built with <a href="https://github.com/tlienart/Franklin.jl">Franklin.jl</a> and the <a href="https://julialang.org">Julia programming language</a>.</p> </div> </div> <div class=breadcrumbs-div > <nav class=breadcrumbs ><a href="/blog" class=breadcrumbs__item >Blog</a><a href="/blog/julia-learning" class=breadcrumbs__item >Julia Learning</a><a class="breadcrumbs__item is-active">Advanced Topics</a></nav> </div> <div class="content container"> <div class=franklin-content > <h1 id=advanced_topics ><a href="#advanced_topics" class=header-anchor >Advanced Topics</a></h1> <p><strong>Note:</strong> The materials of the this introduction are borrowed from <sup id="fnref:1"><a href="#fndef:1" class=fnref >[1]</a></sup>. Hence, it is highly recommended to read the Chapter 15 to Chapter 18 in <sup id="fnref:1"><a href="#fndef:1" class=fnref >[1]</a></sup>. <div class=franklin-toc ><ol><li><a href="#structs_and_objects">Structs and objects</a><ol><li><a href="#composite_types">Composite types</a><li><a href="#structs_are_immutable">Structs are immutable</a></ol><li><a href="#structs_and_functions">Structs and functions</a><ol><li><a href="#pure_functions_and_modifiers">Pure functions and modifiers</a></ol><li><a href="#function_overloading">Function overloading</a><ol><li><a href="#constructors">Constructors</a><li><a href="#show"><code>show</code></a><li><a href="#operator_overloading_and_multiple_dispatch">Operator overloading and multiple dispatch</a><li><a href="#generic_programming">Generic programming</a></ol><li><a href="#abstract_types_and_subtyping">Abstract types and subtyping</a><li><a href="#others">Others</a><ol><li><a href="#repr"><code>repr</code></a><li><a href="#dump"><code>dump</code></a><li><a href="#operator"><code>::</code> operator</a><li><a href="#macro_call">Macro call &#39;@&#39;</a><li><a href="#operator__2"><code>::</code> operator</a><li><a href="#named_tuple">Named tuple</a><li><a href="#do_blocks"><code>do</code> blocks</a><li><a href="#ternary_operator_condition_true_false">Ternary operator <code>condition ? true : false</code></a><li><a href="#short-circuit_evaluation">Short-Circuit Evaluation</a><li><a href="#primitive_composite_abstract_and_parametric_types">Primitive, composite, abstract and parametric types</a><li><a href="#type_unions">Type unions</a><li><a href="#function-like_objects">Function-like Objects</a><li><a href="#constructors__2">Constructors</a><li><a href="#conversion_and_promotion">Conversion and Promotion</a><li><a href="#metaprogramming">Metaprogramming</a><li><a href="#macros">Macros</a><li><a href="#measuring_performance">Measuring Performance</a><li><a href="#interactive_utilities">Interactive Utilities</a><li><a href="#debug_macro"><code>@debug</code> macro</a></ol></ol></div></p> <h2 id=structs_and_objects ><a href="#structs_and_objects" class=header-anchor >Structs and objects</a></h2> <p>At this point you know how to use functions to organize code and built-in types to organize data. The next step is to learn how to build your own types to organize both code and data. This is a big topic; it will take a few chapters to get there.</p> <h3 id=composite_types ><a href="#composite_types" class=header-anchor >Composite types</a></h3> <p>We have used many of Julia’s built-in types; now we are going to define a new type. As an example, we will create a type called Point that represents a point in two-dimensional space.</p> <p>A programmer-defined composite type is also called a struct. For example, the <code>struct</code> definition for a point looks like this:</p> <pre><code class="julia hljs"><span class=hljs-keyword >struct</span> IPoint
+    x
+    y
+<span class=hljs-keyword >end</span></code></pre> <p>A struct is like a factory for creating objects. To create a point, you call Point as if it were a function having as arguments the values of the fields. When Point is used as a function, it is called a constructor.</p> <pre><code class="julia hljs">p = IPoint(<span class=hljs-number >3.0</span>, <span class=hljs-number >4.0</span>)</code></pre><pre><code class="plaintext hljs">IPoint(3.0, 4.0)</code></pre>
+<p>To access the attributes of <code>p</code>, we use the <code>.</code> operator:</p>
+<pre><code class="julia hljs">p</code></pre><pre><code class="plaintext hljs">IPoint(3.0, 4.0)</code></pre>
+<h3 id=structs_are_immutable ><a href="#structs_are_immutable" class=header-anchor >Structs are immutable</a></h3>
+<p>As we can see from below, a Point is an immutable type</p>
+<pre><code class="julia hljs">ismutable(p)</code></pre><pre><code class="plaintext hljs">false</code></pre>
+<div class="admonition note"><p class=admonition-title >Note</p><p>Here are some advantages for a struct to be immutable:</p>
+<ul>
+<li><p>It can be more efficient.</p>
+
+<li><p>It is not possible to violate the invariants provided by the type’s constructors.</p>
+
+<li><p>Code using immutable objects can be easier to reason about.</p>
+
+</ul>
+</div>
+<p>To define a mutable struct, we use the keyword <code>mutable struct</code> in place of <code>struct</code>:</p>
+<pre><code class="julia hljs"><span class=hljs-keyword >mutable struct</span> MPoint
+    x
+    y
+<span class=hljs-keyword >end</span></code></pre>
+<pre><code class="julia hljs">mp = MPoint(<span class=hljs-number >1</span>, <span class=hljs-number >2</span>)</code></pre><pre><code class="plaintext hljs">MPoint(1, 2)</code></pre>
+<pre><code class="julia hljs">mp.x = <span class=hljs-number >3</span></code></pre><pre><code class="plaintext hljs">3</code></pre>
+<pre><code class="julia hljs"><span class=hljs-keyword >struct</span> Rectangle
+    width::<span class=hljs-built_in >Real</span>
+    height::<span class=hljs-built_in >Real</span>
+    corner
+<span class=hljs-keyword >end</span></code></pre>
+<h2 id=structs_and_functions ><a href="#structs_and_functions" class=header-anchor >Structs and functions</a></h2>
+<h3 id=pure_functions_and_modifiers ><a href="#pure_functions_and_modifiers" class=header-anchor >Pure functions and modifiers</a></h3>
+<p>A <em>pure function</em> is a function without side effects &#40;e.g. modifying the arguments&#41; after execution and the returned value only on the input passed to the function.</p>
+<p>Here is an example of a pure function:</p>
+<p>A <em>modifier function</em>, on the other hand, modifies the the its input and returns <code>nothing</code>. The name of a modifier function, in Julia, is conventially ends with a exclamation mark <code>&#33;</code>. Learn more about this from the <a href="https://docs.julialang.org/en/v1.9/manual/variables/#Stylistic-Conventions">documentation</a>.</p>
+<p>Here is an example of a modifier:</p>
+<pre><code class="julia hljs"><span class=hljs-keyword >function</span> reset_point(p::MPoint)
+    (p.x, p.y)=(<span class=hljs-number >0</span>, <span class=hljs-number >0</span>)
+    <span class=hljs-keyword >return</span> <span class=hljs-literal >nothing</span>
+<span class=hljs-keyword >end</span></code></pre><pre><code class="plaintext hljs">reset_point (generic function with 1 method)</code></pre>
+<pre><code class="julia hljs"><span class=hljs-keyword >let</span>
+    p=MPoint(<span class=hljs-number >1</span>, <span class=hljs-number >2</span>)
+    reset_point(p)
+    println((p.x, p.y))
+<span class=hljs-keyword >end</span></code></pre><pre><code class="plaintext hljs">(0, 0)
+</code></pre>
+<h2 id=function_overloading ><a href="#function_overloading" class=header-anchor >Function overloading</a></h2>
+<p>The idea of function overloading is that you can define two functions taking different arguments with the same name. For example, we can difine a distance function calculating two different points:</p>
+<h3 id=constructors ><a href="#constructors" class=header-anchor >Constructors</a></h3>
+<p>A <em>constructor</em> is a special function that is called to create an object. The default constructor methods of <code>Rectangle</code> have the following signatures:</p>
+<pre><code class="julia hljs">Rectange(width::<span class=hljs-built_in >Real</span>, height::<span class=hljs-built_in >Real</span>, corner)</code></pre>
+<p>They simply initialize the attribute of the object. We can also define our own <em>inner constructor</em>, by using <code>new</code> in a these constructors to generate a new object. An example is given as follows:</p>
+<pre><code class="julia hljs"><span class=hljs-keyword >mutable struct</span> Square
+    side
+    corner
+    <span class=hljs-comment >#&#x27; customized constructor (override the default constructor)</span>
+    <span class=hljs-keyword >function</span> Square(side, corner = IPoint(<span class=hljs-number >0</span>, <span class=hljs-number >0</span>))
+        <span class=hljs-meta >@assert</span>(side &gt;= <span class=hljs-number >0</span>, <span class=hljs-string >&quot;Side length is negative!&quot;</span>)
+        <span class=hljs-keyword >return</span> new(side, corner)
+    <span class=hljs-keyword >end</span>
+    <span class=hljs-comment >#&#x27; copy constructor</span>
+    <span class=hljs-keyword >function</span> Square(square::Square)
+        new(square.side, square.corner)
+    <span class=hljs-keyword >end</span>
+<span class=hljs-keyword >end</span></code></pre>
+<p>We can compare the following results:</p>
+<pre><code class="julia hljs"><span class=hljs-keyword >let</span>
+    square1 = Square(<span class=hljs-number >3</span>, IPoint(<span class=hljs-number >0</span>, <span class=hljs-number >0</span>))
+    square2 = Square(square1)
+    (square1 == square2), (square1 === square2)
+<span class=hljs-keyword >end</span></code></pre><pre><code class="plaintext hljs">(false, false)</code></pre>
+<pre><code class="julia hljs"><span class=hljs-keyword >let</span>
+    square1 = Square(<span class=hljs-number >3</span>, IPoint(<span class=hljs-number >0</span>, <span class=hljs-number >0</span>))
+    square2 = square1
+    (square1 == square2), (square1 === square2)
+<span class=hljs-keyword >end</span></code></pre><pre><code class="plaintext hljs">(true, true)</code></pre>
+<div class="admonition warning"><p class=admonition-title >Warning</p><p>The default constructor is not available if any inner constructor is defined. You have to write explicitly all the inner constructors you need.</p>
+</div>
+<p>In the code above, we have a constructor taking an argument of type <code>Square</code>. It is useful when we decide to make a generate a new copy of the object later on.</p>
+<h3 id=show ><a href="#show" class=header-anchor ><code>show</code></a></h3>
+<p>We now override the <code>show</code> function to generate an string expression for type <code>Square</code></p>
+<pre><code class="julia hljs"><span class=hljs-keyword >function</span> Base.show(io::<span class=hljs-built_in >IO</span>, p::MPoint)
+    print(io, <span class=hljs-string >&quot;(<span class=hljs-subst >$(p.x)</span>, <span class=hljs-subst >$(p.y)</span>)&quot;</span>)
+<span class=hljs-keyword >end</span></code></pre>
+<pre><code class="julia hljs"><span class=hljs-keyword >function</span> Base.show(io::<span class=hljs-built_in >IO</span>, p::IPoint)
+    print(io, <span class=hljs-string >&quot;(<span class=hljs-subst >$(p.x)</span>, <span class=hljs-subst >$(p.y)</span>)&quot;</span>)
+<span class=hljs-keyword >end</span></code></pre>
+<pre><code class="julia hljs"><span class=hljs-keyword >function</span> Base.show(io::<span class=hljs-built_in >IO</span>, square::Square)
+    print(io, <span class=hljs-string >&quot;Square anchored at <span class=hljs-subst >$(square.corner)</span> with side length <span class=hljs-subst >$(square.side)</span>&quot;</span>)
+<span class=hljs-keyword >end</span></code></pre>
+<pre><code class="julia hljs">Square(<span class=hljs-number >2</span>, IPoint(<span class=hljs-number >0</span>, <span class=hljs-number >0</span>))</code></pre><pre><code class="plaintext hljs">Square anchored at (0, 0) with side length 2</code></pre>
+<pre><code class="julia hljs">Square(<span class=hljs-number >2</span>, MPoint(<span class=hljs-number >0</span>, <span class=hljs-number >0</span>))</code></pre><pre><code class="plaintext hljs">Square anchored at (0, 0) with side length 2</code></pre>
+<h3 id=operator_overloading_and_multiple_dispatch ><a href="#operator_overloading_and_multiple_dispatch" class=header-anchor >Operator overloading and multiple dispatch</a></h3>
+<p>Some operators in Julia, like other functions, can be overloaded. These operators are in <code>Base</code> <a href="#62ce4035-b68a-46a0-a77c-57ee66ea3645">module</a>, and operator <code>op</code> in the module should referred to as <code>Base:op</code> or even <code>Base:&#40;op&#41;</code> &#40;e.g. mandatory for <code>&#61;&#61;</code>&#41;</p>
+<pre><code class="julia hljs"><span class=hljs-keyword >function</span> Base.:+(p::MPoint, s::Square)
+    t = Square(s)
+    s.corner.x += p.x
+    s.corner.y += p.y
+    <span class=hljs-keyword >return</span> t
+<span class=hljs-keyword >end</span></code></pre>
+<pre><code class="julia hljs">distance(p) = sqrt(p.x^<span class=hljs-number >2</span> + p.y^<span class=hljs-number >2</span>)</code></pre><pre><code class="plaintext hljs">distance (generic function with 1 method)</code></pre>
+<pre><code class="julia hljs">distance(p, q) = sqrt((p.x - q.x)^<span class=hljs-number >2</span> + (p.y - q.y)^<span class=hljs-number >2</span>)</code></pre><pre><code class="plaintext hljs">distance (generic function with 2 methods)</code></pre>
+<pre><code class="julia hljs"><span class=hljs-keyword >let</span>
+    p=MPoint(<span class=hljs-number >1</span>, <span class=hljs-number >2</span>)
+    println(distance(p))
+    println((p.x, p.y))
+<span class=hljs-keyword >end</span></code></pre><pre><code class="plaintext hljs">2.23606797749979
+(1, 2)
+</code></pre>
+<pre><code class="julia hljs"><span class=hljs-keyword >let</span>
+    p=MPoint(<span class=hljs-number >1</span>, <span class=hljs-number >2</span>)
+    println(distance(p), distance(p, p))
+<span class=hljs-keyword >end</span></code></pre><pre><code class="plaintext hljs">2.236067977499790.0
+</code></pre>
+<pre><code class="julia hljs">MPoint(<span class=hljs-number >3</span>, <span class=hljs-number >4</span>) + Square(<span class=hljs-number >3</span>, MPoint(<span class=hljs-number >1</span>, <span class=hljs-number >2</span>))</code></pre><pre><code class="plaintext hljs">Square anchored at (4, 6) with side length 3</code></pre>
+<p>The choice of which method to execute when a function is applied is called <em>dispatch</em>.</p>
+<h3 id=generic_programming ><a href="#generic_programming" class=header-anchor >Generic programming</a></h3>
+<p>Many of the functions we wrote for strings also work for other sequence types. For example, in Dictionary as a Collection of Counters we used histogram to count the number of times each letter appears in a word.</p>
+<pre><code class="julia hljs"><span class=hljs-keyword >function</span> histogram(s)
+    d = <span class=hljs-built_in >Dict</span>()
+    <span class=hljs-keyword >for</span> c <span class=hljs-keyword >in</span> s
+        <span class=hljs-keyword >if</span> c ∉ keys(d)
+            d[c] = <span class=hljs-number >1</span>
+        <span class=hljs-keyword >else</span>
+            d[c] += <span class=hljs-number >1</span>
+        <span class=hljs-keyword >end</span>
+    <span class=hljs-keyword >end</span>
+    d
+<span class=hljs-keyword >end</span></code></pre><pre><code class="plaintext hljs">histogram (generic function with 1 method)</code></pre>
+<pre><code class="julia hljs">histogram((<span class=hljs-string >&quot;spam&quot;</span>, <span class=hljs-string >&quot;egg&quot;</span>, <span class=hljs-string >&quot;spam&quot;</span>, <span class=hljs-string >&quot;spam&quot;</span>, <span class=hljs-string >&quot;bacon&quot;</span>, <span class=hljs-string >&quot;spam&quot;</span>))</code></pre><pre><code class="plaintext hljs">Dict{Any, Any} with 3 entries:
+  &quot;bacon&quot; =&gt; 1
+  &quot;spam&quot; =&gt; 4
+  &quot;egg&quot; =&gt; 1</code></pre>
+<pre><code class="julia hljs">histogram([<span class=hljs-string >&quot;spam&quot;</span>, <span class=hljs-string >&quot;egg&quot;</span>, <span class=hljs-string >&quot;spam&quot;</span>, <span class=hljs-string >&quot;spam&quot;</span>, <span class=hljs-string >&quot;bacon&quot;</span>, <span class=hljs-string >&quot;spam&quot;</span>])</code></pre><pre><code class="plaintext hljs">Dict{Any, Any} with 3 entries:
+  &quot;bacon&quot; =&gt; 1
+  &quot;spam&quot; =&gt; 4
+  &quot;egg&quot; =&gt; 1</code></pre>
+<p>Functions that work with several types are called <em>polymorphic</em>. Polymorphism can facilitate code reuse.</p>
+<h2 id=abstract_types_and_subtyping ><a href="#abstract_types_and_subtyping" class=header-anchor >Abstract types and subtyping</a></h2>
+<p>In the following, we use the same example as <sup id="fnref:1"><a href="#fndef:1" class=fnref >[1]</a></sup> to demonstrate abstract type and subtyping.</p>
+<p>Here is our setup</p>
+<pre><code class="julia hljs"><span class=hljs-keyword >const</span> suit_names = [<span class=hljs-string >&quot;♣&quot;</span>, <span class=hljs-string >&quot;♦&quot;</span>, <span class=hljs-string >&quot;♥&quot;</span>, <span class=hljs-string >&quot;♠&quot;</span>]</code></pre><pre><code class="plaintext hljs">4-element Vector{String}:
+ &quot;♣&quot;
+ &quot;♦&quot;
+ &quot;♥&quot;
+ &quot;♠&quot;</code></pre>
+<pre><code class="julia hljs"><span class=hljs-keyword >const</span> rank_names = [<span class=hljs-string >&quot;A&quot;</span>, <span class=hljs-string >&quot;2&quot;</span>, <span class=hljs-string >&quot;3&quot;</span>, <span class=hljs-string >&quot;4&quot;</span>, <span class=hljs-string >&quot;5&quot;</span>, <span class=hljs-string >&quot;6&quot;</span>, <span class=hljs-string >&quot;7&quot;</span>, <span class=hljs-string >&quot;8&quot;</span>, <span class=hljs-string >&quot;9&quot;</span>, <span class=hljs-string >&quot;10&quot;</span>, <span class=hljs-string >&quot;J&quot;</span>, <span class=hljs-string >&quot;Q&quot;</span>, <span class=hljs-string >&quot;K&quot;</span>]</code></pre><pre><code class="plaintext hljs">13-element Vector{String}:
+ &quot;A&quot;
+ &quot;2&quot;
+ &quot;3&quot;
+ &quot;4&quot;
+ &quot;5&quot;
+ &quot;6&quot;
+ &quot;7&quot;
+ &quot;8&quot;
+ &quot;9&quot;
+ &quot;10&quot;
+ &quot;J&quot;
+ &quot;Q&quot;
+ &quot;K&quot;</code></pre>
+<pre><code class="julia hljs"><span class=hljs-keyword >struct</span> Card
+    suit :: <span class=hljs-built_in >Int64</span>
+    rank :: <span class=hljs-built_in >Int64</span>
+    <span class=hljs-comment >#&#x27; constructor</span>
+    <span class=hljs-keyword >function</span> Card(suit::<span class=hljs-built_in >Int64</span>, rank::<span class=hljs-built_in >Int64</span>)
+        <span class=hljs-meta >@assert</span>(<span class=hljs-number >1</span> ≤ suit ≤ <span class=hljs-number >4</span>, <span class=hljs-string >&quot;suit is not between 1 and 4&quot;</span>)
+        <span class=hljs-meta >@assert</span>(<span class=hljs-number >1</span> ≤ rank ≤ <span class=hljs-number >13</span>, <span class=hljs-string >&quot;rank is not between 1 and 13&quot;</span>)
+        new(suit, rank)
+    <span class=hljs-keyword >end</span>
+    <span class=hljs-comment >#&#x27; methods overloading</span>
+    <span class=hljs-keyword >function</span> Base.show(io::<span class=hljs-built_in >IO</span>, card::Card)
+        print(io, rank_names[card.rank], suit_names[card.suit])
+    <span class=hljs-keyword >end</span>
+    <span class=hljs-comment >#&#x27; operator overloading</span>
+    <span class=hljs-keyword >function</span> Base.:&lt;(c1::Card, c2::Card)
+        (c1.suit, c1.rank) &lt; (c2.suit, c2.rank)
+    <span class=hljs-keyword >end</span>
+<span class=hljs-keyword >end</span></code></pre>
+<p>We now define a virtual type <code>CardSet</code>, to which both a deck and a hand belong to:</p>
+<pre><code class="julia hljs"><span class=hljs-keyword >abstract type</span> CardSet <span class=hljs-keyword >end</span></code></pre>
+<pre><code class="julia hljs"><span class=hljs-keyword >struct</span> Hand &lt;: CardSet
+    cards :: <span class=hljs-built_in >Array</span>{Card, <span class=hljs-number >1</span>}
+    label :: <span class=hljs-built_in >String</span>
+    <span class=hljs-keyword >function</span> Hand(label::<span class=hljs-built_in >String</span>=<span class=hljs-string >&quot;&quot;</span>)
+        Hand(Card[], label)
+    <span class=hljs-keyword >end</span>
+<span class=hljs-keyword >end</span></code></pre>
+<p>We can defining generic functions on CardSet, which apply to both decks and hands:</p>
+<pre><code class="julia hljs"><span class=hljs-keyword >begin</span>
+    <span class=hljs-keyword >function</span> Base.show(io::<span class=hljs-built_in >IO</span>, cs::CardSet)
+        <span class=hljs-keyword >for</span> card <span class=hljs-keyword >in</span> cs.cards
+            print(io, card, <span class=hljs-string >&quot; &quot;</span>)
+        <span class=hljs-keyword >end</span>
+    <span class=hljs-keyword >end</span>
+
+    <span class=hljs-keyword >function</span> Base.pop!(cs::CardSet)
+        pop!(cs.cards)
+    <span class=hljs-keyword >end</span>
+
+    <span class=hljs-keyword >function</span> Base.push!(cs::CardSet, card::Card)
+        push!(cs.cards, card)
+        <span class=hljs-literal >nothing</span>
+    <span class=hljs-keyword >end</span>
+<span class=hljs-keyword >end</span></code></pre>
+<pre><code class="julia hljs"><span class=hljs-keyword >struct</span> Deck &lt;: CardSet
+    cards :: <span class=hljs-built_in >Array</span>{Card, <span class=hljs-number >1</span>}
+    <span class=hljs-comment >#&#x27; constructor</span>
+    <span class=hljs-keyword >function</span> Deck()
+        deck = new(Card[])
+        <span class=hljs-keyword >for</span> suit <span class=hljs-keyword >in</span> <span class=hljs-number >1</span>:<span class=hljs-number >4</span>
+            <span class=hljs-keyword >for</span> rank <span class=hljs-keyword >in</span> <span class=hljs-number >1</span>:<span class=hljs-number >13</span>
+                push!(deck.cards, Card(suit, rank))
+            <span class=hljs-keyword >end</span>
+        <span class=hljs-keyword >end</span>
+        deck
+    <span class=hljs-keyword >end</span>
+<span class=hljs-keyword >end</span></code></pre>
+<pre><code class="julia hljs">Deck()</code></pre><pre><code class="plaintext hljs">A♣ 2♣ 3♣ 4♣ 5♣ 6♣ 7♣ 8♣ 9♣ 10♣ J♣ Q♣ K♣ A♦ 2♦ 3♦ 4♦ 5♦ 6♦ 7♦ 8♦ 9♦ 10♦ J♦ Q♦ K♦ A♥ 2♥ 3♥ 4♥ 5♥ 6♥ 7♥ 8♥ 9♥ 10♥ J♥ Q♥ K♥ A♠ 2♠ 3♠ 4♠ 5♠ 6♠ 7♠ 8♠ 9♠ 10♠ J♠ Q♠ K♠ </code></pre>
+<pre><code class="julia hljs">deck = Deck()</code></pre><pre><code class="plaintext hljs">A♣ 2♣ 3♣ 4♣ 5♣ 6♣ 7♣ 8♣ 9♣ 10♣ J♣ Q♣ K♣ A♦ 2♦ 3♦ 4♦ 5♦ 6♦ 7♦ 8♦ 9♦ 10♦ J♦ Q♦ K♦ A♥ 2♥ 3♥ 4♥ 5♥ 6♥ 7♥ 8♥ 9♥ 10♥ J♥ Q♥ K♥ A♠ 2♠ 3♠ 4♠ 5♠ 6♠ 7♠ 8♠ 9♠ 10♠ J♠ Q♠ K♠ </code></pre>
+<h2 id=others ><a href="#others" class=header-anchor >Others</a></h2>
+<h3 id=repr ><a href="#repr" class=header-anchor ><code>repr</code></a></h3>
+<p>Create a string from any value using the show function. You should not add methods to repr; define a show method instead.</p>
+<pre><code class="julia hljs">repr(zip(<span class=hljs-string >&quot;abc&quot;</span>, [<span class=hljs-number >1</span> <span class=hljs-number >2</span> <span class=hljs-number >3</span>]))</code></pre><pre><code class="plaintext hljs">&quot;zip(\&quot;abc\&quot;, [1 2 3])&quot;</code></pre>
+<h3 id=dump ><a href="#dump" class=header-anchor ><code>dump</code></a></h3>
+<p>Show every part of the representation of a value.</p>
+<pre><code class="julia hljs">dump(zip(<span class=hljs-string >&quot;abc&quot;</span>, [<span class=hljs-number >1</span> <span class=hljs-number >2</span> <span class=hljs-number >3</span>]))</code></pre><pre><code class="plaintext hljs">Base.Iterators.Zip{Tuple{String, Matrix{Int64}}}
+  is: Tuple{String, Matrix{Int64}}
+    1: String &quot;abc&quot;
+    2: Array{Int64}((1, 3)) [1 2 3]
+</code></pre>
+<h3 id=operator ><a href="#operator" class=header-anchor ><code>::</code> operator</a></h3>
+<p>We may use <code>a :: T</code> to assert if a variable <code>a</code> is of type <code>T</code>:</p>
+<pre><code class="julia hljs"><span class=hljs-keyword >let</span>
+    f(x::<span class=hljs-built_in >Int</span>,y::<span class=hljs-built_in >Int</span>) = x+y
+    <span class=hljs-keyword >try</span>
+        println(f(<span class=hljs-number >1.0</span>, <span class=hljs-number >2.0</span>))
+    <span class=hljs-keyword >catch</span> e
+        println(<span class=hljs-string >&quot;Error: <span class=hljs-variable >$e</span>&quot;</span>)
+    <span class=hljs-keyword >end</span>
+    <span class=hljs-keyword >try</span>
+        println(f(<span class=hljs-number >1</span>, <span class=hljs-number >2</span>))
+    <span class=hljs-keyword >catch</span> e
+        println(<span class=hljs-string >&quot;Error: <span class=hljs-variable >$e</span>&quot;</span>)
+    <span class=hljs-keyword >end</span>
+<span class=hljs-keyword >end</span></code></pre><pre><code class="plaintext hljs">Error: MethodError(Main.FD_SANDBOX_5514522325621768181.var&quot;#f#1&quot;(), (1.0, 2.0), 0x0000000000007b57)
+3
+</code></pre>
+<p>It may also help us to perform assignment:</p>
+<pre><code class="julia hljs"><span class=hljs-keyword >let</span>
+    x::<span class=hljs-built_in >Int8</span> = round(<span class=hljs-built_in >Int</span>, <span class=hljs-number >2.0</span>)
+    typeof(x)
+<span class=hljs-keyword >end</span></code></pre><pre><code class="plaintext hljs">Int8</code></pre>
+<h3 id=macro_call ><a href="#macro_call" class=header-anchor >Macro call &#39;@&#39;</a></h3>
+<p>A macro maps a tuple of arguments, expressed as space-separated expressions or a function-call-like argument list, to a returned expression. A macro named <code>macro_name</code> can be called by <code>@macro_name</code>.</p>
+<h3 id=operator__2 ><a href="#operator__2" class=header-anchor ><code>::</code> operator</a></h3>
+<p><code>:expr</code> quote an expression <code>expr</code>, returning the abstract syntax tree &#40;AST&#41; of expr. The AST may be of type <code>Expr</code>, <code>Symbol</code>, or a literal value. The syntax :identifier evaluates to a <code>Symbol</code>.</p>
+<h3 id=named_tuple ><a href="#named_tuple" class=header-anchor >Named tuple</a></h3>
+<p>You can name the components of a tuple, creating a named tuple:</p>
+<pre><code class="julia hljs">x = (a=<span class=hljs-number >1</span>, b=<span class=hljs-number >1</span>+<span class=hljs-number >1</span>)</code></pre><pre><code class="plaintext hljs">(a = 1, b = 2)</code></pre>
+<pre><code class="julia hljs"><span class=hljs-meta >@isdefined</span> x</code></pre><pre><code class="plaintext hljs">true</code></pre>
+<pre><code class="julia hljs">x.a</code></pre><pre><code class="plaintext hljs">1</code></pre>
+<h3 id=do_blocks ><a href="#do_blocks" class=header-anchor ><code>do</code> blocks</a></h3>
+<p>In Reading and Writing we had to close the file after when where done writing. This can be done automatically using a do block:</p>
+<pre><code class="julia hljs"><span class=hljs-keyword >let</span>
+    data = <span class=hljs-string >&quot;This here&#x27;s the wattle,\nthe emblem of our land.\n&quot;</span>
+    open(<span class=hljs-string >&quot;output.txt&quot;</span>, <span class=hljs-string >&quot;w&quot;</span>) <span class=hljs-keyword >do</span> fout
+        write(fout, data)
+    <span class=hljs-keyword >end</span>
+<span class=hljs-keyword >end</span></code></pre><pre><code class="plaintext hljs">48</code></pre>
+<p>In this example fout is the file stream used for output. This is functionally equivalent to</p>
+<pre><code class="julia hljs"><span class=hljs-keyword >let</span>
+    data = <span class=hljs-string >&quot;This here&#x27;s the wattle,\nthe emblem of our land.\n&quot;</span>
+    f = fout -&gt; <span class=hljs-keyword >begin</span>
+        write(fout, data)
+    <span class=hljs-keyword >end</span>
+    open(f, <span class=hljs-string >&quot;output.txt&quot;</span>, <span class=hljs-string >&quot;w&quot;</span>)
+<span class=hljs-keyword >end</span></code></pre><pre><code class="plaintext hljs">48</code></pre>
+<pre><code class="julia hljs"><span class=hljs-string >&quot;The way it works is the following:&quot;</span></code></pre><pre><code class="plaintext hljs">&quot;The way it works is the following:&quot;</code></pre>
+<pre><code class="julia hljs"><span class=hljs-keyword >function</span> open(f::<span class=hljs-built_in >Function</span>, args...)
+    io = open(args...)
+    <span class=hljs-keyword >try</span>
+        f(io)
+    <span class=hljs-keyword >finally</span>
+        close(io)
+    <span class=hljs-keyword >end</span>
+<span class=hljs-keyword >end</span></code></pre>
+<p>Check out the <a href="https://docs.julialang.org/en/v1.9/base/io-network/#Base.open&#93;">documentation</a>.</p>
+<h3 id=ternary_operator_condition_true_false ><a href="#ternary_operator_condition_true_false" class=header-anchor >Ternary operator <code>condition ? true : false</code></a></h3>
+<p>The is an alternative to an <code>if-elseif</code> statement:</p>
+<pre><code class="julia hljs"><span class=hljs-number >1</span> &gt; <span class=hljs-number >0</span> ? <span class=hljs-string >&quot;It is true!&quot;</span> : <span class=hljs-string >&quot;It is false!&quot;</span></code></pre><pre><code class="plaintext hljs">&quot;It is true!&quot;</code></pre>
+<h3 id=short-circuit_evaluation ><a href="#short-circuit_evaluation" class=header-anchor >Short-Circuit Evaluation</a></h3>
+<p>The operators <code>&amp;&amp;</code> and <code>||</code> do a short-circuit evaluation: a next argument is only evaluated when it is needed to determine the final value.</p>
+<pre><code class="julia hljs"><span class=hljs-keyword >function</span> fact(n::<span class=hljs-built_in >Integer</span>)
+    n &gt;= <span class=hljs-number >0</span> || error(<span class=hljs-string >&quot;n must be non-negative&quot;</span>)
+    n == <span class=hljs-number >0</span> &amp;&amp; <span class=hljs-keyword >return</span> <span class=hljs-number >1</span>
+    n * fact(n-<span class=hljs-number >1</span>)
+<span class=hljs-keyword >end</span></code></pre><pre><code class="plaintext hljs">fact (generic function with 1 method)</code></pre>
+<pre><code class="julia hljs">fact(<span class=hljs-number >4</span>)</code></pre><pre><code class="plaintext hljs">24</code></pre>
+<h3 id=primitive_composite_abstract_and_parametric_types ><a href="#primitive_composite_abstract_and_parametric_types" class=header-anchor >Primitive, composite, abstract and  parametric types</a></h3>
+<p><a href="https://docs.julialang.org/en/v1.9/manual/types/#Primitive-Types">Primitive types</a> are a concrete types whose data consists of plain old bits, and their identity depend only on bits.</p>
+<p><a href="https://docs.julialang.org/en/v1.9/manual/types/#Composite-Types">Composite type</a> are called records, structs, or objects in various languages. A composite type is a collection of named fields, an instance of which can be treated as a single value. In many languages, composite types are the only kind of user-definable type, and they are by far the most commonly used user-defined type in Julia as well.</p>
+<p>Primitive/composite/abstract types can have parameters. See the following example:</p>
+<pre><code class="julia hljs"><span class=hljs-keyword >struct</span> Point{T&lt;:<span class=hljs-built_in >Real</span>}
+    x::T
+    y::T
+<span class=hljs-keyword >end</span></code></pre>
+<h3 id=type_unions ><a href="#type_unions" class=header-anchor >Type unions</a></h3>
+<pre><code class="julia hljs"><span class=hljs-keyword >isa</span>(<span class=hljs-number >8</span>, <span class=hljs-built_in >Union</span>{<span class=hljs-built_in >Real</span>, <span class=hljs-built_in >String</span>})</code></pre><pre><code class="plaintext hljs">true</code></pre>
+<pre><code class="julia hljs"><span class=hljs-keyword >isa</span>(<span class=hljs-string >&quot;s&quot;</span>, <span class=hljs-built_in >Union</span>{<span class=hljs-built_in >Int64</span>, <span class=hljs-built_in >String</span>})</code></pre><pre><code class="plaintext hljs">true</code></pre>
+<p>Parametric Methods</p>
+<p>Method definitions can also have type parameters qualifying their signature:</p>
+<pre><code class="julia hljs">isintpoint(p::Point{T}) <span class=hljs-keyword >where</span> {T} = (T === <span class=hljs-built_in >Int64</span>)</code></pre><pre><code class="plaintext hljs">isintpoint (generic function with 1 method)</code></pre>
+<pre><code class="julia hljs">isintpoint(Point(<span class=hljs-number >1</span>, <span class=hljs-number >2</span>))</code></pre><pre><code class="plaintext hljs">true</code></pre>
+<h3 id=function-like_objects ><a href="#function-like_objects" class=header-anchor >Function-like Objects</a></h3>
+<p>Any arbitrary Julia object can be made “callable”. Such “callable” objects are sometimes called functors.</p>
+<pre><code class="julia hljs"><span class=hljs-keyword >let</span>
+    <span class=hljs-keyword >struct</span> Polynomial{R}
+        coeff::<span class=hljs-built_in >Vector</span>{R}
+    <span class=hljs-keyword >end</span>
+    <span class=hljs-keyword >function</span> (p::Polynomial)(x)
+        val = p.coeff[<span class=hljs-keyword >end</span>]
+        <span class=hljs-keyword >for</span> coeff <span class=hljs-keyword >in</span> p.coeff[<span class=hljs-keyword >end</span>-<span class=hljs-number >1</span>:-<span class=hljs-number >1</span>:<span class=hljs-number >1</span>]
+            val = val * x + coeff
+        <span class=hljs-keyword >end</span>
+        val
+    <span class=hljs-keyword >end</span>
+    p = Polynomial([<span class=hljs-number >1</span>,<span class=hljs-number >10</span>,<span class=hljs-number >100</span>])
+    p(<span class=hljs-number >3</span>)
+<span class=hljs-keyword >end</span></code></pre><pre><code class="plaintext hljs">931</code></pre>
+<h3 id=constructors__2 ><a href="#constructors__2" class=header-anchor >Constructors</a></h3>
+<p>Parametric types can be explicitly or implicitly constructed:</p>
+<pre><code class="julia hljs">Point(<span class=hljs-number >1</span>,<span class=hljs-number >2</span>)         <span class=hljs-comment ># implicit T</span></code></pre><pre><code class="plaintext hljs">Point{Int64}(1, 2)</code></pre>
+<pre><code class="julia hljs">Point{<span class=hljs-built_in >Int64</span>}(<span class=hljs-number >1</span>, <span class=hljs-number >2</span>) <span class=hljs-comment ># explicit T</span></code></pre><pre><code class="plaintext hljs">Point{Int64}(1, 2)</code></pre>
+<pre><code class="julia hljs">Point(<span class=hljs-number >1</span>,<span class=hljs-number >2.5</span>)       <span class=hljs-comment ># implicit T</span></code></pre><pre><code class="plaintext hljs">MethodError: no method matching Main.FD_SANDBOX_5514522325621768181.Point(::Int64, ::Float64)
+
+Closest candidates are:
+  Main.FD_SANDBOX_5514522325621768181.Point(::T, !Matched::T) where T&lt;:Real
+   @ Main.FD_SANDBOX_5514522325621768181 none:2
+
+</code></pre>
+<p>To address the above ambiguous issue, we can use <a href=""><code>promote</code></a> function:</p>
+<pre><code class="julia hljs"><span class=hljs-keyword >begin</span>
+    <span class=hljs-keyword >struct</span> PointMultitype{T&lt;:<span class=hljs-built_in >Real</span>}
+        x::T
+        y::T
+        PointMultitype{T}(x::T,y::T) <span class=hljs-keyword >where</span> {T&lt;:<span class=hljs-built_in >Real</span>} = new{T}(x,y)
+        PointMultitype(x::<span class=hljs-built_in >Real</span>, y::<span class=hljs-built_in >Real</span>) = Point(promote(x,y)...);
+    <span class=hljs-keyword >end</span>
+    PointMultitype(<span class=hljs-number >1</span>,<span class=hljs-number >2.5</span>)
+<span class=hljs-keyword >end</span></code></pre><pre><code class="plaintext hljs">Point{Float64}(1.0, 2.5)</code></pre>
+<h3 id=conversion_and_promotion ><a href="#conversion_and_promotion" class=header-anchor >Conversion and Promotion</a></h3>
+<p>Julia has a system for promoting arguments to a common type. This is not done automatically but can be easily extended.</p>
+<p>We can add our own convert methods:</p>
+<pre><code class="julia hljs"><span class=hljs-keyword >let</span>
+    Base.convert(::<span class=hljs-built_in >Type</span>{Point{T}}, x::<span class=hljs-built_in >Array</span>{T, <span class=hljs-number >1</span>}) <span class=hljs-keyword >where</span> {T&lt;:<span class=hljs-built_in >Real</span>} = Point(x...)
+    convert(Point{<span class=hljs-built_in >Int64</span>},[<span class=hljs-number >1</span>,<span class=hljs-number >2</span>])
+<span class=hljs-keyword >end</span></code></pre><pre><code class="plaintext hljs">Point{Int64}(1, 2)</code></pre>
+<p>On the other hand, promotion is the conversion of values of mixed types to a single common type:</p>
+<pre><code class="julia hljs">promote(<span class=hljs-number >1</span>, <span class=hljs-number >2.5</span>, <span class=hljs-number >3</span>)</code></pre><pre><code class="plaintext hljs">(1.0, 2.5, 3.0)</code></pre>
+<p>Methods for the promote function are normally not directly defined, but the auxiliary function promote_rule is used to specify the rules for promotion:</p>
+<pre><code class="julia hljs">promote_rule(::<span class=hljs-built_in >Type</span>{<span class=hljs-built_in >Float64</span>}, ::<span class=hljs-built_in >Type</span>{<span class=hljs-built_in >Int32</span>}) = <span class=hljs-built_in >Float64</span></code></pre><pre><code class="plaintext hljs">promote_rule (generic function with 1 method)</code></pre>
+<h3 id=metaprogramming ><a href="#metaprogramming" class=header-anchor >Metaprogramming</a></h3>
+<p>Julia code can be represented as a data structure of the language itself. This allows a program to transform and generate its own code.</p>
+<p>Every Julia program starts as a string, which we can parse into an object called an <code>expression</code>:</p>
+<pre><code class="julia hljs"><span class=hljs-keyword >begin</span>
+    ex = Meta.parse(<span class=hljs-string >&quot;1 + 2&quot;</span>) <span class=hljs-comment ># expression 1</span>
+    ex = <span class=hljs-keyword >quote</span> <span class=hljs-comment ># expression 2</span>
+        <span class=hljs-number >1</span> + <span class=hljs-number >2</span>
+    <span class=hljs-keyword >end</span>
+<span class=hljs-keyword >end</span></code></pre><pre><code class="plaintext hljs">quote
+    #= none:4 =#
+    1 + 2
+end</code></pre>
+<pre><code class="julia hljs">typeof(ex)</code></pre><pre><code class="plaintext hljs">Expr</code></pre>
+<pre><code class="julia hljs">dump(ex)</code></pre><pre><code class="plaintext hljs">Expr
+  head: Symbol block
+  args: Array{Any}((2,))
+    1: LineNumberNode
+      line: Int64 4
+      file: Symbol none
+    2: Expr
+      head: Symbol call
+      args: Array{Any}((3,))
+        1: Symbol +
+        2: Int64 1
+        3: Int64 2
+</code></pre>
+<p>We can use <code>eval</code> to evaluate expressions:</p>
+<pre><code class="julia hljs">eval(ex)</code></pre><pre><code class="plaintext hljs">3</code></pre>
+<h3 id=macros ><a href="#macros" class=header-anchor >Macros</a></h3>
+<p><code>Macros</code> can include generated code in a program. A macro maps a tuple of Expr objects directly to a compiled expression:</p>
+<pre><code class="julia hljs"><span class=hljs-keyword >macro</span> containervariable(container, element)
+    <span class=hljs-keyword >return</span> esc(:($(<span class=hljs-built_in >Symbol</span>(container,element)) = $container[$element]))
+<span class=hljs-keyword >end</span></code></pre><pre><code class="plaintext hljs">@containervariable (macro with 1 method)</code></pre>
+<p>The macro call <code>@containervariable letters 1</code> is replaced by <code>:&#40;letters1 &#61; letters&#91;1&#93;&#41;</code>.</p>
+<h3 id=measuring_performance ><a href="#measuring_performance" class=header-anchor >Measuring Performance</a></h3>
+<pre><code class="julia hljs"><span class=hljs-meta >@time</span> sum([<span class=hljs-number >1</span> <span class=hljs-number >2</span> <span class=hljs-number >3</span> <span class=hljs-number >4</span>])</code></pre><pre><code class="plaintext hljs">  0.000002 seconds (1 allocation: 96 bytes)
+10</code></pre>
+<h3 id=interactive_utilities ><a href="#interactive_utilities" class=header-anchor >Interactive Utilities</a></h3>
+<pre><code class="julia hljs"><span class=hljs-meta >@code_lowered</span> sum([<span class=hljs-number >1</span> <span class=hljs-number >2</span> <span class=hljs-number >3</span> <span class=hljs-number >4</span>])</code></pre>
+<pre><code class="julia-repl hljs">CodeInfo(
+1 ─      nothing
+│   %2 = Base.:(:)
+│   %3 = Core.NamedTuple()
+│   %4 = Base.pairs(%3)
+│   %5 = Base.:(var&quot;#sum#807&quot;)(%2, %4, #self#, a)
+└──      return %5
+)</code></pre>
+<pre><code class="julia hljs"><span class=hljs-meta >@code_typed</span> sum([<span class=hljs-number >1</span> <span class=hljs-number >2</span> <span class=hljs-number >3</span> <span class=hljs-number >4</span>])</code></pre>
+<pre><code class="julia-repl hljs">CodeInfo(
+1 ─ %1 = Base.identity::typeof(identity)
+│   %2 = Base.add_sum::typeof(Base.add_sum)
+│   %3 = invoke Base._mapreduce(%1::typeof(identity), %2::typeof(Base.add_sum), $(QuoteNode(IndexLinear()))::IndexLinear, a::Matrix{Int64})::Int64
+└──      return %3
+) =&gt; Int64</code></pre>
+<pre><code class="julia hljs"><span class=hljs-meta >@code_llvm</span> sum([<span class=hljs-number >1</span> <span class=hljs-number >2</span> <span class=hljs-number >3</span> <span class=hljs-number >4</span>])</code></pre>
+<pre><code class="julia-repl hljs">;  @ reducedim.jl:994 within `sum`
+; Function Attrs: uwtable
+define i64 @julia_sum_338({}* noundef nonnull align 16 dereferenceable(40) %0) #0 {
+top:
+; ┌ @ reducedim.jl:994 within `#sum#807`
+; │┌ @ reducedim.jl:998 within `_sum`
+; ││┌ @ reducedim.jl:998 within `#_sum#809`
+; │││┌ @ reducedim.jl:999 within `_sum`
+; ││││┌ @ reducedim.jl:999 within `#_sum#810`
+; │││││┌ @ reducedim.jl:357 within `mapreduce`
+; ││││││┌ @ reducedim.jl:357 within `#mapreduce#800`
+; │││││││┌ @ reducedim.jl:365 within `_mapreduce_dim`
+          %1 = call i64 @j__mapreduce_340({}* nonnull %0) #0
+; └└└└└└└└
+  ret i64 %1
+}</code></pre>
+<pre><code class="julia hljs"><span class=hljs-meta >@code_native</span> sum([<span class=hljs-number >1</span> <span class=hljs-number >2</span> <span class=hljs-number >3</span> <span class=hljs-number >4</span>])</code></pre>
+<pre><code class="julia-repl hljs">.text
+        .file   &quot;sum&quot;
+        .globl  julia_sum_368                   # -- Begin function julia_sum_368
+        .p2align        4, 0x90
+        .type   julia_sum_368,@function
+julia_sum_368:                          # @julia_sum_368
+; ┌ @ reducedim.jl:994 within `sum`
+        .cfi_startproc
+# %bb.0:                                # %top
+        pushq   %rbp
+        .cfi_def_cfa_offset 16
+        .cfi_offset %rbp, -16
+        movq    %rsp, %rbp
+        .cfi_def_cfa_register %rbp
+        subq    $32, %rsp
+; │┌ @ reducedim.jl:994 within `#sum#807`
+; ││┌ @ reducedim.jl:998 within `_sum`
+; │││┌ @ reducedim.jl:998 within `#_sum#809`
+; ││││┌ @ reducedim.jl:999 within `_sum`
+; │││││┌ @ reducedim.jl:999 within `#_sum#810`
+; ││││││┌ @ reducedim.jl:357 within `mapreduce`
+; │││││││┌ @ reducedim.jl:357 within `#mapreduce#800`
+; ││││││││┌ @ reducedim.jl:365 within `_mapreduce_dim`
+        movabsq $j__mapreduce_370, %rax
+        callq   *%rax
+; │└└└└└└└└
+        addq    $32, %rsp
+        popq    %rbp
+        retq
+.Lfunc_end0:
+        .size   julia_sum_368, .Lfunc_end0-julia_sum_368
+        .cfi_endproc
+; └
+                                        # -- End function
+        .section        &quot;.note.GNU-stack&quot;,&quot;&quot;,@progbits</code></pre>
+<p>Compare these with @which</p>
+<pre><code class="julia hljs"><span class=hljs-meta >@which</span> sum([<span class=hljs-number >1</span> <span class=hljs-number >2</span> <span class=hljs-number >3</span> <span class=hljs-number >4</span>])</code></pre>
+<pre><code class="julia-repl hljs">sum(a::AbstractArray; dims, kw...)
+     @ Base reducedim.jl:994</code></pre>
+<h3 id=debug_macro ><a href="#debug_macro" class=header-anchor ><code>@debug</code> macro</a></h3>
+<pre><code class="julia hljs"><span class=hljs-keyword >let</span>
+    x=<span class=hljs-number >5</span>
+    y=-<span class=hljs-number >5</span>
+    <span class=hljs-keyword >while</span> x &gt; <span class=hljs-number >0</span> &amp;&amp; y &lt; <span class=hljs-number >0</span>
+        x -= <span class=hljs-number >1</span>
+        y += <span class=hljs-number >1</span>
+        <span class=hljs-meta >@debug</span> <span class=hljs-string >&quot;variables&quot;</span> x y
+        <span class=hljs-meta >@debug</span> <span class=hljs-string >&quot;condition&quot;</span> x &gt; <span class=hljs-number >0</span> &amp;&amp; y &lt; <span class=hljs-number >0</span>
+    <span class=hljs-keyword >end</span>
+<span class=hljs-keyword >end</span></code></pre>
+<pre><code class="julia-repl hljs">┌ Debug: variables
+│   x = 4
+│   y = -4
+└ @ Main REPL[10]:7
+┌ Debug: condition
+│   x &gt; 0 &amp;&amp; y &lt; 0 = true
+└ @ Main REPL[10]:8
+┌ Debug: variables
+│   x = 3
+│   y = -3
+└ @ Main REPL[10]:7
+┌ Debug: condition
+│   x &gt; 0 &amp;&amp; y &lt; 0 = true
+└ @ Main REPL[10]:8
+┌ Debug: variables
+│   x = 2
+│   y = -2
+└ @ Main REPL[10]:7
+┌ Debug: condition
+│   x &gt; 0 &amp;&amp; y &lt; 0 = true
+└ @ Main REPL[10]:8
+┌ Debug: variables
+│   x = 1
+│   y = -1
+└ @ Main REPL[10]:7
+┌ Debug: condition
+│   x &gt; 0 &amp;&amp; y &lt; 0 = true
+└ @ Main REPL[10]:8
+┌ Debug: variables
+│   x = 0
+│   y = 0
+└ @ Main REPL[10]:7
+┌ Debug: condition
+│   x &gt; 0 &amp;&amp; y &lt; 0 = false
+└ @ Main REPL[10]:8</code></pre>
+<h1 id=references ><a href="#references" class=header-anchor >References</a></h1>
+<ul>
+<li><p><table class=fndef  id="fndef:1">
+    <tr>
+        <td class=fndef-backref ><a href="#fnref:1">[1]</a>
+        <td class=fndef-content >Think Julia: How to Think Like a Computer Scientist, <a href="https://benlauwens.github.io/ThinkJulia.jl/latest/book.html">https://benlauwens.github.io/ThinkJulia.jl/latest/book.html</a>.
+    
+</table>
+</p>
+
+</ul>
+
+
+</div>
+    
+    
+        <script src="/libs/highlight/highlight.min.js"></script>
+<script>hljs.highlightAll();hljs.configure({tabReplace: '    '});</script>

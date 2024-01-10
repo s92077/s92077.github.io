@@ -1,1 +1,59 @@
-<!doctype html> <html lang=en > <meta charset=UTF-8 > <meta name=viewport  content="width=device-width, initial-scale=1"> <link rel=stylesheet  href="/css/franklin.css"> <link rel=stylesheet  href="/css/poole_hyde.css"> <style> body,html{height: 100%;} .franklin-content {position: relative; padding-left: 0%; padding-right: 0%;overflow-y: hidden; height: 100%;} .content.container {margin-right: 0%; margin-bottom: 0%; padding-bottom: 0%;overflow-y: hidden; height: 100%;} @media (min-width: 940px) { .franklin-content {width: 100%; margin-left: auto; margin-right: auto;overflow-y: hidden;} } @media (max-width: 768px) { .franklin-content {padding-left: 0%; padding-right: 0%;overflow-y: hidden;} } </style> <link rel=icon  href="/assets/favicon.png"> <title>Maybe | Tutorial 1</title> <div class=sidebar > <div class="container sidebar-sticky"> <div class=sidebar-about > <h1><a href="/">Maybe</a></h1> </div> <nav class=sidebar-nav > <a class="sidebar-nav-item " href="/">Home</a> <a class="sidebar-nav-item " href="/publications/">Publications</a> <a class="sidebar-nav-item active" href="/blog/">Blog</a> </nav> <p class=lead >&copy; <a href="http://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA 4.0</a> Website built with <a href="https://github.com/tlienart/Franklin.jl">Franklin.jl</a> and the <a href="https://julialang.org">Julia programming language</a>.</p> </div> </div> <div class=breadcrumbs-div > <nav class=breadcrumbs ><a href="/blog" class=breadcrumbs__item >Blog</a><a href="/blog/julia-learning" class=breadcrumbs__item >Julia Learning</a><a class="breadcrumbs__item is-active">Tutorial 1</a></nav> </div> <div class="content container"> <div class=franklin-content > <div class=pluto ><iframe height="100%" width="100%" frameBorder=0  src="../../../assets/julia-learning/tutorial01.html"></iframe></div> </div>
+<!doctype html> <html lang=en > <meta charset=UTF-8 > <meta name=viewport  content="width=device-width, initial-scale=1"> <link rel=stylesheet  href="/libs/highlight/styles/github.min.css"> <link rel=stylesheet  href="/css/franklin.css"> <link rel=stylesheet  href="/css/poole_hyde.css"> <style> .franklin-content {position: relative; padding-left: 8%; padding-right: 5%;} .content.container {margin-right: 0%} @media (min-width: 940px) { .franklin-content {width: 100%; margin-left: auto; margin-right: auto;} } @media (max-width: 768px) { .franklin-content {padding-left: 6%; padding-right: 6%;} } </style> <link rel=icon  href="/assets/favicon.png"> <title>Maybe | Tutorial 1</title> <div class=sidebar > <div class="container sidebar-sticky"> <div class=sidebar-about > <h1><a href="/">Maybe</a></h1> </div> <input type=checkbox  id=sub-nav  style="display: none;"> <div id=navigation-links > <label for=sub-nav  class=sub-nav-toggle >&#9776;</label> </div> <nav class=sidebar-nav  id=sub-navigation > <a class="sidebar-nav-item " href="/">Home</a> <a class="sidebar-nav-item " href="/publications/">Publications</a> <a class="sidebar-nav-item active" href="/blog/">Blog</a> </nav> <p class=lead >&copy; <a href="http://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA 4.0</a> Website built with <a href="https://github.com/tlienart/Franklin.jl">Franklin.jl</a> and the <a href="https://julialang.org">Julia programming language</a>.</p> </div> </div> <div class=breadcrumbs-div > <nav class=breadcrumbs ><a href="/blog" class=breadcrumbs__item >Blog</a><a href="/blog/julia-learning" class=breadcrumbs__item >Julia Learning</a><a class="breadcrumbs__item is-active">Tutorial 1</a></nav> </div> <div class="content container"> <div class=franklin-content > <h1 id=tutorial_1 ><a href="#tutorial_1" class=header-anchor >Tutorial 1</a></h1> <p>In this tutorial, we will learn to print a Pascal&#39;s triangle using some basic operations as well as some simple markdown syntax and UI components.</p> <h2 id=prerequisite ><a href="#prerequisite" class=header-anchor >Prerequisite</a></h2> <h3 id=markdown ><a href="#markdown" class=header-anchor >Markdown</a></h3> <p>In addition to <a href="https://en.wikipedia.org/wiki/HTML">HTML</a>, Pluto Notebook also supports <a href="https://en.wikipedia.org/wiki/Markdown">Markdown</a> language, a language that is used to create formatted text. Its syntax is introduced in the <a href="https://docs.julialang.org/en/v1.9.0/stdlib/Markdown/">documentation</a>. This languages especially comes in handy for taking notes.</p> <p>One of the useful commands is to print the value of a variable in markdown. See the following example.</p> <pre><code class="julia hljs">m = <span class=hljs-number >10</span></code></pre><pre><code class="plaintext hljs">10</code></pre>
+<p>To print the value of <code>m</code>, type <code>&#36;&#40;m&#41;</code> in the markdown string.</p>
+<p>With the support of HTML, one can easily create basic UI components.</p>
+<pre><code class="julia hljs"><span class=hljs-built_in >HTML</span>(<span class=hljs-string >&quot;&lt;input type=range min=1 max=100&gt;&quot;</span>);</code></pre>
+<p>One can also embed the code in markdown and &quot;bind&quot; the value to a value to a variable, say <code>a</code>:</p>
+<pre><code class="julia hljs"><span class=hljs-meta >@bind</span> a <span class=hljs-string >html&quot;&lt;input type=range min=1 max=100 value=3&gt;&quot;</span></code></pre>
+<p>Drag the slider to see how the value changes.</p>
+<h3 id=plutoui ><a href="#plutoui" class=header-anchor >PlutoUI</a></h3>
+<p>PlutoUI is a package make <code>html&quot;&lt;input&gt;&quot;</code> a bit more native in Julia. To use the package we need to first load the package <sup id="fnref:1"><a href="#fndef:1" class=fnref >[1]</a></sup> :</p>
+<pre><code class="julia hljs"><span class=hljs-meta >@bind</span> x Slider(<span class=hljs-number >1</span>:<span class=hljs-number >20</span>)</code></pre>
+<p>Again, drag the slider to see how the value changes.</p>
+<h2 id=problem ><a href="#problem" class=header-anchor >Problem</a></h2>
+<p>Print a Pascal&#39;s triangle of level <code>n</code>, where <code>n</code> is a number determined by the user. You may try to use UI components in PlutoUI to take inputs.</p>
+<pre><code class="julia hljs"><span class=hljs-meta >@bind</span> n Slider(<span class=hljs-number >1</span>:<span class=hljs-number >10</span>)</code></pre>
+
+<pre><code class="julia hljs"><span class=hljs-keyword >let</span>
+    str = <span class=hljs-string >&quot;&quot;</span>
+    num = ones(<span class=hljs-built_in >Int64</span>, n+<span class=hljs-number >1</span>)
+    num_p = ones(<span class=hljs-built_in >Int64</span>, n+<span class=hljs-number >1</span>)
+    <span class=hljs-keyword >for</span> i <span class=hljs-keyword >in</span> <span class=hljs-number >1</span>:n
+        <span class=hljs-keyword >if</span> i == <span class=hljs-number >1</span>
+            str *= <span class=hljs-string >&quot;1\n&quot;</span>
+        <span class=hljs-keyword >else</span>
+            str *= <span class=hljs-string >&quot;1 &quot;</span>
+            <span class=hljs-keyword >for</span> j <span class=hljs-keyword >in</span> <span class=hljs-number >2</span>:i-<span class=hljs-number >1</span>
+                num[j] = num_p[j-<span class=hljs-number >1</span>] + num_p[j]
+                str = str * string(num[j]) * <span class=hljs-string >&quot; &quot;</span>
+            <span class=hljs-keyword >end</span>
+            str *= <span class=hljs-string >&quot;1\n&quot;</span>
+        <span class=hljs-keyword >end</span>
+        num_p .= num
+    <span class=hljs-keyword >end</span>
+    <span class=hljs-built_in >Text</span>(str)
+<span class=hljs-keyword >end</span></code></pre><pre><code class="plaintext hljs">1
+1 1
+1 2 1
+1 3 3 1
+1 4 6 4 1
+1 5 10 10 5 1
+1 6 15 20 15 6 1
+1 7 21 35 35 21 7 1
+1 8 28 56 70 56 28 8 1
+1 9 36 84 126 126 84 36 9 1
+</code></pre>
+<h2 id=final_notes ><a href="#final_notes" class=header-anchor >Final notes</a></h2>
+<table class=fndef  id="fndef:1">
+    <tr>
+        <td class=fndef-backref ><a href="#fnref:1">[1]</a>
+        <td class=fndef-content >In Pluto, one need not to manually add packages. Instead, Pluto automatically handles it when you import the packages.
+    
+</table>
+
+
+
+</div>
+    
+    
+        <script src="/libs/highlight/highlight.min.js"></script>
+<script>hljs.highlightAll();hljs.configure({tabReplace: '    '});</script>

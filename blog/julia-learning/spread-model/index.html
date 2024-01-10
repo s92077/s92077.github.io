@@ -1,1 +1,191 @@
-<!doctype html> <html lang=en > <meta charset=UTF-8 > <meta name=viewport  content="width=device-width, initial-scale=1"> <link rel=stylesheet  href="/css/franklin.css"> <link rel=stylesheet  href="/css/poole_hyde.css"> <style> body,html{height: 100%;} .franklin-content {position: relative; padding-left: 0%; padding-right: 0%;overflow-y: hidden; height: 100%;} .content.container {margin-right: 0%; margin-bottom: 0%; padding-bottom: 0%;overflow-y: hidden; height: 100%;} @media (min-width: 940px) { .franklin-content {width: 100%; margin-left: auto; margin-right: auto;overflow-y: hidden;} } @media (max-width: 768px) { .franklin-content {padding-left: 0%; padding-right: 0%;overflow-y: hidden;} } </style> <link rel=icon  href="/assets/favicon.png"> <title>Maybe | Spread model simulation</title> <div class=sidebar > <div class="container sidebar-sticky"> <div class=sidebar-about > <h1><a href="/">Maybe</a></h1> </div> <nav class=sidebar-nav > <a class="sidebar-nav-item " href="/">Home</a> <a class="sidebar-nav-item " href="/publications/">Publications</a> <a class="sidebar-nav-item active" href="/blog/">Blog</a> </nav> <p class=lead >&copy; <a href="http://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA 4.0</a> Website built with <a href="https://github.com/tlienart/Franklin.jl">Franklin.jl</a> and the <a href="https://julialang.org">Julia programming language</a>.</p> </div> </div> <div class=breadcrumbs-div > <nav class=breadcrumbs ><a href="/blog" class=breadcrumbs__item >Blog</a><a href="/blog/julia-learning" class=breadcrumbs__item >Julia Learning</a><a class="breadcrumbs__item is-active">Spread model simulation</a></nav> </div> <div class="content container"> <div class=franklin-content > <div class=pluto ><iframe height="100%" width="100%" frameBorder=0  src="../../../assets/julia-learning/spread-model.html"></iframe></div> </div>
+<!doctype html> <html lang=en > <meta charset=UTF-8 > <meta name=viewport  content="width=device-width, initial-scale=1"> <link rel=stylesheet  href="/libs/highlight/styles/github.min.css"> <link rel=stylesheet  href="/css/franklin.css"> <link rel=stylesheet  href="/css/poole_hyde.css"> <style> .franklin-content {position: relative; padding-left: 8%; padding-right: 5%;} .content.container {margin-right: 0%} @media (min-width: 940px) { .franklin-content {width: 100%; margin-left: auto; margin-right: auto;} } @media (max-width: 768px) { .franklin-content {padding-left: 6%; padding-right: 6%;} } </style> <link rel=icon  href="/assets/favicon.png"> <title>Maybe | Spread model simulation</title> <div class=sidebar > <div class="container sidebar-sticky"> <div class=sidebar-about > <h1><a href="/">Maybe</a></h1> </div> <input type=checkbox  id=sub-nav  style="display: none;"> <div id=navigation-links > <label for=sub-nav  class=sub-nav-toggle >&#9776;</label> </div> <nav class=sidebar-nav  id=sub-navigation > <a class="sidebar-nav-item " href="/">Home</a> <a class="sidebar-nav-item " href="/publications/">Publications</a> <a class="sidebar-nav-item active" href="/blog/">Blog</a> </nav> <p class=lead >&copy; <a href="http://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA 4.0</a> Website built with <a href="https://github.com/tlienart/Franklin.jl">Franklin.jl</a> and the <a href="https://julialang.org">Julia programming language</a>.</p> </div> </div> <div class=breadcrumbs-div > <nav class=breadcrumbs ><a href="/blog" class=breadcrumbs__item >Blog</a><a href="/blog/julia-learning" class=breadcrumbs__item >Julia Learning</a><a class="breadcrumbs__item is-active">Spread model simulation</a></nav> </div> <div class="content container"> <div class=franklin-content > <h1 id=spread_model_simulation ><a href="#spread_model_simulation" class=header-anchor >Spread model simulation</a></h1> <h2 id=code ><a href="#code" class=header-anchor >Code</a></h2> <p>model struct</p> <pre><code class="julia hljs"><span class=hljs-keyword >struct</span> Model
+    <span class=hljs-comment >#&#x27; specified in json</span>
+    label::<span class=hljs-built_in >Vector</span>
+    initial::<span class=hljs-built_in >Vector</span>
+    transition::<span class=hljs-built_in >Dict</span>{<span class=hljs-built_in >String</span>, <span class=hljs-built_in >Any</span>}
+    <span class=hljs-comment >#&#x27; initialized here</span>
+    typenum::<span class=hljs-built_in >Integer</span>
+    M::<span class=hljs-built_in >Matrix</span>
+    CDF::<span class=hljs-built_in >Dict</span>{<span class=hljs-built_in >String</span>, <span class=hljs-built_in >Any</span>}
+    rho::<span class=hljs-built_in >Number</span>
+    rv::<span class=hljs-built_in >Vector</span>
+    lv::<span class=hljs-built_in >Vector</span>
+    <span class=hljs-keyword >function</span> Model(label::<span class=hljs-built_in >Vector</span>,initial::<span class=hljs-built_in >Vector</span>,transition::<span class=hljs-built_in >Dict</span>{<span class=hljs-built_in >String</span>, <span class=hljs-built_in >Any</span>})
+        <span class=hljs-comment >#&#x27; initialization</span>
+        typenum = length(label)
+        M = zeros(typenum, typenum)
+        CDF = <span class=hljs-built_in >Dict</span>()
+        rho = <span class=hljs-number >0</span>
+        rv = <span class=hljs-built_in >Vector</span>{<span class=hljs-built_in >Vector</span>{<span class=hljs-built_in >Number</span>}}()
+        lv = <span class=hljs-built_in >Vector</span>{<span class=hljs-built_in >Vector</span>{<span class=hljs-built_in >Number</span>}}()
+        <span class=hljs-keyword >for</span> (i,l) <span class=hljs-keyword >in</span> enumerate(label)
+            M[:,i] = sum([ t[<span class=hljs-string >&quot;num&quot;</span>]*t[<span class=hljs-string >&quot;p&quot;</span>] <span class=hljs-keyword >for</span> t <span class=hljs-keyword >in</span> transition[l] ])
+            CDF[l] = pushfirst!(cumsum([n[<span class=hljs-string >&quot;p&quot;</span>] <span class=hljs-keyword >for</span> n <span class=hljs-keyword >in</span> transition[l]]), <span class=hljs-number >0</span>);
+        <span class=hljs-keyword >end</span>
+        <span class=hljs-comment >#&#x27; M = V diag(D) W</span>
+        F = eigen(M)
+        V = F.vectors
+        D = F.values
+        W = inv(V)
+        rho = maximum([D[i] <span class=hljs-keyword >for</span> i <span class=hljs-keyword >in</span> eachindex(D) <span class=hljs-keyword >if</span> abs(W[i, :]&#x27; * initial) &gt; <span class=hljs-number >1e-30</span>])
+        <span class=hljs-keyword >for</span> i <span class=hljs-keyword >in</span> eachindex(D)
+            <span class=hljs-keyword >if</span> abs(abs(D[i]) - rho) &lt; <span class=hljs-number >1e-7</span> * rho &amp;&amp; abs(W[i, :]&#x27; * initial) &gt; <span class=hljs-number >1e-30</span>
+                V[:,i] = V[:,i] / sum(V[:,i])
+                W[i,:] = W[i,:] / (W[i,:]&#x27; * V[:,i])
+                push!(rv,V[:,i])
+                push!(lv,W[i,:])
+            <span class=hljs-keyword >end</span>
+        <span class=hljs-keyword >end</span>
+        <span class=hljs-keyword >return</span> new(label,initial,transition,typenum,M,CDF,rho,rv,lv)
+    <span class=hljs-keyword >end</span>
+    <span class=hljs-keyword >function</span> Model(model)
+        model = model <span class=hljs-keyword >isa</span> <span class=hljs-built_in >AbstractString</span> ? JSON.parse(open(model,<span class=hljs-string >&quot;r&quot;</span>)) : model
+        <span class=hljs-keyword >return</span> Model(model[<span class=hljs-string >&quot;label&quot;</span>], model[<span class=hljs-string >&quot;initial&quot;</span>], model[<span class=hljs-string >&quot;transition&quot;</span>])
+    <span class=hljs-keyword >end</span>
+<span class=hljs-keyword >end</span></code></pre> <pre><code class="julia hljs"><span class=hljs-keyword >function</span> produce_children(model::Model, parent_label::<span class=hljs-built_in >String</span>, parent_num::<span class=hljs-built_in >Integer</span>)
+    pattern_idx = zeros(<span class=hljs-built_in >Integer</span>, parent_num)
+    <span class=hljs-meta >@inbounds</span> <span class=hljs-meta >@fastmath</span> <span class=hljs-keyword >for</span> i <span class=hljs-keyword >in</span> <span class=hljs-number >1</span>:parent_num
+        pattern_idx[i] = <span class=hljs-built_in >Int</span>(sum(rand() .&gt; model.CDF[parent_label]))
+    <span class=hljs-keyword >end</span>
+    arr = [x[<span class=hljs-string >&quot;num&quot;</span>] <span class=hljs-keyword >for</span> x <span class=hljs-keyword >in</span> model.transition[parent_label]]
+    stat = zeros(<span class=hljs-built_in >Integer</span>, model.typenum)
+    <span class=hljs-meta >@inbounds</span> <span class=hljs-meta >@fastmath</span> <span class=hljs-keyword >for</span> i <span class=hljs-keyword >in</span> <span class=hljs-number >1</span>:parent_num
+        stat += arr[pattern_idx[i]]
+    <span class=hljs-keyword >end</span>
+    <span class=hljs-keyword >return</span> stat
+    <span class=hljs-comment >#&#x27;return vmapreduce((x) -&gt; model.transition[parent_label][x][&quot;num&quot;], +, pattern_idx)</span>
+    <span class=hljs-comment >#&#x27;return sum([model.transition[parent_label][i][&quot;num&quot;] for i in pattern_idx])</span>
+<span class=hljs-keyword >end</span></code></pre><pre><code class="plaintext hljs">produce_children (generic function with 1 method)</code></pre>
+<pre><code class="julia hljs"><span class=hljs-keyword >function</span> run_single_trial(model::Model, gen_num)
+    is_dieout = <span class=hljs-literal >false</span>
+    stat = zeros(model.typenum, gen_num); <span class=hljs-comment ># stat[i,j] = number of children of type i in j-th generation</span>
+    stat[:,<span class=hljs-number >1</span>] = model.initial;
+    <span class=hljs-comment >#&#x27; experiment by producing random children</span>
+    <span class=hljs-keyword >for</span> gen <span class=hljs-keyword >in</span> <span class=hljs-number >2</span>:gen_num
+        <span class=hljs-keyword >for</span> (desc_idx, desc_label) <span class=hljs-keyword >in</span> enumerate(model.label)
+            <span class=hljs-keyword >if</span> stat[desc_idx, gen-<span class=hljs-number >1</span>] &gt; <span class=hljs-number >0</span>
+                <span class=hljs-comment >#&#x27; deciding children to generate according to pattern_idx</span>
+                stat[:,gen] += produce_children(model, desc_label, <span class=hljs-built_in >Int</span>(stat[desc_idx, gen-<span class=hljs-number >1</span>]))
+            <span class=hljs-keyword >end</span>
+        <span class=hljs-keyword >end</span>
+        is_dieout = (sum(stat[:,gen]) == <span class=hljs-number >0</span>)
+    <span class=hljs-keyword >end</span>
+    <span class=hljs-keyword >return</span> (stat, is_dieout)
+<span class=hljs-keyword >end</span></code></pre><pre><code class="plaintext hljs">run_single_trial (generic function with 1 method)</code></pre>
+<pre><code class="julia hljs"><span class=hljs-keyword >function</span> simulate(model::Model, gen_num, trial_num)
+    count = <span class=hljs-number >0</span> <span class=hljs-comment ># number of trials</span>
+    dieout_count = <span class=hljs-number >0</span>;  <span class=hljs-comment ># number of survived trials</span>
+    stat = zeros(model.typenum, gen_num) <span class=hljs-comment ># stat[i,j] = number of children of type i in j-th generation</span>
+    stat_ratio = zeros(model.typenum, gen_num)
+    stat_total = zeros(<span class=hljs-number >1</span>,gen_num);
+    <span class=hljs-comment >#&#x27; theoretical value</span>
+    theoretical = zeros(model.typenum, gen_num);
+    theoretical[:, <span class=hljs-number >1</span>] = model.initial;
+    <span class=hljs-keyword >for</span> gen <span class=hljs-keyword >in</span> <span class=hljs-number >2</span>:gen_num
+        theoretical[:, gen] = model.M * theoretical[:,gen-<span class=hljs-number >1</span>];
+    <span class=hljs-keyword >end</span>
+    <span class=hljs-comment >#&#x27; experirmental value</span>
+    println(<span class=hljs-string >&quot;taking average&quot;</span>)
+    rho_seq = model.rho.^(<span class=hljs-number >0</span>:gen_num-<span class=hljs-number >1</span>);
+    Threads.<span class=hljs-meta >@threads</span> <span class=hljs-keyword >for</span> trial <span class=hljs-keyword >in</span> <span class=hljs-number >1</span>:trial_num
+        (stat, is_dieout) = run_single_trial(model, gen_num)
+        stat_ratio .+= stat ./ rho_seq&#x27; <span class=hljs-comment ># composition of population</span>
+        stat_total .+= sum(stat, dims=<span class=hljs-number >1</span>) <span class=hljs-comment ># size of population</span>
+        dieout_count += <span class=hljs-built_in >Int</span>(is_dieout)
+        count += <span class=hljs-number >1</span>
+        <span class=hljs-comment >#&#x27; println(&quot;trial: $(count)/$(trial_num)&quot;)</span>
+    <span class=hljs-keyword >end</span>
+    stat_ratio /= count
+    stat_total /= count
+    <span class=hljs-keyword >return</span> (theoretical, stat_ratio, stat_total, dieout_count, count)
+<span class=hljs-keyword >end</span></code></pre><pre><code class="plaintext hljs">simulate (generic function with 1 method)</code></pre>
+<p>plot simulation</p>
+<pre><code class="julia hljs"><span class=hljs-keyword >function</span> plot_simulation_proportion(model::Model, theoretical, stat_ratio, stat_total, dieout_count, count, test_type)
+    gen_num = size(theoretical, <span class=hljs-number >2</span>)
+    p = plot(<span class=hljs-number >0</span>:gen_num-<span class=hljs-number >1</span>, stat_ratio&#x27;,
+             markershape = hcat(repeat([:square], model.typenum)...),
+             markersize = hcat(repeat([<span class=hljs-number >3</span>], model.typenum)...),
+             markercolor = [i <span class=hljs-keyword >for</span> i <span class=hljs-keyword >in</span> Iterators.take(palette(:tab10), model.typenum)]&#x27;,
+             linecolor = [i <span class=hljs-keyword >for</span> i <span class=hljs-keyword >in</span> Iterators.take(palette(:tab10), model.typenum)]&#x27;,
+             label = hcat(model.label...),  <span class=hljs-comment ># always row-vectors...</span>
+             legend = :outertopright
+    )
+    plot!(<span class=hljs-number >0</span>:gen_num-<span class=hljs-number >1</span>, <span class=hljs-built_in >Real</span>.(hcat(model.rv...) * hcat(model.lv...)&#x27; * model.initial * ones(<span class=hljs-number >1</span>,size(stat_ratio,<span class=hljs-number >2</span>)))&#x27;,
+             markershape = hcat(repeat([:none], model.typenum)...),
+             linestyle = hcat(repeat([:dash], model.typenum)...),
+             linecolor = [i <span class=hljs-keyword >for</span> i <span class=hljs-keyword >in</span> Iterators.take(palette(:tab10), model.typenum)]&#x27;,
+             label = hcat([latexstring(<span class=hljs-string >&quot;v_<span class=hljs-subst >$(l)</span> w_<span class=hljs-subst >$(test_type)</span>&quot;</span>) <span class=hljs-keyword >for</span> l <span class=hljs-keyword >in</span> model.label]...),  <span class=hljs-comment ># always row-vectors...</span>
+             legend = :outertopright
+    )
+    title!(<span class=hljs-string >&quot;Mean population proportion: <span class=hljs-subst >$(count - dieout_count)</span>/<span class=hljs-subst >$(count)</span> survived&quot;</span>)
+    xlabel!(latexstring(<span class=hljs-string >&quot;Generation \$n\$&quot;</span>))
+    ylabel!(<span class=hljs-string >&quot;Proportion&quot;</span>)
+    xticks!(<span class=hljs-number >0</span>:gen_num-<span class=hljs-number >1</span>)
+    <span class=hljs-keyword >return</span> p
+<span class=hljs-keyword >end</span></code></pre><pre><code class="plaintext hljs">plot_simulation_proportion (generic function with 1 method)</code></pre>
+<pre><code class="julia hljs"><span class=hljs-keyword >function</span> plot_simulation_size(model::Model, theoretical, stat_ratio, stat_total, dieout_count, count, test_type)
+    gen_num = size(theoretical, <span class=hljs-number >2</span>)
+    p = plot(<span class=hljs-number >0</span>:gen_num-<span class=hljs-number >1</span>, stat_total&#x27;, m = (:square, <span class=hljs-number >3</span>), yaxis=:log,
+         linecolor = [i <span class=hljs-keyword >for</span> i <span class=hljs-keyword >in</span> Iterators.take(palette(:tab10), model.typenum)]&#x27;,
+         label=test_type,
+         legend = :outertopright
+    )
+    plot!(<span class=hljs-number >0</span>:gen_num-<span class=hljs-number >1</span>, sum(hcat(model.rv...) * hcat(model.lv...)&#x27; * model.initial) .* model.rho.^(<span class=hljs-number >0</span>:gen_num-<span class=hljs-number >1</span>),
+         linestyle = :dash, yaxis=:log,
+         linecolor = [i <span class=hljs-keyword >for</span> i <span class=hljs-keyword >in</span> Iterators.take(palette(:tab10), model.typenum)]&#x27;,
+         label=latexstring(<span class=hljs-string >&quot;\$w_<span class=hljs-subst >$(test_type)</span> \\rho^n\$&quot;</span>),
+         legend = :outertopright
+    )
+    xticks!(<span class=hljs-number >0</span>:gen_num-<span class=hljs-number >1</span>)
+    yticks!([<span class=hljs-number >1</span>,<span class=hljs-number >10</span>,<span class=hljs-number >100</span>,<span class=hljs-number >1000</span>,<span class=hljs-number >10000</span>,<span class=hljs-number >100000</span>,<span class=hljs-number >1000000</span>,<span class=hljs-number >10000000</span>,<span class=hljs-number >1000000</span>])
+    title!(<span class=hljs-string >&quot;Population size: <span class=hljs-subst >$(count - dieout_count)</span>/<span class=hljs-subst >$(count)</span> survived&quot;</span>)
+    xlabel!(latexstring(<span class=hljs-string >&quot;Generation \$n\$&quot;</span>))
+    ylabel!(<span class=hljs-string >&quot;Proportion&quot;</span>)
+    <span class=hljs-keyword >return</span> p
+<span class=hljs-keyword >end</span></code></pre><pre><code class="plaintext hljs">plot_simulation_size (generic function with 1 method)</code></pre>
+<h2 id=model_1 ><a href="#model_1" class=header-anchor >Model 1</a></h2>
+<p>simulate</p>
+<pre><code class="julia hljs"><span class=hljs-keyword >let</span>
+model = Model(<span class=hljs-string >&quot;model1.json&quot;</span>)
+<span class=hljs-keyword >for</span> (idx,label) <span class=hljs-keyword >in</span> enumerate(model.label)
+    generation = <span class=hljs-number >10</span>
+    trials = <span class=hljs-number >300</span>
+    model = Model(model.label, [<span class=hljs-built_in >Int</span>(i==idx) <span class=hljs-keyword >for</span> i <span class=hljs-keyword >in</span> <span class=hljs-number >1</span>:model.typenum], model.transition)
+    result = simulate(model, generation, trials)
+    savefig(plot_simulation_proportion(model, result..., label), <span class=hljs-string >&quot;model1_proportion_<span class=hljs-subst >$(label)</span>.pdf&quot;</span>)
+    savefig(plot_simulation_size(model, result..., label), <span class=hljs-string >&quot;model1_size_<span class=hljs-subst >$(label)</span>.pdf&quot;</span>)
+<span class=hljs-keyword >end</span>
+<span class=hljs-keyword >end</span></code></pre>
+<h2 id=model_2 ><a href="#model_2" class=header-anchor >Model 2</a></h2>
+<p>simulate</p>
+<pre><code class="julia hljs"><span class=hljs-keyword >let</span>
+model = Model(<span class=hljs-string >&quot;model2.json&quot;</span>)
+<span class=hljs-keyword >for</span> (idx,label) <span class=hljs-keyword >in</span> enumerate(model.label)
+    generation = <span class=hljs-number >10</span>
+    trials = <span class=hljs-number >300</span>
+    model = Model(model.label, [<span class=hljs-built_in >Int</span>(i==idx) <span class=hljs-keyword >for</span> i <span class=hljs-keyword >in</span> <span class=hljs-number >1</span>:model.typenum], model.transition)
+    result = simulate(model, generation, trials)
+    savefig(plot_simulation_proportion(model, result..., label), <span class=hljs-string >&quot;model2_proportion_<span class=hljs-subst >$(label)</span>.pdf&quot;</span>)
+    savefig(plot_simulation_size(model, result..., label), <span class=hljs-string >&quot;model2_size_<span class=hljs-subst >$(label)</span>.pdf&quot;</span>)
+<span class=hljs-keyword >end</span>
+<span class=hljs-keyword >end</span></code></pre>
+<h2 id=model_3 ><a href="#model_3" class=header-anchor >Model 3</a></h2>
+<p>simulate</p>
+<pre><code class="julia hljs"><span class=hljs-keyword >let</span>
+model = Model(<span class=hljs-string >&quot;model3.json&quot;</span>)
+<span class=hljs-keyword >for</span> (idx,label) <span class=hljs-keyword >in</span> enumerate(model.label)
+    generation = <span class=hljs-number >10</span>
+    trials = <span class=hljs-number >300</span>
+    model = Model(model.label, [<span class=hljs-built_in >Int</span>(i==idx) <span class=hljs-keyword >for</span> i <span class=hljs-keyword >in</span> <span class=hljs-number >1</span>:model.typenum], model.transition)
+    result = simulate(model, generation, trials)
+    savefig(plot_simulation_proportion(model, result..., label), <span class=hljs-string >&quot;model3_proportion_<span class=hljs-subst >$(label)</span>.pdf&quot;</span>)
+    savefig(plot_simulation_size(model, result..., label), <span class=hljs-string >&quot;model3_size_<span class=hljs-subst >$(label)</span>.pdf&quot;</span>)
+<span class=hljs-keyword >end</span>
+<span class=hljs-keyword >end</span></code></pre>
+
+
+</div>
+    
+    
+        <script src="/libs/highlight/highlight.min.js"></script>
+<script>hljs.highlightAll();hljs.configure({tabReplace: '    '});</script>

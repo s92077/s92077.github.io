@@ -1,0 +1,1 @@
+plot_simulation_size (generic function with 1 method)

@@ -1,0 +1,1 @@
+Square anchored at (0, 0) with side length 2

@@ -1,1 +1,782 @@
-<!doctype html> <html lang=en > <meta charset=UTF-8 > <meta name=viewport  content="width=device-width, initial-scale=1"> <link rel=stylesheet  href="/css/franklin.css"> <link rel=stylesheet  href="/css/poole_hyde.css"> <style> body,html{height: 100%;} .franklin-content {position: relative; padding-left: 0%; padding-right: 0%;overflow-y: hidden; height: 100%;} .content.container {margin-right: 0%; margin-bottom: 0%; padding-bottom: 0%;overflow-y: hidden; height: 100%;} @media (min-width: 940px) { .franklin-content {width: 100%; margin-left: auto; margin-right: auto;overflow-y: hidden;} } @media (max-width: 768px) { .franklin-content {padding-left: 0%; padding-right: 0%;overflow-y: hidden;} } </style> <link rel=icon  href="/assets/favicon.png"> <title>Maybe | Basics</title> <div class=sidebar > <div class="container sidebar-sticky"> <div class=sidebar-about > <h1><a href="/">Maybe</a></h1> </div> <nav class=sidebar-nav > <a class="sidebar-nav-item " href="/">Home</a> <a class="sidebar-nav-item " href="/publications/">Publications</a> <a class="sidebar-nav-item active" href="/blog/">Blog</a> </nav> <p class=lead >&copy; <a href="http://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA 4.0</a> Website built with <a href="https://github.com/tlienart/Franklin.jl">Franklin.jl</a> and the <a href="https://julialang.org">Julia programming language</a>.</p> </div> </div> <div class=breadcrumbs-div > <nav class=breadcrumbs ><a href="/blog" class=breadcrumbs__item >Blog</a><a href="/blog/julia-learning" class=breadcrumbs__item >Julia Learning</a><a class="breadcrumbs__item is-active">Basics</a></nav> </div> <div class="content container"> <div class=franklin-content > <div class=pluto ><iframe height="100%" width="100%" frameBorder=0  src="../../../assets/julia-learning/basics.html"></iframe></div> </div>
+<!doctype html> <html lang=en > <meta charset=UTF-8 > <meta name=viewport  content="width=device-width, initial-scale=1"> <link rel=stylesheet  href="/libs/highlight/styles/github.min.css"> <link rel=stylesheet  href="/css/franklin.css"> <link rel=stylesheet  href="/css/poole_hyde.css"> <style> .franklin-content {position: relative; padding-left: 8%; padding-right: 5%;} .content.container {margin-right: 0%} @media (min-width: 940px) { .franklin-content {width: 100%; margin-left: auto; margin-right: auto;} } @media (max-width: 768px) { .franklin-content {padding-left: 6%; padding-right: 6%;} } </style> <link rel=icon  href="/assets/favicon.png"> <title>Maybe | Basics</title> <div class=sidebar > <div class="container sidebar-sticky"> <div class=sidebar-about > <h1><a href="/">Maybe</a></h1> </div> <input type=checkbox  id=sub-nav  style="display: none;"> <div id=navigation-links > <label for=sub-nav  class=sub-nav-toggle >&#9776;</label> </div> <nav class=sidebar-nav  id=sub-navigation > <a class="sidebar-nav-item " href="/">Home</a> <a class="sidebar-nav-item " href="/publications/">Publications</a> <a class="sidebar-nav-item active" href="/blog/">Blog</a> </nav> <p class=lead >&copy; <a href="http://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA 4.0</a> Website built with <a href="https://github.com/tlienart/Franklin.jl">Franklin.jl</a> and the <a href="https://julialang.org">Julia programming language</a>.</p> </div> </div> <div class=breadcrumbs-div > <nav class=breadcrumbs ><a href="/blog" class=breadcrumbs__item >Blog</a><a href="/blog/julia-learning" class=breadcrumbs__item >Julia Learning</a><a class="breadcrumbs__item is-active">Basics</a></nav> </div> <div class="content container"> <div class=franklin-content > <h1 id=basics_of_julia ><a href="#basics_of_julia" class=header-anchor >Basics of Julia</a></h1> <p><strong>Note:</strong> The materials of the this introduction are borrowed from <sup id="fnref:1"><a href="#fndef:1" class=fnref >[1]</a></sup>. <div class=franklin-toc ><ol><li><a href="#hello_world">“Hello, World&#33;”</a><li><a href="#operators">Operators</a><li><a href="#values_and_types">Values and types</a><li><a href="#variables_and_assignments">Variables and assignments</a><li><a href="#functions">Functions</a><li><a href="#conditional_execution">Conditional execution</a><li><a href="#iterations">Iterations</a><li><a href="#string">String</a><li><a href="#arrays">Arrays</a><li><a href="#objects_and_values">Objects and Values</a><li><a href="#dictionary">Dictionary</a><li><a href="#tuple">Tuple</a><li><a href="#files">Files</a><li><a href="#others">Others</a><li><a href="#about_the_coding_style">About the coding style</a><li><a href="#about_the_scope">About the scope</a><li><a href="#about_regular_expressions">About regular expressions</a></ol></div></p> <h2 id=hello_world ><a href="#hello_world" class=header-anchor >“Hello, World&#33;”</a></h2> <p>As a tradition, we write “Hello, World&#33;” as our first program, which simply display the worlds “Hello, World&#33;”. In Julia, it looks like this:</p> <pre><code class="julia hljs">println(<span class=hljs-string >&quot;Hello, World!&quot;</span>)</code></pre><pre><code class="plaintext hljs">Hello, World!
+</code></pre> <p>In Pluto, an alternative solution to that is:</p> <pre><code class="julia hljs"><span class=hljs-built_in >Text</span>(<span class=hljs-string >&quot;Hello, World!&quot;</span>)</code></pre><pre><code class="plaintext hljs">Hello, World!</code></pre>
+<h2 id=operators ><a href="#operators" class=header-anchor >Operators</a></h2>
+<h3 id=arithmetic_operators ><a href="#arithmetic_operators" class=header-anchor >Arithmetic operators</a></h3>
+<p>Julia provides <em>operators</em>, such as <code>&#43;</code>,<code>-</code>,<code>*</code>,<code>/</code>, which respectively performs addition, subtraction, multiplication, and division:</p>
+<pre><code class="julia hljs"><span class=hljs-number >40</span> + <span class=hljs-number >2</span></code></pre><pre><code class="plaintext hljs">42</code></pre>
+<pre><code class="julia hljs"><span class=hljs-number >43</span> - <span class=hljs-number >1</span></code></pre><pre><code class="plaintext hljs">42</code></pre>
+<pre><code class="julia hljs"><span class=hljs-number >6</span> * <span class=hljs-number >7</span></code></pre><pre><code class="plaintext hljs">42</code></pre>
+<pre><code class="julia hljs"><span class=hljs-number >84</span> / <span class=hljs-number >2</span></code></pre><pre><code class="plaintext hljs">42.0</code></pre>
+<p>You can also combine these operations, as is seen in the following example:</p>
+<pre><code class="julia hljs">(<span class=hljs-number >2</span> + <span class=hljs-number >4</span>) * <span class=hljs-number >7</span></code></pre><pre><code class="plaintext hljs">42</code></pre>
+<p>Here is a table of arithmetirc operations. Note that Julia support Unicode characters like &#39;<code>÷</code>&#39;. | Expression | Name | Description | | :–- | :–- | :–- | | <code>&#43;x</code> | unary plus | the identity operation | | <code>-x</code> | unary minus | maps values to their additive inverses | | <code>x &#43; y</code> | binary plus | performs addition | | <code>x - y</code> | binary minus | performs subtraction | | <code>x * y</code> | times | performs multiplication | | <code>x / y</code> | divide | performs division | | <code>x ÷ y</code> | integer divide | <code>x / y</code>, truncated to an integer &#40;equivalent to <code>div&#40;x,y&#41;</code>&#41; | | <code>x \ y</code> | inverse divide | equivalent to <code>y / x</code> | | <code>x ^ y</code> | power | raises <code>x</code> to the <code>y</code>th power | | <code>x &#37; y</code> | remainder | equivalent to <code>rem&#40;x,y&#41;</code> | &#40;exerpted from <a href="https://docs.julialang.org/en/v1.9/manual/mathematical-operations/#Arithmetic-Operators">https://docs.julialang.org/en/v1.9/manual/mathematical-operations/#Arithmetic-Operators</a>&#41;</p>
+<div class="admonition note"><p class=admonition-title >Operator precedence</p><p>The order of the evaluation depends on the <em>operator precendence</em>. Such precendences of some basic operations are given as follows, and the acronym PEMDAS is a useful way to remember the rules.</p>
+<ol>
+<li><p>parenthesese: <code>&#40;&#41;</code>.</p>
+
+<li><p>exponentiation: <code>^</code></p>
+
+<li><p>multiplication and division: <code>*</code> and <code>/</code></p>
+
+<li><p>addition and subtraction: <code>&#43;</code> and <code>/</code></p>
+
+</ol>
+<p>For a complete list, check out <a href="https://docs.julialang.org/en/v1/manual/mathematical-operations/#Operator-Precedence-and-Associativity">here</a>.</p>
+</div>
+<h3 id=numeric_comparisons ><a href="#numeric_comparisons" class=header-anchor >Numeric comparisons</a></h3>
+<p>We should compare two numbers by using the comparison operators. For example, we can check whether two numbers are the same &#40;resp., different&#41; by using <code>&#61;&#61;</code> &#40;resp., <code>&#33;&#61;</code>&#41;:</p>
+<pre><code class="julia hljs"><span class=hljs-number >1</span> == <span class=hljs-number >2</span></code></pre><pre><code class="plaintext hljs">false</code></pre>
+<pre><code class="julia hljs"><span class=hljs-number >3</span> != <span class=hljs-number >3</span></code></pre><pre><code class="plaintext hljs">false</code></pre>
+<p>We can also do chaining comparison:</p>
+<pre><code class="julia hljs"><span class=hljs-number >1</span> &lt; <span class=hljs-number >2</span> != <span class=hljs-number >5</span></code></pre><pre><code class="plaintext hljs">true</code></pre>
+<p>Here is a table of the comparison operators: | Operator | Name | | :–- | :–- | | <code>&#61;&#61;</code> | equality | | <code>&#33;&#61;</code>, <code>≠</code> | inequality | | <code>&lt;</code> | less than | | <code>&lt;&#61;</code>, <code>≤</code> | less than or equal to | | <code>&gt;</code> | greater than | | <code>&gt;&#61;</code>, <code>≥</code> | greater than or equal to | &#40;exerpted from <a href="https://docs.julialang.org/en/v1/manual/mathematical-operations/#Numeric-Comparisons">https://docs.julialang.org/en/v1/manual/mathematical-operations/#Numeric-Comparisons</a>&#41;</p>
+<h3 id=string_operators ><a href="#string_operators" class=header-anchor >String operators</a></h3>
+<p>Similar to the arithmetic operators, there are some operators for strings. The operator <code>*</code> concatenate two strings and <code>^</code> repeat a string for several times:</p>
+<pre><code class="julia hljs"><span class=hljs-string >&quot;abc&quot;</span> * <span class=hljs-string >&quot;def&quot;</span></code></pre><pre><code class="plaintext hljs">&quot;abcdef&quot;</code></pre>
+<pre><code class="julia hljs"><span class=hljs-string >&quot;abc&quot;</span> ^ <span class=hljs-number >4</span></code></pre><pre><code class="plaintext hljs">&quot;abcabcabcabc&quot;</code></pre>
+<h3 id=boolean_operators ><a href="#boolean_operators" class=header-anchor >Boolean operators</a></h3>
+<p>To compare logic, we need Boolean operators. The result will be either true or false.</p>
+<pre><code class="julia hljs">(<span class=hljs-number >2</span> &gt; <span class=hljs-number >1</span>) &amp;&amp; (<span class=hljs-number >3</span> &gt; <span class=hljs-number >2</span>) <span class=hljs-comment ># (2 &gt; 1) and (3 &gt; 2)</span></code></pre><pre><code class="plaintext hljs">true</code></pre>
+<p>Here is a table of Boolean operators: | Expression | Name | | :–- | :–- | | <code>&#33;x</code> | negation | | <code>x &amp;&amp; y</code> | short-circuiting and | | <code>x \|\| y</code> | short-circuiting or |</p>
+<h2 id=values_and_types ><a href="#values_and_types" class=header-anchor >Values and types</a></h2>
+<p>A <em>value</em> is one of the basic things a program works with, like a letter or a number. For example, <code>2</code>, <code>42.0</code>, &quot;Hello, World&#33;&quot; are values. These values belong to different <em>types</em>: <code>2</code> is an <em>integer</em>, <code>42.0</code> is a floating-point number, and &quot;Hello, World&#33;&quot; is a <em>string</em>. Check out the types of these by the command <code>typeof</code></p>
+<pre><code class="julia hljs">typeof(<span class=hljs-number >2</span>)</code></pre><pre><code class="plaintext hljs">Int64</code></pre>
+<pre><code class="julia hljs">typeof(<span class=hljs-number >42.0</span>)</code></pre><pre><code class="plaintext hljs">Float64</code></pre>
+<pre><code class="julia hljs">typeof(<span class=hljs-string >&quot;Hello, World!&quot;</span>)</code></pre><pre><code class="plaintext hljs">String</code></pre>
+<p>Matrices and vectors are also built-in types:</p>
+<pre><code class="julia hljs">typeof([<span class=hljs-number >1</span> <span class=hljs-number >2</span> <span class=hljs-number >3</span> <span class=hljs-number >4</span> ; <span class=hljs-number >5</span> <span class=hljs-number >6</span> <span class=hljs-number >7</span> <span class=hljs-number >8</span>])</code></pre><pre><code class="plaintext hljs">Matrix{Int64} (alias for Array{Int64, 2})</code></pre>
+<pre><code class="julia hljs">typeof([<span class=hljs-number >1</span>, <span class=hljs-number >2</span>, <span class=hljs-number >3</span>, <span class=hljs-number >4</span> ])</code></pre><pre><code class="plaintext hljs">Vector{Int64} (alias for Array{Int64, 1})</code></pre>
+<p>Julia supports also complex numbers. Find out what types they are:</p>
+<pre><code class="julia hljs">typeof(<span class=hljs-number >1</span>+<span class=hljs-number >2</span><span class=hljs-literal >im</span>)</code></pre><pre><code class="plaintext hljs">Complex{Int64}</code></pre>
+<pre><code class="julia hljs">typeof(<span class=hljs-number >1.0</span>+<span class=hljs-number >2</span><span class=hljs-literal >im</span>)</code></pre><pre><code class="plaintext hljs">ComplexF64 (alias for Complex{Float64})</code></pre>
+<p>There are also two special values extending the idea of numbers: <code>NaN</code> &#40;not a number&#41; and <code>Inf</code> &#40;infinty&#41;. Check out what types they are:</p>
+<pre><code class="julia hljs">typeof(<span class=hljs-literal >Inf</span>)</code></pre><pre><code class="plaintext hljs">Float64</code></pre>
+<pre><code class="julia hljs">typeof(<span class=hljs-literal >NaN</span>)</code></pre><pre><code class="plaintext hljs">Float64</code></pre>
+<p>Read also <a href="https://docs.julialang.org/en/v1.9/manual/integers-and-floating-point-numbers/#Integers-and-Floating-Point-Numbers">here</a> to learn more about integers and floating-point numbers and <a href="https://docs.julialang.org/en/v1.9/manual/complex-and-rational-numbers/">here</a> about complex numbers in Julia. Also, read also <a href="https://docs.julialang.org/en/v1/manual/mathematical-operations/#Numeric-Comparisons">here</a> to learn about how to compare <code>NaN</code>, <code>Inf</code>, and other regular numbers.</p>
+<div class="admonition note"><p class=admonition-title >Note</p><p>For the type <code>Int64</code>, the number 64 indicate it takes 64 bits to store such a number. It could be verify by the function <code>sizeof</code>, which returns the number of byte &#40;1 byte &#61; 8 bits&#41; of the argument.</p>
+</div>
+<h2 id=variables_and_assignments ><a href="#variables_and_assignments" class=header-anchor >Variables and assignments</a></h2>
+<p>An <em>assignment statement</em> creates a new variable and gives it a value. For example, we can define two variables <code>x</code>, <code>🐢</code>, and <code>message</code> as below:</p>
+<p>╠═╡ disabled &#61; true</p>
+<pre><code class="julia hljs"><span class=hljs-comment >#=╠═╡
+x = 2
+  ╠═╡ =#</span></code></pre>
+<pre><code class="julia hljs">🐢 = <span class=hljs-number >3.2</span></code></pre><pre><code class="plaintext hljs">3.2</code></pre>
+<pre><code class="julia hljs">message = <span class=hljs-string >&quot;a message&quot;</span></code></pre><pre><code class="plaintext hljs">&quot;a message&quot;</code></pre>
+<div class="admonition note"><p class=admonition-title >Rules of variable names</p><ul>
+<li><p>It cannot begin with numbers.</p>
+
+<li><p>Lowercase letters are preferred as a <a href="#01649df3-f3f9-4124-b838-39877da02694">convention</a>.</p>
+
+<li><p>The underscore character, &#95;, is often used in names with multiple words, such as <code>your_name</code>.</p>
+
+<li><p><a href="https://en.wikipedia.org/wiki/Unicode">Unicode</a> characters are allowed.</p>
+
+<li><p>It cannot be Julia&#39;s reserved <a href="https://docs.julialang.org/en/v1.9/base/base/#Keywords"><em>keywords</em></a>, such as <code>struct</code>.</p>
+
+</ul>
+</div>
+<p>What if we want to add 1 to <code>x</code>? We can simplify the expression <code>x &#61; x &#43; 1</code> by <code>x &#43;&#61; 1</code>. &#40;To understand <code>let...end</code> block, read also <a href="#5ae1a550-999f-466e-bb1f-52a847a6688c">this</a>.&#41;</p>
+<pre><code class="julia hljs"><span class=hljs-keyword >let</span>
+    x = <span class=hljs-number >0</span>
+    x += <span class=hljs-number >1</span>
+<span class=hljs-keyword >end</span></code></pre><pre><code class="plaintext hljs">1</code></pre>
+<p>The pattern <code>&#43;&#61;</code> also works with other operators above, e.g. <code>-&#61;</code>, <code>/&#61;</code>, etc.</p>
+<h2 id=functions ><a href="#functions" class=header-anchor >Functions</a></h2>
+<p>A <em>function</em> is a named sequence of statements that performs a computation. After defining a function by specifying its name and sequence of statements, you can “call” the function by name. We have seen an example of a function call in our “Hello, World&#33;” program:</p>
+<pre><code class="julia hljs">println(<span class=hljs-string >&quot;Hello, World!&quot;</span>)</code></pre>
+<p>In this program, <code>println</code> is the name of the function, and the string <code>&quot;Hello, World&#33;&quot;</code> that we “pass” in the function is called an <em>argument</em>.</p>
+<h3 id=elemetary_mathematical_functions ><a href="#elemetary_mathematical_functions" class=header-anchor >Elemetary mathematical functions</a></h3>
+<p>Most of the familiar mathematical functions are available:</p>
+<pre><code class="julia hljs">sin(<span class=hljs-literal >pi</span>)</code></pre><pre><code class="plaintext hljs">0.0</code></pre>
+<pre><code class="julia hljs">log10(exp(<span class=hljs-number >1</span>))</code></pre><pre><code class="plaintext hljs">0.4342944819032518</code></pre>
+<p>Check out the <a href="https://docs.julialang.org/en/v1/base/math/#Base.sin-Tuple&#123;Number&#125;">documentation</a> to learn more about the basic mathematical functions.</p>
+<h3 id=adding_new_functions ><a href="#adding_new_functions" class=header-anchor >Adding new functions</a></h3>
+<p>In addition to calling available functions, we can also define our own&#33; The basic syntax of a function definition is as follows:</p>
+<pre><code class="julia hljs"><span class=hljs-keyword >function</span> function_name(argument1, argument2, ...)
+    statements1
+    statements2
+    ...
+<span class=hljs-keyword >end</span></code></pre>
+<p>Roughly speaking, the variables defined in the function are local &#40;stays alive only in the function.&#41; The following is a function printing the string “Nothing”.</p>
+<pre><code class="julia hljs"><span class=hljs-string >&quot;&quot;&quot;
+`function nothing()`
+The function print the string &quot;Nothing&quot;.
+&quot;&quot;&quot;</span>
+<span class=hljs-keyword >function</span> <span class=hljs-literal >nothing</span>()
+    <span class=hljs-built_in >Text</span>(<span class=hljs-string >&quot;Nothing&quot;</span>)
+<span class=hljs-keyword >end</span></code></pre><pre><code class="plaintext hljs">nothing</code></pre>
+<pre><code class="julia hljs"><span class=hljs-literal >nothing</span>()</code></pre><pre><code class="plaintext hljs">Nothing</code></pre>
+<p>The function <code>nothing</code> performs an action but does not return a value. Such a function is called a <em>void function</em>. We may also define a function that returns a value, and here is an example of a function calculating the area of a circle with radius <code>r</code></p>
+<pre><code class="julia hljs"><span class=hljs-string >&quot;&quot;&quot;
+`function circle_area(r)`
+The function computes area of a circle with radius `r`.
+&quot;&quot;&quot;</span>
+<span class=hljs-keyword >function</span> circle_area(r)
+    <span class=hljs-keyword >return</span> <span class=hljs-literal >pi</span> * r^<span class=hljs-number >2</span>
+<span class=hljs-keyword >end</span></code></pre><pre><code class="plaintext hljs">circle_area</code></pre>
+<pre><code class="julia hljs">circle_area(<span class=hljs-number >2</span>)</code></pre><pre><code class="plaintext hljs">12.566370614359172</code></pre>
+<p>An alternative way of defining a function is the following:</p>
+<pre><code class="julia hljs">circle_area_inline(r) = <span class=hljs-literal >pi</span> * r^<span class=hljs-number >2</span></code></pre><pre><code class="plaintext hljs">circle_area_inline (generic function with 1 method)</code></pre>
+<pre><code class="julia hljs">circle_area_inline(<span class=hljs-number >2</span>)</code></pre><pre><code class="plaintext hljs">12.566370614359172</code></pre>
+<h2 id=conditional_execution ><a href="#conditional_execution" class=header-anchor >Conditional execution</a></h2>
+<p>to check conditions and change the behavior of the program accordingly, we need the <code>if</code> statement, whose basic syntax is as follows:</p>
+<pre><code class="julia hljs"><span class=hljs-keyword >if</span> condition1
+    execute_statements1
+<span class=hljs-keyword >elseif</span> condition2
+    execute_statements2
+<span class=hljs-keyword >else</span>
+    execute_statements3
+<span class=hljs-keyword >end</span></code></pre>
+<p>The above code executes <code>execute_statements1</code> if <code>condition1</code> is <code>true</code>, and <code>execute_statements2</code> if <code>condition1</code> is <code>false</code> but <code>condition2</code> is <code>true</code>, and <code>execute_statements3</code> if both <code>condition1</code> and <code>condition2</code> are <code>false</code>. Note that <code>else</code> and <code>elseif</code> are optional, and there can be as many <code>elseif</code>&#39;s as you want between <code>if</code> and <code>else</code>. See the following for examples.</p>
+<pre><code class="julia hljs"><span class=hljs-keyword >begin</span>
+    <span class=hljs-keyword >if</span> <span class=hljs-number >0</span> &gt; <span class=hljs-number >0</span>
+        <span class=hljs-built_in >Text</span>(<span class=hljs-string >&quot;1 is positive&quot;</span>)
+    <span class=hljs-keyword >end</span>
+<span class=hljs-keyword >end</span></code></pre>
+<pre><code class="julia hljs"><span class=hljs-keyword >begin</span>
+    <span class=hljs-keyword >if</span> -<span class=hljs-number >1</span> &gt; <span class=hljs-number >0</span>
+        <span class=hljs-built_in >Text</span>(<span class=hljs-string >&quot;-1 is positive&quot;</span>)
+    <span class=hljs-keyword >else</span>
+        <span class=hljs-built_in >Text</span>(<span class=hljs-string >&quot;-1 is negative&quot;</span>)
+    <span class=hljs-keyword >end</span>
+<span class=hljs-keyword >end</span></code></pre><pre><code class="plaintext hljs">-1 is negative</code></pre>
+<pre><code class="julia hljs"><span class=hljs-keyword >begin</span>
+    <span class=hljs-keyword >if</span> <span class=hljs-literal >NaN</span> == <span class=hljs-number >0</span>
+        <span class=hljs-built_in >Text</span>(<span class=hljs-string >&quot;NaN is 0&quot;</span>)
+    <span class=hljs-keyword >elseif</span> <span class=hljs-literal >NaN</span> &gt; <span class=hljs-number >0</span>
+        <span class=hljs-built_in >Text</span>(<span class=hljs-string >&quot;NaN is positive&quot;</span>)
+    <span class=hljs-keyword >elseif</span> <span class=hljs-literal >NaN</span> &lt; <span class=hljs-number >0</span>
+        <span class=hljs-built_in >Text</span>(<span class=hljs-string >&quot;NaN is negative&quot;</span>)
+    <span class=hljs-keyword >else</span>
+        <span class=hljs-built_in >Text</span>(<span class=hljs-string >&quot;NaN is neither positive nor negative&quot;</span>)
+    <span class=hljs-keyword >end</span>
+<span class=hljs-keyword >end</span></code></pre><pre><code class="plaintext hljs">NaN is neither positive nor negative</code></pre>
+<h3 id=an_example ><a href="#an_example" class=header-anchor >An example</a></h3>
+<p>We can add the first <code>n</code> natural numbers using <code>if</code> statement.</p>
+<pre><code class="julia hljs"><span class=hljs-string >&quot;&quot;&quot;
+`function fibonacci_recursion(n::Int)`
+The function computes `n`th term in the Fibonacci sequence.
+&quot;&quot;&quot;</span>
+<span class=hljs-keyword >function</span> fibonacci_recursion(n::<span class=hljs-built_in >Int</span>)
+    <span class=hljs-keyword >if</span> n &lt;= <span class=hljs-number >0</span>
+        <span class=hljs-keyword >return</span> <span class=hljs-number >0</span>
+    <span class=hljs-keyword >elseif</span> n &lt; <span class=hljs-number >3</span>
+        <span class=hljs-keyword >return</span> <span class=hljs-number >1</span>
+    <span class=hljs-keyword >else</span>
+        <span class=hljs-keyword >return</span> fibonacci_recursion(n-<span class=hljs-number >1</span>) + fibonacci_recursion(n-<span class=hljs-number >2</span>)
+    <span class=hljs-keyword >end</span>
+<span class=hljs-keyword >end</span></code></pre><pre><code class="plaintext hljs">fibonacci_recursion</code></pre>
+<pre><code class="julia hljs">fibonacci_recursion(<span class=hljs-number >7</span>)</code></pre><pre><code class="plaintext hljs">13</code></pre>
+<p>The above function calls itself is <em>recursive</em>, and such a function is called a recursion.</p>
+<div class="admonition note"><p class=admonition-title >Note</p><p>A infinite recursion &#40;or a never-ending recursion&#41; would be interrupted by Julia by reporting an error message when the maximum recursion depth is reached.</p>
+</div>
+<h2 id=iterations ><a href="#iterations" class=header-anchor >Iterations</a></h2>
+<h3 id=while_loops ><a href="#while_loops" class=header-anchor >While loops</a></h3>
+<p>The <code>while</code> statement is used to repeatedly perform operations until a condition is no longer satisfied. The basic syntax of a while loop is:</p>
+<pre><code class="julia hljs"><span class=hljs-keyword >while</span> condition
+    execute_statements
+<span class=hljs-keyword >end</span></code></pre>
+<h3 id=for_loops ><a href="#for_loops" class=header-anchor >For loops</a></h3>
+<p>For loop is a basic way to perform iterative operations. The basic syntax of a for loop is:</p>
+<pre><code class="julia hljs"><span class=hljs-keyword >for</span> iterator <span class=hljs-keyword >in</span> range
+    execute_statements(iterator)
+<span class=hljs-keyword >end</span></code></pre>
+<h3 id=break ><a href="#break" class=header-anchor >Break</a></h3>
+<p>The <code>break</code> statement is used to “jump” out of a while/for loop. See the follow example for the its usage.</p>
+<pre><code class="julia hljs"><span class=hljs-keyword >for</span> i <span class=hljs-keyword >in</span> <span class=hljs-number >1</span>:<span class=hljs-number >10</span>
+    <span class=hljs-keyword >if</span> i % <span class=hljs-number >3</span> == <span class=hljs-number >0</span>
+        <span class=hljs-keyword >break</span>
+    <span class=hljs-keyword >end</span>
+    print(i, <span class=hljs-string >&quot; &quot;</span>)
+<span class=hljs-keyword >end</span></code></pre><pre><code class="plaintext hljs">1 2 </code></pre>
+<h3 id=continue ><a href="#continue" class=header-anchor >Continue</a></h3>
+<p>The <code>continue</code> statement is used to “jump” to the the beginning of a while/for loop. See the follow example for the its usage.</p>
+<pre><code class="julia hljs"><span class=hljs-keyword >for</span> i <span class=hljs-keyword >in</span> <span class=hljs-number >1</span>:<span class=hljs-number >10</span>
+    <span class=hljs-keyword >if</span> i % <span class=hljs-number >3</span> == <span class=hljs-number >0</span>
+        <span class=hljs-keyword >continue</span>
+    <span class=hljs-keyword >end</span>
+    print(i, <span class=hljs-string >&quot; &quot;</span>)
+<span class=hljs-keyword >end</span></code></pre><pre><code class="plaintext hljs">1 2 4 5 7 8 10 </code></pre>
+<h3 id=an_example__2 ><a href="#an_example__2" class=header-anchor >An example</a></h3>
+<p>We can implement a function computing the Fibonacci sequence using the while loop.</p>
+<pre><code class="julia hljs"><span class=hljs-string >&quot;&quot;&quot;
+`function fibonacci_while(n::Int)`
+The function computes `n`th term in the Fibonacci sequence.
+&quot;&quot;&quot;</span>
+<span class=hljs-keyword >function</span> fibonacci_while(n::<span class=hljs-built_in >Int</span>)
+    temp1 = <span class=hljs-number >1</span>
+    temp2 = <span class=hljs-number >1</span>
+    ans = <span class=hljs-number >0</span>
+    <span class=hljs-keyword >while</span> n &gt; <span class=hljs-number >0</span>
+        temp1 = temp2
+        temp2 = ans
+        ans = temp1 + temp2
+        n -= <span class=hljs-number >1</span>
+    <span class=hljs-keyword >end</span>
+    <span class=hljs-keyword >return</span> ans
+<span class=hljs-keyword >end</span></code></pre><pre><code class="plaintext hljs">fibonacci_while</code></pre>
+<pre><code class="julia hljs">fibonacci_while(<span class=hljs-number >7</span>)</code></pre><pre><code class="plaintext hljs">13</code></pre>
+<p>In a similar manner, we can implement such a function using the while loop.</p>
+<pre><code class="julia hljs"><span class=hljs-string >&quot;&quot;&quot;
+`function fibonacci_for(n::Int)`
+The function computes `n`th term in the Fibonacci sequence.
+&quot;&quot;&quot;</span>
+<span class=hljs-keyword >function</span> fibonacci_for(n::<span class=hljs-built_in >Int</span>)
+    temp1 = <span class=hljs-number >1</span>
+    temp2 = <span class=hljs-number >1</span>
+    ans = <span class=hljs-number >0</span>
+    <span class=hljs-keyword >for</span> i <span class=hljs-keyword >in</span> <span class=hljs-number >1</span>:n
+        temp1 = temp2
+        temp2 = ans
+        ans = temp1 + temp2
+    <span class=hljs-keyword >end</span>
+    <span class=hljs-keyword >return</span> ans
+<span class=hljs-keyword >end</span></code></pre><pre><code class="plaintext hljs">fibonacci_for</code></pre>
+<pre><code class="julia hljs">fibonacci_for(<span class=hljs-number >7</span>)</code></pre><pre><code class="plaintext hljs">13</code></pre>
+<h2 id=string ><a href="#string" class=header-anchor >String</a></h2>
+<h3 id=char ><a href="#char" class=header-anchor >Char</a></h3>
+<p>A <code>Char</code> value is a single character and is surrounded by single quotes. In the digital world, we need encode the letters of the numerals/alphabet/... as digits. Among the encodings, <a href="https://en.wikipedia.org/wiki/ASCII">ASCII</a> standard &#40;American Standard Code for Information Interchange&#41; maps commonly used numerals/English letters/punctuations to integers between 0 to 127. &#40;It is very important to for you to get familiar with some special characters in the escaped input forms, such as newline <code>&#39;\n&#39;</code>.&#41; On the other hand, the so-called <a href="https://en.wikipedia.org/wiki/Unicode">Unicode</a> standard aims to include many characters in non-English languages, and it coincides with ASCII standard for values between 0 and 127. Julia natively supports both encodings for its <code>Char</code> value. Some examples are given as follows. You can input any Unicode character in single quotes using <code>\u</code> followed by up to four hexadecimal digits or <code>\U</code> followed by up to eight hexadecimal digits &#40;the longest valid value only requires six&#41;.</p>
+<pre><code class="julia hljs"><span class=hljs-string >&#x27;c&#x27;</span></code></pre><pre><code class="plaintext hljs">&#x27;c&#x27;: ASCII/Unicode U+0063 (category Ll: Letter, lowercase)</code></pre>
+<pre><code class="julia hljs"><span class=hljs-string >&#x27;\u63&#x27;</span> + <span class=hljs-number >1</span></code></pre><pre><code class="plaintext hljs">&#x27;d&#x27;: ASCII/Unicode U+0064 (category Ll: Letter, lowercase)</code></pre>
+<pre><code class="julia hljs">&#x27;🍌&#x27;</code></pre><pre><code class="plaintext hljs">&#x27;🍌&#x27;: Unicode U+1F34C (category So: Symbol, other)</code></pre>
+<pre><code class="julia hljs"><span class=hljs-string >&#x27;\u1CC4&#x27;</span></code></pre><pre><code class="plaintext hljs">&#x27;᳄&#x27;: Unicode U+1CC4 (category Po: Punctuation, other)</code></pre>
+<pre><code class="julia hljs"><span class=hljs-string >&#x27;\U1F34C&#x27;</span></code></pre><pre><code class="plaintext hljs">&#x27;🍌&#x27;: Unicode U+1F34C (category So: Symbol, other)</code></pre>
+<p>Check out the the size of a character:</p>
+<pre><code class="julia hljs">sizeof(&#x27;🍌&#x27;)</code></pre><pre><code class="plaintext hljs">4</code></pre>
+<h3 id=string_as_a_sequence_of_characters ><a href="#string_as_a_sequence_of_characters" class=header-anchor >String as a sequence of characters</a></h3>
+<p>A string in Julia is a sequence of characters &#40;using the <a href="https://en.wikipedia.org/wiki/UTF-8">UTF-8</a> encoding&#41;, and thus you can access every single character via the bracket operator. However, the size varies from from character to character. &#40;Each byte is a &quot;code unit&quot;&#41;:</p>
+<pre><code class="julia hljs">sizeof(<span class=hljs-string >&quot;c&quot;</span>)</code></pre><pre><code class="plaintext hljs">1</code></pre>
+<pre><code class="julia hljs">sizeof(<span class=hljs-string >&quot;\u1CC4&quot;</span>)</code></pre><pre><code class="plaintext hljs">3</code></pre>
+<pre><code class="julia hljs">sizeof(<span class=hljs-string >&quot;🍌&quot;</span>)</code></pre><pre><code class="plaintext hljs">4</code></pre>
+<p>Therefore, <code>sizeof</code> does not tells the real length of the string, and not all indices are valid:</p>
+<pre><code class="julia hljs">str = <span class=hljs-string >&quot;\u1CC4🍌c&quot;</span></code></pre><pre><code class="plaintext hljs">&quot;᳄🍌c&quot;</code></pre>
+<pre><code class="julia hljs">sizeof(str)</code></pre><pre><code class="plaintext hljs">8</code></pre>
+<pre><code class="julia hljs">str[<span class=hljs-keyword >end</span>]</code></pre><pre><code class="plaintext hljs">&#x27;c&#x27;: ASCII/Unicode U+0063 (category Ll: Letter, lowercase)</code></pre>
+<pre><code class="julia hljs">str[<span class=hljs-number >2</span>]</code></pre><pre><code class="plaintext hljs">StringIndexError: invalid index [2], valid nearby indices [1]=&gt;&#x27;᳄&#x27;, [4]=&gt;&#x27;🍌&#x27;
+</code></pre>
+<h3 id=concatenation ><a href="#concatenation" class=header-anchor >Concatenation</a></h3>
+<p>There are different ways of concatenating strings. Apart from <code>*</code> and <code>^</code>, we can also use the following methods:</p>
+<pre><code class="julia hljs">string(str,<span class=hljs-string >&quot;1&quot;</span>)</code></pre><pre><code class="plaintext hljs">&quot;᳄🍌c1&quot;</code></pre>
+<h3 id=interpolation ><a href="#interpolation" class=header-anchor >Interpolation</a></h3>
+<p>Constructing strings using concatenation can become a bit cumbersome, however. To reduce the need for these verbose calls to string or repeated multiplications, Julia allows interpolation into string literals using <code>&#36;</code>:</p>
+<pre><code class="julia hljs"><span class=hljs-string >&quot;<span class=hljs-subst >$(str)</span><span class=hljs-subst >$(<span class=hljs-number >1</span>+<span class=hljs-number >1</span>)</span>&quot;</span></code></pre><pre><code class="plaintext hljs">&quot;᳄🍌c2&quot;</code></pre>
+<h3 id=length ><a href="#length" class=header-anchor >Length</a></h3>
+<p>To get the real length of the string, call <code>length&#40;str&#41;</code>:</p>
+<pre><code class="julia hljs">length(str)</code></pre><pre><code class="plaintext hljs">3</code></pre>
+<h3 id=index ><a href="#index" class=header-anchor >Index</a></h3>
+<p>Some useful functions are <code>firstindex&#40;str&#41;</code>, <code>lastindex&#40;str&#41;</code>, <code>eachindex&#40;str&#41;</code>, <code>nextind&#40;str, i, n&#61;1&#41;</code>, <code>prevind&#40;str, i, n&#61;1&#41;</code></p>
+<pre><code class="julia hljs">firstindex(str)</code></pre><pre><code class="plaintext hljs">1</code></pre>
+<pre><code class="julia hljs">lastindex(str)</code></pre><pre><code class="plaintext hljs">8</code></pre>
+<pre><code class="julia hljs">collect(eachindex(str))</code></pre><pre><code class="plaintext hljs">3-element Vector{Int64}:
+ 1
+ 4
+ 8</code></pre>
+<p>Loop through the characters in a string:</p>
+<pre><code class="julia hljs"><span class=hljs-keyword >for</span> letter <span class=hljs-keyword >in</span> str
+    println(letter)
+<span class=hljs-keyword >end</span></code></pre><pre><code class="plaintext hljs">᳄
+🍌
+c
+</code></pre>
+<h3 id=string_comparisons ><a href="#string_comparisons" class=header-anchor >String comparisons</a></h3>
+<p>The strings are compared lexicographically &#40;according to the UTF-8 encoding&#41; using <code>&lt;</code>, <code>&lt;&#61;</code>, <code>&gt;</code>, <code>&gt;&#61;</code>, <code>&#61;&#61;</code>, <code>&#33;&#61;</code>.</p>
+<pre><code class="julia hljs"><span class=hljs-string >&quot;abracadabra&quot;</span> &gt;= <span class=hljs-string >&quot;xylophone&quot;</span></code></pre><pre><code class="plaintext hljs">false</code></pre>
+<pre><code class="julia hljs"><span class=hljs-string >&quot;Hello, Alice.&quot;</span> &lt;= <span class=hljs-string >&quot;Hello, Bob.&quot;</span></code></pre><pre><code class="plaintext hljs">true</code></pre>
+<p>To understand the above comparison, we note that the two strings share the same 7 code units, but the former has “smaller” 8th code unit &#40;<code>&#39;A&#39; &lt;&#61; &#39;B&#39;</code>&#41;.</p>
+<h3 id=substring ><a href="#substring" class=header-anchor >Substring</a></h3>
+<p>To extract a substring indexed by a index set <code>idx</code>, we can use the slice operator <code>array&#91;idx&#93;</code></p>
+<pre><code class="julia hljs">str[[<span class=hljs-number >1</span>,<span class=hljs-number >8</span>]]</code></pre><pre><code class="plaintext hljs">&quot;᳄c&quot;</code></pre>
+<p>Some useful functions are <code>findfirst&#40;substr,str&#41;</code>, <code>findlast&#40;substr,str&#41;</code>, <code>findnext&#40;substr,str,i&#41;</code>, <code>occursin&#40;substr, str&#41;</code>, <code>in&#40;chr, str&#41;</code> &#40;equivalently, <code>chr ∈ str</code> or <code>chr in str</code>&#41;, <code>repeat&#40;str, n&#41;</code></p>
+<pre><code class="julia hljs">ncodeunits(str)</code></pre><pre><code class="plaintext hljs">8</code></pre>
+<pre><code class="julia hljs">findnext(<span class=hljs-string >&quot;abc&quot;</span>, <span class=hljs-string >&quot;abcabc&quot;</span>, <span class=hljs-number >2</span>)</code></pre><pre><code class="plaintext hljs">4:6</code></pre>
+<pre><code class="julia hljs">occursin(<span class=hljs-string >&quot;abc&quot;</span>, <span class=hljs-string >&quot;abcabc&quot;</span>)</code></pre><pre><code class="plaintext hljs">true</code></pre>
+<pre><code class="julia hljs"><span class=hljs-string >&#x27;a&#x27;</span> <span class=hljs-keyword >in</span> <span class=hljs-string >&quot;abcabc&quot;</span></code></pre><pre><code class="plaintext hljs">true</code></pre>
+<h3 id=codeunit ><a href="#codeunit" class=header-anchor >Codeunit</a></h3>
+<p>Some useful functions are <code>ncodeunits&#40;str&#41;</code>, <code>codeunit&#40;str,i&#41;</code></p>
+<pre><code class="julia hljs">codeunit(str, <span class=hljs-number >2</span>)</code></pre><pre><code class="plaintext hljs">0xb3</code></pre>
+<h3 id=string_library ><a href="#string_library" class=header-anchor >String library</a></h3>
+<p>One can convert a string to an array of characters via <code>collect&#40;str&#41;</code>.</p>
+<pre><code class="julia hljs">collect(str)</code></pre><pre><code class="plaintext hljs">3-element Vector{Char}:
+ &#x27;᳄&#x27;: Unicode U+1CC4 (category Po: Punctuation, other)
+ &#x27;🍌&#x27;: Unicode U+1F34C (category So: Symbol, other)
+ &#x27;c&#x27;: ASCII/Unicode U+0063 (category Ll: Letter, lowercase)</code></pre>
+<p>To convert it back to a string, use <code>join&#40;array&#41;</code>:</p>
+<pre><code class="julia hljs">join([<span class=hljs-string >&#x27;a&#x27;</span>, <span class=hljs-string >&#x27;b&#x27;</span>, <span class=hljs-string >&#x27;c&#x27;</span>])</code></pre><pre><code class="plaintext hljs">&quot;abc&quot;</code></pre>
+<p>One can parse a string using <code>split&#40;str, token&#41;</code></p>
+<pre><code class="julia hljs">split(<span class=hljs-string >&quot;a-+b-c&quot;</span>, <span class=hljs-string >&quot;-+&quot;</span>)</code></pre><pre><code class="plaintext hljs">2-element Vector{SubString{String}}:
+ &quot;a&quot;
+ &quot;b-c&quot;</code></pre>
+<pre><code class="julia hljs">split(<span class=hljs-string >&quot;a b c&quot;</span>)</code></pre><pre><code class="plaintext hljs">3-element Vector{SubString{String}}:
+ &quot;a&quot;
+ &quot;b&quot;
+ &quot;c&quot;</code></pre>
+<h3 id=strings_are_immutable ><a href="#strings_are_immutable" class=header-anchor >Strings are immutable</a></h3>
+<p>The strings are <em>immutable</em>, meaning that an existing string cannot be changed:</p>
+<pre><code class="julia hljs"><span class=hljs-keyword >let</span>
+    test_str = <span class=hljs-string >&quot;AAA&quot;</span>
+    test_str[<span class=hljs-number >1</span>] = <span class=hljs-string >&#x27;a&#x27;</span>
+<span class=hljs-keyword >end</span></code></pre><pre><code class="plaintext hljs">MethodError: no method matching setindex!(::String, ::Char, ::Int64)
+</code></pre>
+<p>Instead, to modify the string, we can re-assign a new string to str.</p>
+<pre><code class="julia hljs"><span class=hljs-keyword >let</span>
+    test_str = <span class=hljs-string >&quot;AAA&quot;</span>
+    test_str = <span class=hljs-string >&#x27;a&#x27;</span> * test_str[<span class=hljs-number >2</span>:<span class=hljs-keyword >end</span>]
+<span class=hljs-keyword >end</span></code></pre><pre><code class="plaintext hljs">&quot;aAA&quot;</code></pre>
+<h2 id=arrays ><a href="#arrays" class=header-anchor >Arrays</a></h2>
+<h3 id=array_as_a_sequence_of_values ><a href="#array_as_a_sequence_of_values" class=header-anchor >Array as a sequence of values</a></h3>
+<p>Like a <em>string</em>, an <em>array</em> is a sequence of values. In a string, the values are characters; in an array, they can be any type. An example could be:</p>
+<pre><code class="julia hljs">cheeses = [<span class=hljs-string >&quot;Cheddar&quot;</span>, <span class=hljs-string >&quot;Edam&quot;</span>, <span class=hljs-string >&quot;Gouda&quot;</span>]</code></pre><pre><code class="plaintext hljs">3-element Vector{String}:
+ &quot;Cheddar&quot;
+ &quot;Edam&quot;
+ &quot;Gouda&quot;</code></pre>
+<pre><code class="julia hljs">random_items = [<span class=hljs-string >&quot;spam&quot;</span>, <span class=hljs-number >2.0</span>, <span class=hljs-number >5</span>, [<span class=hljs-number >10</span>, <span class=hljs-number >20</span>]]</code></pre><pre><code class="plaintext hljs">4-element Vector{Any}:
+  &quot;spam&quot;
+ 2.0
+ 5
+  [10, 20]</code></pre>
+<p>Check out what types they are:</p>
+<pre><code class="julia hljs">typeof(cheeses)</code></pre><pre><code class="plaintext hljs">Vector{String} (alias for Array{String, 1})</code></pre>
+<pre><code class="julia hljs">typeof(random_items)</code></pre><pre><code class="plaintext hljs">Vector{Any} (alias for Array{Any, 1})</code></pre>
+<h3 id=subarrays ><a href="#subarrays" class=header-anchor >Subarrays</a></h3>
+<p>To extract a subarray indexed by a index set <code>idx</code>, we can use the slice operator <code>array&#91;idx&#93;</code></p>
+<pre><code class="julia hljs">cheeses[[<span class=hljs-number >1</span>,<span class=hljs-number >3</span>]]</code></pre><pre><code class="plaintext hljs">2-element Vector{String}:
+ &quot;Cheddar&quot;
+ &quot;Gouda&quot;</code></pre>
+<p>We can use <code>in&#40;element, array&#41;</code> &#40;equivalently, <code>element ∈ array</code> or <code>element in array</code>&#41; to check if an element is in the array.</p>
+<pre><code class="julia hljs"><span class=hljs-string >&quot;b&quot;</span> <span class=hljs-keyword >in</span> cheeses</code></pre><pre><code class="plaintext hljs">false</code></pre>
+<h3 id=index__2 ><a href="#index__2" class=header-anchor >Index</a></h3>
+<p><code>eachindex&#40;array&#41;</code> also works for arrays.</p>
+<pre><code class="julia hljs">collect(eachindex(cheeses))</code></pre><pre><code class="plaintext hljs">3-element Vector{Int64}:
+ 1
+ 2
+ 3</code></pre>
+<p>Loop through the array:</p>
+<pre><code class="julia hljs"><span class=hljs-keyword >for</span> item <span class=hljs-keyword >in</span> cheeses
+    println(item)
+<span class=hljs-keyword >end</span></code></pre><pre><code class="plaintext hljs">Cheddar
+Edam
+Gouda
+</code></pre>
+<p>Alternatively, we can do:</p>
+<pre><code class="julia hljs"><span class=hljs-keyword >for</span> i <span class=hljs-keyword >in</span> eachindex(cheeses)
+    println(cheeses[i])
+<span class=hljs-keyword >end</span></code></pre><pre><code class="plaintext hljs">Cheddar
+Edam
+Gouda
+</code></pre>
+<h3 id=array_library ><a href="#array_library" class=header-anchor >Array library</a></h3>
+<p>We can use <code>push&#33;&#40;array, element&#41;</code> or <code>push&#33;&#40;array, array_src&#41;</code> to add elements to array:</p>
+<pre><code class="julia hljs"><span class=hljs-keyword >let</span>
+    characters = [<span class=hljs-string >&quot;a&quot;</span>, <span class=hljs-string >&quot;b&quot;</span>, <span class=hljs-string >&quot;c&quot;</span>]
+    append!(characters, [<span class=hljs-string >&quot;start&quot;</span>])
+    push!(characters, <span class=hljs-string >&quot;end&quot;</span>)
+<span class=hljs-keyword >end</span></code></pre><pre><code class="plaintext hljs">5-element Vector{String}:
+ &quot;a&quot;
+ &quot;b&quot;
+ &quot;c&quot;
+ &quot;start&quot;
+ &quot;end&quot;</code></pre>
+<p>To delete the element from the array, one can use <code>splice&#33;&#40;array, i&#41;</code> to delete the <em>i</em>th element and to return the deleted element, and use <code>deleteat&#40;array, i&#41;</code> to delete <em>i</em>th element the array and to return the updated array. Furthermore, use <code>pop&#33;&#40;array&#41;</code> &#40;resp. <code>popfirst&#33;&#40;array&#41;</code>&#41; to delete the last &#40;resp. first&#41; element of the array, which return the deleted element.</p>
+<pre><code class="julia hljs"><span class=hljs-keyword >let</span>
+    characters = [<span class=hljs-string >&quot;a&quot;</span>, <span class=hljs-string >&quot;b&quot;</span>, <span class=hljs-string >&quot;c&quot;</span>, <span class=hljs-string >&quot;d&quot;</span>, <span class=hljs-string >&quot;e&quot;</span>, <span class=hljs-string >&quot;f&quot;</span>]
+    splice!(characters, <span class=hljs-number >3</span>)
+    pop!(characters)
+    popfirst!(characters)
+    characters
+<span class=hljs-keyword >end</span></code></pre><pre><code class="plaintext hljs">3-element Vector{String}:
+ &quot;b&quot;
+ &quot;d&quot;
+ &quot;e&quot;</code></pre>
+<div class="admonition note"><p class=admonition-title >Note</p><p>The exclamation mark in <code>push&#33;</code> or <code>pop&#33;</code> is conventionally meant to indicate the arguments are written inside the function&#33;</p>
+</div>
+<p>We can sort &#40;in ascending order&#41; arrays using <code>sort&#40;array&#41;</code></p>
+<pre><code class="julia hljs">sort([<span class=hljs-string >&quot;c&quot;</span>, <span class=hljs-string >&quot;b&quot;</span>, <span class=hljs-string >&quot;a&quot;</span>])</code></pre><pre><code class="plaintext hljs">3-element Vector{String}:
+ &quot;a&quot;
+ &quot;b&quot;
+ &quot;c&quot;</code></pre>
+<p>We can sum an array of numbers by <code>sum&#40;array&#41;</code></p>
+<pre><code class="julia hljs">sum([<span class=hljs-number >1</span>, <span class=hljs-number >2</span>, <span class=hljs-number >3</span>, <span class=hljs-number >4</span>])</code></pre><pre><code class="plaintext hljs">10</code></pre>
+<h3 id=entrywise_operations ><a href="#entrywise_operations" class=header-anchor >Entrywise operations</a></h3>
+<p>For every binary operator like <code>^</code>, there is a corresponding <code>dot</code> operator that performs entrywise operations.</p>
+<pre><code class="julia hljs">[<span class=hljs-number >1</span>, <span class=hljs-number >2</span>, <span class=hljs-number >3</span>, <span class=hljs-number >4</span>, <span class=hljs-number >5</span>] .^ <span class=hljs-number >2</span></code></pre><pre><code class="plaintext hljs">5-element Vector{Int64}:
+  1
+  4
+  9
+ 16
+ 25</code></pre>
+<pre><code class="julia hljs"><span class=hljs-string >&quot;Any Julia function can be applied elementwise to any array with the dot syntax.&quot;</span></code></pre><pre><code class="plaintext hljs">&quot;Any Julia function can be applied elementwise to any array with the dot syntax.&quot;</code></pre>
+<pre><code class="julia hljs">circle_area.([<span class=hljs-number >1</span>, <span class=hljs-number >2</span>, <span class=hljs-number >3</span>, <span class=hljs-number >4</span>, <span class=hljs-number >5</span>])</code></pre><pre><code class="plaintext hljs">5-element Vector{Float64}:
+  3.141592653589793
+ 12.566370614359172
+ 28.274333882308138
+ 50.26548245743669
+ 78.53981633974483</code></pre>
+<h3 id=arrays_are_mutable ><a href="#arrays_are_mutable" class=header-anchor >Arrays are mutable</a></h3>
+<p>Unlike strings, arrays are <em>mutable</em></p>
+<pre><code class="julia hljs"><span class=hljs-keyword >let</span>
+    characters = [<span class=hljs-string >&quot;a&quot;</span>, <span class=hljs-string >&quot;b&quot;</span>, <span class=hljs-string >&quot;c&quot;</span>]
+    characters[<span class=hljs-number >1</span>] = <span class=hljs-string >&quot;d&quot;</span>
+    <span class=hljs-built_in >Text</span>(characters)
+<span class=hljs-keyword >end</span></code></pre><pre><code class="plaintext hljs">[&quot;d&quot;, &quot;b&quot;, &quot;c&quot;]</code></pre>
+<h2 id=objects_and_values ><a href="#objects_and_values" class=header-anchor >Objects and Values</a></h2>
+<h3 id=aliasing_and_mutability ><a href="#aliasing_and_mutability" class=header-anchor >Aliasing and mutability</a></h3>
+<p>An <em>object</em> is something a variable can refer to. If now we have two variables, say two strings <code>a</code> and <code>b</code> both are assigned <code>&quot;banana&quot;</code>, are these two variables refer to the same objects, or are they two different copies of the same string &#40;immutable&#41;? To conduct an experiment, we resort to the operator <code>&#61;&#61;&#61;</code> to test if two variables refer to the same object, and <code>&#61;&#61;</code> to see if the variables store the same string.</p>
+<pre><code class="julia hljs"><span class=hljs-keyword >let</span>
+    a = <span class=hljs-string >&quot;banana&quot;</span>
+    b = <span class=hljs-string >&quot;banana&quot;</span>
+    (a == b), (a === b)
+<span class=hljs-keyword >end</span></code></pre><pre><code class="plaintext hljs">(true, true)</code></pre>
+<p>As opposed to it, if we replace the value by an array &#40;mutable&#41;, the outcome is different.</p>
+<pre><code class="julia hljs"><span class=hljs-keyword >let</span>
+    a = [<span class=hljs-number >10</span>, <span class=hljs-number >20</span>]
+    b = [<span class=hljs-number >10</span>, <span class=hljs-number >20</span>]
+    (a == b), (a === b)
+<span class=hljs-keyword >end</span></code></pre><pre><code class="plaintext hljs">(true, false)</code></pre>
+<p>In this case we would say that the two arrays are <em>equivalent</em>, because they have the same elements, but not <em>identical</em>, because they are not the same object.</p>
+<div class="admonition note"><p class=admonition-title >Note</p><p>Here is an explanation for the operator <code>&#61;&#61;&#61;</code></p>
+<ul>
+<li><p>For mutable values &#40;arrays, mutable composite types&#41;, &#61;&#61;&#61; checks object identity: <code>x &#61;&#61;&#61; y</code> is true if <code>x</code> and <code>y</code> are the same object, stored at the same location in memory.</p>
+
+<li><p>For immutable composite types, <code>x &#61;&#61;&#61; y</code> is true if <code>x</code> and <code>y</code> have the same type – and thus the same structure – and their corresponding components are all recursively <code>&#61;&#61;&#61;</code>.</p>
+
+<li><p>For bits types &#40;immutable chunks of data like Int or Float64&#41;, <code>x &#61;&#61;&#61; y</code> is true if <code>x</code> and <code>y</code> contain exactly the same bits.</p>
+
+</ul>
+</div>
+<p>We should note that variables <code>a</code> and <code>b</code> only stores the <em>address</em> to the object, and therefore we may assign the <em>address</em> in <code>b</code> to <code>a</code>:</p>
+<pre><code class="julia hljs"><span class=hljs-keyword >let</span>
+    a = [<span class=hljs-number >10</span>, <span class=hljs-number >20</span>]
+    b = a
+    (a == b), (a === b)
+<span class=hljs-keyword >end</span></code></pre><pre><code class="plaintext hljs">(true, true)</code></pre>
+<p>This is where we should be more careful with mutable types, since the actually values pointed by the <em>address</em> might be changed without changing the <em>address</em>:</p>
+<pre><code class="julia hljs"><span class=hljs-keyword >let</span>
+    a = [<span class=hljs-number >10</span>, <span class=hljs-number >20</span>]
+    b = a
+    b[<span class=hljs-number >2</span>] = <span class=hljs-number >40</span>
+    a
+<span class=hljs-keyword >end</span></code></pre><pre><code class="plaintext hljs">2-element Vector{Int64}:
+ 10
+ 40</code></pre>
+<p>To copy the properly copy <code>a</code> to <code>b</code>, we may consider:</p>
+<pre><code class="julia hljs"><span class=hljs-keyword >let</span>
+    a = [<span class=hljs-number >10</span>, <span class=hljs-number >20</span>]
+    b = a[:]
+    b[<span class=hljs-number >2</span>] = <span class=hljs-number >40</span>
+    a
+<span class=hljs-keyword >end</span></code></pre><pre><code class="plaintext hljs">2-element Vector{Int64}:
+ 10
+ 20</code></pre>
+<h2 id=dictionary ><a href="#dictionary" class=header-anchor >Dictionary</a></h2>
+<p>A <em>dictionary</em> is like an array, but more general. In an array, the indices have to be integers; in a dictionary they can be &#40;almost&#41; any type.</p>
+<p>To create a dictionary, see following examples:</p>
+<pre><code class="julia hljs">dict = <span class=hljs-built_in >Dict</span>()</code></pre><pre><code class="plaintext hljs">Dict{Any, Any}()</code></pre>
+<pre><code class="julia hljs"><span class=hljs-keyword >begin</span>
+    <span class=hljs-keyword >global</span> dict[<span class=hljs-string >&quot;one&quot;</span>] = <span class=hljs-number >1</span>
+    dict
+<span class=hljs-keyword >end</span></code></pre><pre><code class="plaintext hljs">Dict{Any, Any} with 1 entry:
+  &quot;one&quot; =&gt; 1</code></pre>
+<pre><code class="julia hljs">dict</code></pre><pre><code class="plaintext hljs">Dict{Any, Any} with 1 entry:
+  &quot;one&quot; =&gt; 1</code></pre>
+<h3 id=index__3 ><a href="#index__3" class=header-anchor >Index</a></h3>
+<p>Get keys using <code>keys&#40;dict&#41;</code> and values using <code>values&#40;dict&#41;</code>.</p>
+<pre><code class="julia hljs"><span class=hljs-string >&quot;one&quot;</span> <span class=hljs-keyword >in</span> keys(dict)</code></pre><pre><code class="plaintext hljs">true</code></pre>
+<pre><code class="julia hljs"><span class=hljs-string >&quot;dict&quot;</span> <span class=hljs-keyword >in</span> values(dict)</code></pre><pre><code class="plaintext hljs">false</code></pre>
+<p>We may also loop throught the dictionary.</p>
+<pre><code class="julia hljs"><span class=hljs-keyword >for</span> i <span class=hljs-keyword >in</span> keys(dict)
+    println(i)
+<span class=hljs-keyword >end</span></code></pre><pre><code class="plaintext hljs">one
+</code></pre>
+<p>We get entry using <code>get&#40;dict, element, default_return&#41;</code>:.</p>
+<pre><code class="julia hljs">get(dict, <span class=hljs-string >&quot;one&quot;</span>, -<span class=hljs-number >1</span>), get(dict, <span class=hljs-string >&quot;test&quot;</span>, -<span class=hljs-number >1</span>)</code></pre><pre><code class="plaintext hljs">(1, -1)</code></pre>
+<p>Alternatively, we can initialize a dictionary by</p>
+<pre><code class="julia hljs">dict1 = <span class=hljs-built_in >Dict</span>(<span class=hljs-string >&quot;one&quot;</span> =&gt; <span class=hljs-string >&quot;uno&quot;</span>, <span class=hljs-string >&quot;two&quot;</span> =&gt; <span class=hljs-string >&quot;dos&quot;</span>, <span class=hljs-string >&quot;three&quot;</span> =&gt; <span class=hljs-string >&quot;tres&quot;</span>)</code></pre><pre><code class="plaintext hljs">Dict{String, String} with 3 entries:
+  &quot;two&quot; =&gt; &quot;dos&quot;
+  &quot;one&quot; =&gt; &quot;uno&quot;
+  &quot;three&quot; =&gt; &quot;tres&quot;</code></pre>
+<h3 id=dictionary_is_mutable ><a href="#dictionary_is_mutable" class=header-anchor >Dictionary is mutable</a></h3>
+<p>Check out the type of the dictionary and whether it is immutable:</p>
+<pre><code class="julia hljs">typeof(dict1), ismutable(dict1)</code></pre><pre><code class="plaintext hljs">(Dict{String, String}, true)</code></pre>
+<h2 id=tuple ><a href="#tuple" class=header-anchor >Tuple</a></h2>
+<p>The following is a motivation for using tuple objects. It is often useful to swap the values of two variables. With conventional assignments, you have to use a temporary variable. For example, to swap a and b:</p>
+<pre><code class="julia hljs"><span class=hljs-keyword >let</span>
+    a, b = <span class=hljs-number >1</span>, <span class=hljs-number >2</span>
+    temp = a
+    a = b
+    b = temp
+    <span class=hljs-built_in >Text</span>(<span class=hljs-string >&quot;<span class=hljs-variable >$a</span> <span class=hljs-variable >$b</span>&quot;</span>)
+<span class=hljs-keyword >end</span></code></pre><pre><code class="plaintext hljs">2 1</code></pre>
+<p>This solution is cumbersome; tuple assignment is more elegant:</p>
+<pre><code class="julia hljs"><span class=hljs-keyword >let</span>
+    a, b = <span class=hljs-number >1</span>, <span class=hljs-number >2</span>
+    a, b = b, a
+<span class=hljs-keyword >end</span></code></pre><pre><code class="plaintext hljs">(2, 1)</code></pre>
+<h3 id=tuple_is_immutable ><a href="#tuple_is_immutable" class=header-anchor >Tuple is immutable</a></h3>
+<pre><code class="julia hljs">typeof((<span class=hljs-number >1</span>, <span class=hljs-number >2</span>)), ismutable((<span class=hljs-number >1</span>, <span class=hljs-number >2</span>))</code></pre><pre><code class="plaintext hljs">(Tuple{Int64, Int64}, false)</code></pre>
+<h3 id=tuple_as_a_return_value ><a href="#tuple_as_a_return_value" class=header-anchor >Tuple as a return value</a></h3>
+<p>We may return a tuple in a function:</p>
+<pre><code class="julia hljs"><span class=hljs-keyword >function</span> minmax(t)
+    minimum(t), maximum(t)
+<span class=hljs-keyword >end</span></code></pre><pre><code class="plaintext hljs">minmax (generic function with 1 method)</code></pre>
+<pre><code class="julia hljs"><span class=hljs-keyword >let</span>
+    tuple = (<span class=hljs-number >1</span>, <span class=hljs-number >2</span>, <span class=hljs-number >3</span>, <span class=hljs-number >4</span>, <span class=hljs-number >5</span>)
+    minmax(tuple)
+<span class=hljs-keyword >end</span></code></pre><pre><code class="plaintext hljs">(1, 5)</code></pre>
+<h3 id=variable-length_argument_tuples ><a href="#variable-length_argument_tuples" class=header-anchor >Variable-length argument tuples</a></h3>
+<p>Functions can take a variable number of arguments. A parameter name that ends with <code>...</code><em>gathers</em> arguments into a tuple. The syntax for it would be like:</p>
+<pre><code class="julia hljs"><span class=hljs-keyword >function</span> function_name(args...)
+    execute_statements
+<span class=hljs-keyword >end</span></code></pre>
+<p>For example, the following function prints all but the first arguments passed in the function:</p>
+<pre><code class="julia hljs"><span class=hljs-keyword >function</span> printall(args...)
+    println(args[<span class=hljs-number >2</span>:<span class=hljs-keyword >end</span>])
+<span class=hljs-keyword >end</span></code></pre><pre><code class="plaintext hljs">printall (generic function with 1 method)</code></pre>
+<pre><code class="julia hljs">printall(<span class=hljs-number >1</span>,<span class=hljs-number >2</span>,<span class=hljs-number >3</span>,<span class=hljs-number >4</span>,<span class=hljs-number >5</span>)</code></pre><pre><code class="plaintext hljs">(2, 3, 4, 5)
+</code></pre>
+<p>The operator <code>...</code> also <em>scatters</em> a tuple to pass it into a function. The following code is an example to demonstrate this:</p>
+<pre><code class="julia hljs"><span class=hljs-keyword >let</span>
+    area_rectangle(x, y) = x * y
+    rectangle = (<span class=hljs-number >3</span>, <span class=hljs-number >5</span>)
+    area_rectangle(rectangle...)
+<span class=hljs-keyword >end</span></code></pre><pre><code class="plaintext hljs">15</code></pre>
+<h3 id=arrays_and_tuples ><a href="#arrays_and_tuples" class=header-anchor >Arrays and tuples</a></h3>
+<pre><code class="julia hljs"><span class=hljs-string >md&quot;Arrays and Tuples
+zip is a built-in function that takes two or more sequences and returns a collection of tuples where each tuple contains one element from each sequence. This example zips a string and an array:&quot;</span></code></pre><pre><code class="plaintext hljs">LoadError: UndefVarError: `@md_str` not defined
+in expression starting at none:1
+</code></pre>
+<pre><code class="julia hljs">s = <span class=hljs-string >&quot;abcd&quot;</span>;</code></pre>
+<pre><code class="julia hljs">t = [<span class=hljs-number >1</span>, <span class=hljs-number >2</span>, <span class=hljs-number >3</span>];</code></pre>
+<p>This is what it looks like if we zip <code>s</code> and <code>t</code>:</p>
+<pre><code class="julia hljs">zip(s, t)</code></pre><pre><code class="plaintext hljs">zip(&quot;abcd&quot;, [1, 2, 3])</code></pre>
+<pre><code class="julia hljs">typeof(zip(s, t))</code></pre><pre><code class="plaintext hljs">Base.Iterators.Zip{Tuple{String, Vector{Int64}}}</code></pre>
+<p>The <code>Zip</code> type is sort of an iterator, and thus we can loop through it.</p>
+<pre><code class="julia hljs"><span class=hljs-keyword >for</span> pair <span class=hljs-keyword >in</span> zip(s, t)
+    pair
+<span class=hljs-keyword >end</span></code></pre>
+<p>We can also use collect to make it an array:</p>
+<pre><code class="julia hljs">collect(zip(s, t))</code></pre><pre><code class="plaintext hljs">3-element Vector{Tuple{Char, Int64}}:
+ (&#x27;a&#x27;, 1)
+ (&#x27;b&#x27;, 2)
+ (&#x27;c&#x27;, 3)</code></pre>
+<h3 id=dictionaries_and_tuples ><a href="#dictionaries_and_tuples" class=header-anchor >Dictionaries and Tuples</a></h3>
+<ol>
+<li><p>Dictionaries can be used as iterators that iterate the key-value pairs. You can use it in a for loop like this:</p>
+
+</ol>
+<pre><code class="julia hljs"><span class=hljs-keyword >let</span>
+    d = <span class=hljs-built_in >Dict</span>(<span class=hljs-string >&#x27;a&#x27;</span>=&gt;<span class=hljs-number >1</span>, <span class=hljs-string >&#x27;b&#x27;</span>=&gt;<span class=hljs-number >2</span>, <span class=hljs-string >&#x27;c&#x27;</span>=&gt;<span class=hljs-number >3</span>);
+    <span class=hljs-keyword >for</span> (key, value) <span class=hljs-keyword >in</span> d
+        println(key, <span class=hljs-string >&quot; &quot;</span>, value)
+    <span class=hljs-keyword >end</span>
+<span class=hljs-keyword >end</span></code></pre><pre><code class="plaintext hljs">a 1
+c 3
+b 2
+</code></pre>
+<ol start=2 >
+<li><p>You can use an array of tuples to initialize a new dictionary:</p>
+
+</ol>
+<pre><code class="julia hljs"><span class=hljs-keyword >let</span>
+    t = [(<span class=hljs-string >&#x27;a&#x27;</span>, <span class=hljs-number >1</span>), (<span class=hljs-string >&#x27;c&#x27;</span>, <span class=hljs-number >3</span>), (<span class=hljs-string >&#x27;b&#x27;</span>, <span class=hljs-number >2</span>)];
+    d = <span class=hljs-built_in >Dict</span>(t)
+<span class=hljs-keyword >end</span></code></pre><pre><code class="plaintext hljs">Dict{Char, Int64} with 3 entries:
+  &#x27;a&#x27; =&gt; 1
+  &#x27;c&#x27; =&gt; 3
+  &#x27;b&#x27; =&gt; 2</code></pre>
+<h2 id=files ><a href="#files" class=header-anchor >Files</a></h2>
+<p>We can create a text file using <code>open&#40;filename, mode&#41;</code>, write to a file using <code>write&#40;iostream, str&#41;</code>, and close a file using <code>close&#40;iostream&#41;</code>. The following code serves as an example.</p>
+<pre><code class="julia hljs"><span class=hljs-keyword >let</span>
+    fout = open(<span class=hljs-string >&quot;output1.txt&quot;</span>, <span class=hljs-string >&quot;w&quot;</span>)
+    write(fout, <span class=hljs-string >&quot;Her name is Alice.\nHis name is Bob.&quot;</span>)
+    close(fout)
+<span class=hljs-keyword >end</span></code></pre>
+<p>Check also the functions <a href="https://docs.julialang.org/en/v1.9/base/io-network/#Base.write"><code>write</code></a>, <a href="https://docs.julialang.org/en/v1.9/base/io-network/#Base.readlines"><code>readlines</code></a></p>
+<div class="admonition note"><p class=admonition-title >Note</p><ul>
+<li><p>The argument <code>filename</code> can be either the complete path or the relative path with respect to where the <code>.jl</code> file is at.</p>
+
+<li><p>If we do not close the file, the file will still be closed as the code exit.</p>
+
+<li><p>To learn more about mode, please check out <a href="https://docs.julialang.org/en/v1.9/base/io-network/#Base.open">here</a>. Basically,</p>
+<ul>
+<li><p><code>read</code> means reading file;</p>
+
+<li><p><code>write</code> means writing to file;</p>
+
+<li><p><code>append</code> means always writing at the end of the file;</p>
+
+<li><p><code>truncate</code> means clearing the file if existing;</p>
+
+<li><p><code>create</code> means creating the file if not existing;</p>
+
+</ul>
+
+<li><p>By default, the mode is <code>r</code></p>
+
+</ul>
+</div>
+<h3 id=exception_handling ><a href="#exception_handling" class=header-anchor >Exception handling</a></h3>
+<p>A lot of things can go wrong when you try to read and write files. If you try to open a file that doesn’t exist or that you don’t have permission, you get a SystemError. In these cases, we can use <code>try</code>-<code>catch</code> statement to handle these exceptions, and <code>finally</code> to execute instructions when the given block of code exits. An example is given as follows:</p>
+<pre><code class="julia hljs"><span class=hljs-keyword >let</span>
+    <span class=hljs-keyword >try</span>
+        i = <span class=hljs-number >1</span>;
+        fin = open(<span class=hljs-string >&quot;output1.txt&quot;</span>)
+        <span class=hljs-keyword >try</span>
+            <span class=hljs-keyword >for</span> line <span class=hljs-keyword >in</span> eachline(fin)
+                println(<span class=hljs-string >&quot;line <span class=hljs-subst >$( i )</span>: <span class=hljs-variable >$line</span>&quot;</span>)
+                i += <span class=hljs-number >1</span>
+            <span class=hljs-keyword >end</span>
+        <span class=hljs-keyword >finally</span>
+            close(fin)
+            println(<span class=hljs-string >&quot;File closed.&quot;</span>)
+        <span class=hljs-keyword >end</span>
+    <span class=hljs-keyword >catch</span> exc
+        println(<span class=hljs-string >&quot;Something went wrong: <span class=hljs-variable >$exc</span>&quot;</span>)
+    <span class=hljs-keyword >finally</span>
+        println(<span class=hljs-string >&quot;The code ends.&quot;</span>)
+    <span class=hljs-keyword >end</span>
+<span class=hljs-keyword >end</span></code></pre><pre><code class="plaintext hljs">line 1: Her name is Alice.
+line 2: His name is Bob.
+File closed.
+The code ends.
+</code></pre>
+<h2 id=others ><a href="#others" class=header-anchor >Others</a></h2>
+<p>We listed here some basic but useful functions. To learn more about these functions, check <code>Live Docs</code> in Pluto or <a href="https://docs.julialang.org/en/v1.9/">documentation</a>.</p>
+<h3 id=how_to_type_a_matrix ><a href="#how_to_type_a_matrix" class=header-anchor >How to type a matrix?</a></h3>
+<p>If we want to type a matrix 2 x 3 matrix, one way to do it is to use white space <code></code>for horizontal concatenation, and use semicolon for vertical concatenation.</p>
+<pre><code class="julia hljs">[<span class=hljs-number >1</span> <span class=hljs-number >2</span> <span class=hljs-number >3</span> ; <span class=hljs-number >4</span> <span class=hljs-number >5</span> <span class=hljs-number >6</span>]</code></pre><pre><code class="plaintext hljs">2×3 Matrix{Int64}:
+ 1  2  3
+ 4  5  6</code></pre>
+<p>We note that the convention is slightly different from MATLAB. See <a href="https://docs.julialang.org/en/v1/manual/arrays/">documentation</a> for a more detailed explanation of concatenation.</p>
+<h3 id=how_to_access_an_element_of_a_matrix ><a href="#how_to_access_an_element_of_a_matrix" class=header-anchor >How to access an element of a matrix?</a></h3>
+<p>To access the element at &#40;2,3&#41;, we type:</p>
+<pre><code class="julia hljs"><span class=hljs-keyword >let</span>
+    A = [<span class=hljs-number >1</span> <span class=hljs-number >2</span> <span class=hljs-number >3</span> ; <span class=hljs-number >4</span> <span class=hljs-number >5</span> <span class=hljs-number >6</span>]
+    A[<span class=hljs-number >2</span>,<span class=hljs-number >3</span>] = <span class=hljs-number >7</span>
+    A
+<span class=hljs-keyword >end</span></code></pre><pre><code class="plaintext hljs">2×3 Matrix{Int64}:
+ 1  2  3
+ 4  5  7</code></pre>
+<h3 id=transpose ><a href="#transpose" class=header-anchor >Transpose <code>&#39;</code></a></h3>
+<p>Use <code>&#39;</code> to transpose a matrix / vector:</p>
+<pre><code class="julia hljs">[<span class=hljs-number >2</span>, <span class=hljs-number >3</span>]&#x27;</code></pre><pre><code class="plaintext hljs">1×2 adjoint(::Vector{Int64}) with eltype Int64:
+ 2  3</code></pre>
+<pre><code class="julia hljs">[<span class=hljs-number >1</span> <span class=hljs-number >2</span> <span class=hljs-number >3</span>; <span class=hljs-number >4</span> <span class=hljs-number >5</span> <span class=hljs-number >6</span>]&#x27;</code></pre><pre><code class="plaintext hljs">3×2 adjoint(::Matrix{Int64}) with eltype Int64:
+ 1  4
+ 2  5
+ 3  6</code></pre>
+<h3 id=solve_for_a_x_b ><a href="#solve_for_a_x_b" class=header-anchor >Solve for A x &#61; b</a></h3>
+<pre><code class="julia hljs"><span class=hljs-keyword >let</span>
+    A = [<span class=hljs-number >1</span> <span class=hljs-number >2</span>;<span class=hljs-number >3</span> <span class=hljs-number >4</span>]
+    b = [<span class=hljs-number >1</span>,<span class=hljs-number >0</span>]
+    A \ b
+<span class=hljs-keyword >end</span></code></pre><pre><code class="plaintext hljs">2-element Vector{Float64}:
+ -1.9999999999999998
+  1.4999999999999998</code></pre>
+<h3 id=oneszeros ><a href="#oneszeros" class=header-anchor ><code>ones/zeros</code></a></h3>
+<p>The function <code>ones</code> &#40;resp. <code>zeros</code>&#41;. Generate an all-1 &#40;resp, all-0&#41; vector matrix</p>
+<pre><code class="julia hljs">ones(<span class=hljs-number >3</span>,<span class=hljs-number >3</span>)</code></pre><pre><code class="plaintext hljs">3×3 Matrix{Float64}:
+ 1.0  1.0  1.0
+ 1.0  1.0  1.0
+ 1.0  1.0  1.0</code></pre>
+<pre><code class="julia hljs">ones(<span class=hljs-built_in >Integer</span>,<span class=hljs-number >3</span>)</code></pre><pre><code class="plaintext hljs">3-element Vector{Integer}:
+ 1
+ 1
+ 1</code></pre>
+<pre><code class="julia hljs">size([<span class=hljs-number >1</span> <span class=hljs-number >2</span> <span class=hljs-number >3</span> ; <span class=hljs-number >4</span> <span class=hljs-number >5</span> <span class=hljs-number >6</span>])</code></pre><pre><code class="plaintext hljs">(2, 3)</code></pre>
+<h3 id=eigvals_and_eigvec ><a href="#eigvals_and_eigvec" class=header-anchor ><code>eigvals</code> and <code>eigvec</code></a></h3>
+<p>To compute eigenvalues and eigenvectors, we need to import the <code>LinearAlgebra</code> module. We type:</p>
+<pre><code class="julia hljs"><span class=hljs-keyword >import</span> LinearAlgebra</code></pre>
+<pre><code class="julia hljs">LinearAlgebra.eigvals([<span class=hljs-number >1</span> <span class=hljs-number >2</span> ; <span class=hljs-number >3</span> <span class=hljs-number >4</span>])</code></pre><pre><code class="plaintext hljs">2-element Vector{Float64}:
+ -0.3722813232690143
+  5.372281323269014</code></pre>
+<pre><code class="julia hljs">LinearAlgebra.eigvecs([<span class=hljs-number >1</span> <span class=hljs-number >2</span> ; <span class=hljs-number >3</span> <span class=hljs-number >4</span>])</code></pre><pre><code class="plaintext hljs">2×2 Matrix{Float64}:
+ -0.824565  -0.415974
+  0.565767  -0.909377</code></pre>
+<h1 id=references ><a href="#references" class=header-anchor >References</a></h1>
+<ul>
+<li><p><table class=fndef  id="fndef:1">
+    <tr>
+        <td class=fndef-backref ><a href="#fnref:1">[1]</a>
+        <td class=fndef-content >Think Julia: How to Think Like a Computer Scientist, <a href="https://benlauwens.github.io/ThinkJulia.jl/latest/book.html">https://benlauwens.github.io/ThinkJulia.jl/latest/book.html</a>.
+    
+</table>
+</p>
+
+</ul>
+<h1 id=final_notes ><a href="#final_notes" class=header-anchor >Final notes</a></h1>
+<h2 id=about_the_coding_style ><a href="#about_the_coding_style" class=header-anchor >About the coding style</a></h2>
+<p>Every language has its own programming style &#40;e.g. capitalization of variable names or avoid overuse of certain commands&#41;, and it is recommended to follow those coding styles are usually recommended. At the very least, it helps others in the community to read the code. Sometimes it also improves the performance of the code since it might sometimes related to how the code is compiled or executed and even how the language itself is designed.</p>
+<ul>
+<li><p>Check <a href="https://docs.julialang.org/en/v1.9/manual/variables/#Stylistic-Conventions">here</a> for the stylistic conventions for variables.</p>
+
+<li><p>Check <a href="https://docs.julialang.org/en/v1.9/manual/style-guide/">here</a> for the general style guide.</p>
+
+</ul>
+<h2 id=about_the_scope ><a href="#about_the_scope" class=header-anchor >About the scope</a></h2>
+<p>The reason the some of the codes are encapsulated in a <code>let</code> is two-fold. On the one hand, Pluto need a <code>begin</code> block or a <code>let</code> block to run multiple commands in one cell. On the other, <code>let</code> block, unlike <code>begin</code> block, create a new local scope to avoid name conflict &#40;The <code>x</code> in the block has nothing to do with the formerly defined <code>x</code>&#41;. For a better understanding of the scope in Julia, please also read the <a href="https://docs.julialang.org/en/v1/manual/variables-and-scoping/#Global-Scope">documentation</a>, from which the following table is excerpted. | Construct | Scope type | Allowed within | | :–- | :–- | :–- | | <code>module</code>, <code>baremodule</code> | global | global | | <code>struct</code> | local &#40;soft&#41; | global | | <code>for</code>, <code>while</code>, <code>try</code> | local &#40;soft&#41; | global, local | | <code>macro</code> | local &#40;hard&#41; | global | | functions, <code>do</code> blocks, <code>let</code> blocks, comprehensions, generators | local &#40;hard&#41; | global, local | <code>begin</code> blocks and <code>if</code> blocks do not create new local scopes. In summary, we have the following rules.</p>
+<blockquote>
+<ul>
+<li><p>If the current scope is global, the new variable is global; if the current scope is local, the new variable is local to the innermost local scope and will be visible inside of that scope but not outside of it.</p>
+
+<li><p>When <code>x &#61; &lt;value&gt;</code> occurs in a local scope, Julia applies the following rules</p>
+<ol>
+<li><p><strong>Existing local:</strong> If x is already a local variable, then the existing local x is assigned;</p>
+
+<li><p><strong>Hard scope:</strong> If x is not already a local variable and assignment occurs inside of any hard scope construct, a new local named x is created in the scope of the assignment;</p>
+
+<li><p><strong>Soft scope:</strong> If x is not already a local variable and all of the scope constructs containing the assignment are soft scopes the behavior depends on whether the global variable x is defined:</p>
+<ol>
+<li><p>if global x is undefined, a new local named x is created in the scope of the assignment;</p>
+
+<li><p>if global x is defined, the assignment is considered ambiguous:</p>
+<ul>
+<li><p>in non-interactive contexts &#40;files, eval&#41;, an ambiguity warning is printed and a new local is created;</p>
+
+<li><p>in interactive contexts &#40;REPL, notebooks&#41;, the global variable x is assigned.</p>
+
+</ul>
+
+</ol>
+
+</ol>
+
+</ul>
+</blockquote>
+<p>It should be a good exercise to think about which rule should apply in the above examples.</p>
+<h2 id=about_regular_expressions ><a href="#about_regular_expressions" class=header-anchor >About regular expressions</a></h2>
+<p>Sometimes you are not looking for an exact string, but a particular pattern, say for example, date of the format <code>YYYY-MM-DD</code>. Then, <a href="https://docs.julialang.org/en/v1/manual/strings/#man-regex-literals">regular expressions</a> just comes in handy:</p>
+<pre><code class="julia hljs"><span class=hljs-keyword >begin</span>
+    <span class=hljs-comment >#&#x27; The input string containing two dates</span>
+    date = <span class=hljs-string >&quot;Alice&#x27;s birthday is 1991-01-01, and Bob&#x27;s birthday is 1992-02-02.&quot;</span>
+    println(<span class=hljs-string >&quot;Input string: &quot;</span>, date)
+    <span class=hljs-comment >#&#x27; Define the regex string and substitution string</span>
+    regex1 = <span class=hljs-string >r&quot;[0-9]{4}-[0-9]{2}-[0-9]{2}&quot;</span>
+    regex2 = <span class=hljs-string >r&quot;(?&lt;Alice&gt;[0-9]{4}-[0-9]{2}-[0-9]{2})(.+)(?&lt;Bob&gt;[0-9]{4}-[0-9]{2}-[0-9]{2})&quot;</span>
+    substitution = <span class=hljs-string >s&quot;\g&lt;Bob&gt;\2\g&lt;Alice&gt;&quot;</span>
+    <span class=hljs-comment >#&#x27; Find the first matched date</span>
+    m = match(regex1, date)
+    println(<span class=hljs-string >&quot;First found date: &quot;</span>, m.match)
+    <span class=hljs-comment >#&#x27; Find the second matched date</span>
+    m = match(regex1, date, m.offset + <span class=hljs-number >1</span>)
+    println(<span class=hljs-string >&quot;Second found date: &quot;</span>, m.match)
+    <span class=hljs-comment >#&#x27; Swap two matched date</span>
+    date_swap = replace(date, regex2 =&gt; substitution)
+    println(<span class=hljs-string >&quot;Swap the dates: &quot;</span>, date_swap)
+    <span class=hljs-comment >#&#x27; Types of r&quot;...&quot; and s&quot;...&quot;</span>
+    println(<span class=hljs-string >&quot;The type of r\&quot;..\&quot; string: &quot;</span>, typeof(regex1))
+    println(<span class=hljs-string >&quot;The type of s\&quot;..\&quot; string: &quot;</span>, typeof(substitution))
+<span class=hljs-keyword >end</span></code></pre><pre><code class="plaintext hljs">Input string: Alice&#x27;s birthday is 1991-01-01, and Bob&#x27;s birthday is 1992-02-02.
+First found date: 1991-01-01
+Second found date: 1992-02-02
+Swap the dates: Alice&#x27;s birthday is 1992-02-02, and Bob&#x27;s birthday is 1991-01-01.
+The type of r&quot;..&quot; string: Regex
+The type of s&quot;..&quot; string: SubstitutionString{String}
+</code></pre>
+
+
+</div>
+    
+    
+        <script src="/libs/highlight/highlight.min.js"></script>
+<script>hljs.highlightAll();hljs.configure({tabReplace: '    '});</script>
