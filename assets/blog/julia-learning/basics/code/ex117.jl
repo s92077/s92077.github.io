@@ -1,2 +1,6 @@
 # This file was generated, do not modify it. # hide
-printall(1,2,3,4,5)
+let
+    area_rectangle(x, y) = x * y
+    rectangle = (3, 5)
+    area_rectangle(rectangle...)
+end

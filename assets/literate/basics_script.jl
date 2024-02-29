@@ -44,10 +44,6 @@ typeof(Inf)
 
 typeof(NaN)
 
-#=╠═╡
-x = 2
-  ╠═╡ =#
-
 🐢 = 3.2
 
 message = "a message"

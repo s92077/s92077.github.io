@@ -1,1 +1,1 @@
-(Tuple{Int64, Int64}, false)
+minmax (generic function with 1 method)

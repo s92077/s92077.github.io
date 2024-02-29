@@ -1,4 +1,3 @@
-3×2 adjoint(::Matrix{Int64}) with eltype Int64:
- 1  4
- 2  5
- 3  6
+2-element Vector{Float64}:
+ -1.9999999999999998
+  1.4999999999999998

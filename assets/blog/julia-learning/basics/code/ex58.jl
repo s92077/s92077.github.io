@@ -1,2 +1,2 @@
 # This file was generated, do not modify it. # hide
-str[2]
+string(str,"1")

@@ -1,6 +1,8 @@
 # This file was generated, do not modify it. # hide
 begin
-    if 0 > 0
-        Text("1 is positive")
+    if -1 > 0
+        Text("-1 is positive")
+    else
+        Text("-1 is negative")
     end
 end

@@ -1,4 +1,5 @@
 # This file was generated, do not modify it. # hide
-function minmax(t)
-    minimum(t), maximum(t)
+let
+    tuple = (1, 2, 3, 4, 5)
+    minmax(tuple)
 end

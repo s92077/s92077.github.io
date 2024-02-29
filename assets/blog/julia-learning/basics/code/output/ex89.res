@@ -1,6 +1,4 @@
-5-element Vector{String}:
- "a"
+3-element Vector{String}:
  "b"
- "c"
- "start"
- "end"
+ "d"
+ "e"

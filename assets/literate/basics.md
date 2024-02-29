@@ -177,21 +177,13 @@ Read also [here](https://docs.julialang.org/en/v1.9/manual/integers-and-floating
 
 ## Variables and assignments
 
-An *assignment statement* creates a new variable and gives it a value. For example, we can define two variables `x`, `🐢`, and `message` as below:
-
-╠═╡ disabled = true
+An *assignment statement* creates a new variable and gives it a value. For example, we can define variables `🐢` and `message` as below:
 
 ````julia:ex23
-#=╠═╡
-x = 2
-  ╠═╡ =#
-````
-
-````julia:ex24
 🐢 = 3.2
 ````
 
-````julia:ex25
+````julia:ex24
 message = "a message"
 ````
 
@@ -204,7 +196,7 @@ message = "a message"
 
 What if we want to add 1 to `x`? We can simplify the expression `x = x + 1` by `x += 1`. (To understand `let...end` block, read also [this](#5ae1a550-999f-466e-bb1f-52a847a6688c).)
 
-````julia:ex26
+````julia:ex25
 let
     x = 0
     x += 1
@@ -227,11 +219,11 @@ In this program, `println` is the name of the function, and the string `"Hello, 
 
 Most of the familiar mathematical functions are available:
 
-````julia:ex27
+````julia:ex26
 sin(pi)
 ````
 
-````julia:ex28
+````julia:ex27
 log10(exp(1))
 ````
 
@@ -251,7 +243,7 @@ end
 
 Roughly speaking, the variables defined in the function are local (stays alive only in the function.) The following is a function printing the string “Nothing”.
 
-````julia:ex29
+````julia:ex28
 """
 `function nothing()`
 The function print the string "Nothing".
@@ -261,13 +253,13 @@ function nothing()
 end
 ````
 
-````julia:ex30
+````julia:ex29
 nothing()
 ````
 
 The function `nothing` performs an action but does not return a value. Such a function is called a *void function*. We may also define a function that returns a value, and here is an example of a function calculating the area of a circle with radius `r`
 
-````julia:ex31
+````julia:ex30
 """
 `function circle_area(r)`
 The function computes area of a circle with radius `r`.
@@ -277,17 +269,17 @@ function circle_area(r)
 end
 ````
 
-````julia:ex32
+````julia:ex31
 circle_area(2)
 ````
 
 An alternative way of defining a function is the following:
 
-````julia:ex33
+````julia:ex32
 circle_area_inline(r) = pi * r^2
 ````
 
-````julia:ex34
+````julia:ex33
 circle_area_inline(2)
 ````
 
@@ -307,7 +299,7 @@ end
 
 The above code executes `execute_statements1` if `condition1` is `true`, and `execute_statements2` if `condition1` is `false` but `condition2` is `true`, and `execute_statements3` if both `condition1` and `condition2` are `false`. Note that `else` and `elseif` are optional, and there can be as many `elseif`'s as you want between `if` and `else`. See the following for examples.
 
-````julia:ex35
+````julia:ex34
 begin
     if 0 > 0
         Text("1 is positive")
@@ -315,7 +307,7 @@ begin
 end
 ````
 
-````julia:ex36
+````julia:ex35
 begin
     if -1 > 0
         Text("-1 is positive")
@@ -325,7 +317,7 @@ begin
 end
 ````
 
-````julia:ex37
+````julia:ex36
 begin
     if NaN == 0
         Text("NaN is 0")
@@ -343,7 +335,7 @@ end
 
 We can add the first `n` natural numbers using `if` statement.
 
-````julia:ex38
+````julia:ex37
 """
 `function fibonacci_recursion(n::Int)`
 The function computes `n`th term in the Fibonacci sequence.
@@ -359,7 +351,7 @@ function fibonacci_recursion(n::Int)
 end
 ````
 
-````julia:ex39
+````julia:ex38
 fibonacci_recursion(7)
 ````
 
@@ -394,7 +386,7 @@ end
 
 The `break` statement is used to “jump” out of a while/for loop. See the follow example for the its usage.
 
-````julia:ex40
+````julia:ex39
 for i in 1:10
     if i % 3 == 0
         break
@@ -407,7 +399,7 @@ end
 
 The `continue` statement is used to “jump” to the the beginning of a while/for loop. See the follow example for the its usage.
 
-````julia:ex41
+````julia:ex40
 for i in 1:10
     if i % 3 == 0
         continue
@@ -420,7 +412,7 @@ end
 
 We can implement a function computing the Fibonacci sequence using the while loop.
 
-````julia:ex42
+````julia:ex41
 """
 `function fibonacci_while(n::Int)`
 The function computes `n`th term in the Fibonacci sequence.
@@ -439,13 +431,13 @@ function fibonacci_while(n::Int)
 end
 ````
 
-````julia:ex43
+````julia:ex42
 fibonacci_while(7)
 ````
 
 In a similar manner, we can implement such a function using the while loop.
 
-````julia:ex44
+````julia:ex43
 """
 `function fibonacci_for(n::Int)`
 The function computes `n`th term in the Fibonacci sequence.
@@ -463,7 +455,7 @@ function fibonacci_for(n::Int)
 end
 ````
 
-````julia:ex45
+````julia:ex44
 fibonacci_for(7)
 ````
 
@@ -474,29 +466,29 @@ fibonacci_for(7)
 A `Char` value is a single character and is surrounded by single quotes. In the digital world, we need encode the letters of the numerals/alphabet/... as digits. Among the encodings, [ASCII](https://en.wikipedia.org/wiki/ASCII) standard (American Standard Code for Information Interchange) maps commonly used numerals/English letters/punctuations to integers between 0 to 127. (It is very important to for you to get familiar with some special characters in the escaped input forms, such as newline `'\n'`.) On the other hand, the so-called [Unicode](https://en.wikipedia.org/wiki/Unicode) standard aims to include many characters in non-English languages, and it coincides with ASCII standard for values between 0 and 127.
 Julia natively supports both encodings for its `Char` value. Some examples are given as follows. You can input any Unicode character in single quotes using `\u` followed by up to four hexadecimal digits or `\U` followed by up to eight hexadecimal digits (the longest valid value only requires six).
 
-````julia:ex46
+````julia:ex45
 'c'
 ````
 
-````julia:ex47
+````julia:ex46
 '\u63' + 1
 ````
 
-````julia:ex48
+````julia:ex47
 '🍌'
 ````
 
-````julia:ex49
+````julia:ex48
 '\u1CC4'
 ````
 
-````julia:ex50
+````julia:ex49
 '\U1F34C'
 ````
 
 Check out the the size of a character:
 
-````julia:ex51
+````julia:ex50
 sizeof('🍌')
 ````
 
@@ -504,33 +496,33 @@ sizeof('🍌')
 
 A string in Julia is a sequence of characters (using the [UTF-8](https://en.wikipedia.org/wiki/UTF-8) encoding), and thus you can access every single character via the bracket operator. However, the size varies from from character to character. (Each byte is a "code unit"):
 
-````julia:ex52
+````julia:ex51
 sizeof("c")
 ````
 
-````julia:ex53
+````julia:ex52
 sizeof("\u1CC4")
 ````
 
-````julia:ex54
+````julia:ex53
 sizeof("🍌")
 ````
 
 Therefore, `sizeof` does not tells the real length of the string, and not all indices are valid:
 
-````julia:ex55
+````julia:ex54
 str = "\u1CC4🍌c"
 ````
 
-````julia:ex56
+````julia:ex55
 sizeof(str)
 ````
 
-````julia:ex57
+````julia:ex56
 str[end]
 ````
 
-````julia:ex58
+````julia:ex57
 str[2]
 ````
 
@@ -538,7 +530,7 @@ str[2]
 
 There are different ways of concatenating strings. Apart from `*` and `^`, we can also use the following methods:
 
-````julia:ex59
+````julia:ex58
 string(str,"1")
 ````
 
@@ -546,7 +538,7 @@ string(str,"1")
 
 Constructing strings using concatenation can become a bit cumbersome, however. To reduce the need for these verbose calls to string or repeated multiplications, Julia allows interpolation into string literals using `$`:
 
-````julia:ex60
+````julia:ex59
 "$(str)$(1+1)"
 ````
 
@@ -554,7 +546,7 @@ Constructing strings using concatenation can become a bit cumbersome, however. T
 
 To get the real length of the string, call `length(str)`:
 
-````julia:ex61
+````julia:ex60
 length(str)
 ````
 
@@ -562,21 +554,21 @@ length(str)
 
 Some useful functions are `firstindex(str)`, `lastindex(str)`, `eachindex(str)`, `nextind(str, i, n=1)`, `prevind(str, i, n=1)`
 
-````julia:ex62
+````julia:ex61
 firstindex(str)
 ````
 
-````julia:ex63
+````julia:ex62
 lastindex(str)
 ````
 
-````julia:ex64
+````julia:ex63
 collect(eachindex(str))
 ````
 
 Loop through the characters in a string:
 
-````julia:ex65
+````julia:ex64
 for letter in str
     println(letter)
 end
@@ -586,11 +578,11 @@ end
 
 The strings are compared lexicographically (according to the UTF-8 encoding) using `<`, `<=`, `>`, `>=`, `==`, `!=`.
 
-````julia:ex66
+````julia:ex65
 "abracadabra" >= "xylophone"
 ````
 
-````julia:ex67
+````julia:ex66
 "Hello, Alice." <= "Hello, Bob."
 ````
 
@@ -600,25 +592,25 @@ To understand the above comparison, we note that the two strings share the same 
 
 To extract a substring indexed by a index set `idx`, we can use the slice operator `array[idx]`
 
-````julia:ex68
+````julia:ex67
 str[[1,8]]
 ````
 
 Some useful functions are `findfirst(substr,str)`, `findlast(substr,str)`, `findnext(substr,str,i)`, `occursin(substr, str)`, `in(chr, str)` (equivalently, `chr ∈ str` or `chr in str`), `repeat(str, n)`
 
-````julia:ex69
+````julia:ex68
 ncodeunits(str)
 ````
 
-````julia:ex70
+````julia:ex69
 findnext("abc", "abcabc", 2)
 ````
 
-````julia:ex71
+````julia:ex70
 occursin("abc", "abcabc")
 ````
 
-````julia:ex72
+````julia:ex71
 'a' in "abcabc"
 ````
 
@@ -626,7 +618,7 @@ occursin("abc", "abcabc")
 
 Some useful functions are `ncodeunits(str)`, `codeunit(str,i)`
 
-````julia:ex73
+````julia:ex72
 codeunit(str, 2)
 ````
 
@@ -634,23 +626,23 @@ codeunit(str, 2)
 
 One can convert a string to an array of characters via `collect(str)`.
 
-````julia:ex74
+````julia:ex73
 collect(str)
 ````
 
 To convert it back to a string, use `join(array)`:
 
-````julia:ex75
+````julia:ex74
 join(['a', 'b', 'c'])
 ````
 
 One can parse a string using `split(str, token)`
 
-````julia:ex76
+````julia:ex75
 split("a-+b-c", "-+")
 ````
 
-````julia:ex77
+````julia:ex76
 split("a b c")
 ````
 
@@ -658,7 +650,7 @@ split("a b c")
 
 The strings are *immutable*, meaning that an existing string cannot be changed:
 
-````julia:ex78
+````julia:ex77
 let
     test_str = "AAA"
     test_str[1] = 'a'
@@ -667,7 +659,7 @@ end
 
 Instead, to modify the string, we can re-assign a new string to str.
 
-````julia:ex79
+````julia:ex78
 let
     test_str = "AAA"
     test_str = 'a' * test_str[2:end]
@@ -680,21 +672,21 @@ end
 
 Like a *string*, an *array* is a sequence of values. In a string, the values are characters; in an array, they can be any type. An example could be:
 
-````julia:ex80
+````julia:ex79
 cheeses = ["Cheddar", "Edam", "Gouda"]
 ````
 
-````julia:ex81
+````julia:ex80
 random_items = ["spam", 2.0, 5, [10, 20]]
 ````
 
 Check out what types they are:
 
-````julia:ex82
+````julia:ex81
 typeof(cheeses)
 ````
 
-````julia:ex83
+````julia:ex82
 typeof(random_items)
 ````
 
@@ -702,13 +694,13 @@ typeof(random_items)
 
 To extract a subarray indexed by a index set `idx`, we can use the slice operator `array[idx]`
 
-````julia:ex84
+````julia:ex83
 cheeses[[1,3]]
 ````
 
 We can use `in(element, array)` (equivalently, `element ∈ array` or `element in array`) to check if an element is in the array.
 
-````julia:ex85
+````julia:ex84
 "b" in cheeses
 ````
 
@@ -716,13 +708,13 @@ We can use `in(element, array)` (equivalently, `element ∈ array` or `element i
 
 `eachindex(array)` also works for arrays.
 
-````julia:ex86
+````julia:ex85
 collect(eachindex(cheeses))
 ````
 
 Loop through the array:
 
-````julia:ex87
+````julia:ex86
 for item in cheeses
     println(item)
 end
@@ -730,7 +722,7 @@ end
 
 Alternatively, we can do:
 
-````julia:ex88
+````julia:ex87
 for i in eachindex(cheeses)
     println(cheeses[i])
 end
@@ -740,7 +732,7 @@ end
 
 We can use `push!(array, element)` or `push!(array, array_src)` to add elements to array:
 
-````julia:ex89
+````julia:ex88
 let
     characters = ["a", "b", "c"]
     append!(characters, ["start"])
@@ -750,7 +742,7 @@ end
 
 To delete the element from the array, one can use `splice!(array, i)` to delete the *i*th element and to return the deleted element, and use `deleteat(array, i)` to delete *i*th element the array and to return the updated array. Furthermore, use `pop!(array)` (resp. `popfirst!(array)`) to delete the last (resp. first) element of the array, which return the deleted element.
 
-````julia:ex90
+````julia:ex89
 let
     characters = ["a", "b", "c", "d", "e", "f"]
     splice!(characters, 3)
@@ -765,13 +757,13 @@ end
 
 We can sort (in ascending order) arrays using `sort(array)`
 
-````julia:ex91
+````julia:ex90
 sort(["c", "b", "a"])
 ````
 
 We can sum an array of numbers by `sum(array)`
 
-````julia:ex92
+````julia:ex91
 sum([1, 2, 3, 4])
 ````
 
@@ -779,15 +771,15 @@ sum([1, 2, 3, 4])
 
 For every binary operator like `^`, there is a corresponding `dot` operator that performs entrywise operations.
 
-````julia:ex93
+````julia:ex92
 [1, 2, 3, 4, 5] .^ 2
 ````
 
-````julia:ex94
+````julia:ex93
 "Any Julia function can be applied elementwise to any array with the dot syntax."
 ````
 
-````julia:ex95
+````julia:ex94
 circle_area.([1, 2, 3, 4, 5])
 ````
 
@@ -795,7 +787,7 @@ circle_area.([1, 2, 3, 4, 5])
 
 Unlike strings, arrays are *mutable*
 
-````julia:ex96
+````julia:ex95
 let
     characters = ["a", "b", "c"]
     characters[1] = "d"
@@ -809,7 +801,7 @@ end
 
 An *object* is something a variable can refer to. If now we have two variables, say two strings `a` and `b` both are assigned `"banana"`, are these two variables refer to the same objects, or are they two different copies of the same string (immutable)? To conduct an experiment, we resort to the operator `===` to test if two variables refer to the same object, and `==` to see if the variables store the same string.
 
-````julia:ex97
+````julia:ex96
 let
     a = "banana"
     b = "banana"
@@ -819,7 +811,7 @@ end
 
 As opposed to it, if we replace the value by an array (mutable), the outcome is different.
 
-````julia:ex98
+````julia:ex97
 let
     a = [10, 20]
     b = [10, 20]
@@ -837,7 +829,7 @@ In this case we would say that the two arrays are *equivalent*, because they hav
 
 We should note that variables `a` and `b` only stores the *address* to the object, and therefore we may assign the *address* in `b` to `a`:
 
-````julia:ex99
+````julia:ex98
 let
     a = [10, 20]
     b = a
@@ -847,7 +839,7 @@ end
 
 This is where we should be more careful with mutable types, since the actually values pointed by the *address* might be changed without changing the *address*:
 
-````julia:ex100
+````julia:ex99
 let
     a = [10, 20]
     b = a
@@ -858,7 +850,7 @@ end
 
 To copy the properly copy `a` to `b`, we may consider:
 
-````julia:ex101
+````julia:ex100
 let
     a = [10, 20]
     b = a[:]
@@ -873,18 +865,18 @@ A *dictionary* is like an array, but more general. In an array, the indices have
 
 To create a dictionary, see following examples:
 
-````julia:ex102
+````julia:ex101
 dict = Dict()
 ````
 
-````julia:ex103
+````julia:ex102
 begin
     global dict["one"] = 1
     dict
 end
 ````
 
-````julia:ex104
+````julia:ex103
 dict
 ````
 
@@ -892,17 +884,17 @@ dict
 
 Get keys using `keys(dict)` and values using `values(dict)`.
 
-````julia:ex105
+````julia:ex104
 "one" in keys(dict)
 ````
 
-````julia:ex106
+````julia:ex105
 "dict" in values(dict)
 ````
 
 We may also loop throught the dictionary.
 
-````julia:ex107
+````julia:ex106
 for i in keys(dict)
     println(i)
 end
@@ -910,13 +902,13 @@ end
 
 We get entry using `get(dict, element, default_return)`:.
 
-````julia:ex108
+````julia:ex107
 get(dict, "one", -1), get(dict, "test", -1)
 ````
 
 Alternatively, we can initialize a dictionary by
 
-````julia:ex109
+````julia:ex108
 dict1 = Dict("one" => "uno", "two" => "dos", "three" => "tres")
 ````
 
@@ -924,7 +916,7 @@ dict1 = Dict("one" => "uno", "two" => "dos", "three" => "tres")
 
 Check out the type of the dictionary and whether it is immutable:
 
-````julia:ex110
+````julia:ex109
 typeof(dict1), ismutable(dict1)
 ````
 
@@ -932,7 +924,7 @@ typeof(dict1), ismutable(dict1)
 
 The following is a motivation for using tuple objects. It is often useful to swap the values of two variables. With conventional assignments, you have to use a temporary variable. For example, to swap a and b:
 
-````julia:ex111
+````julia:ex110
 let
     a, b = 1, 2
     temp = a
@@ -944,7 +936,7 @@ end
 
 This solution is cumbersome; tuple assignment is more elegant:
 
-````julia:ex112
+````julia:ex111
 let
     a, b = 1, 2
     a, b = b, a
@@ -953,7 +945,7 @@ end
 
 ### Tuple is immutable
 
-````julia:ex113
+````julia:ex112
 typeof((1, 2)), ismutable((1, 2))
 ````
 
@@ -961,13 +953,13 @@ typeof((1, 2)), ismutable((1, 2))
 
 We may return a tuple in a function:
 
-````julia:ex114
+````julia:ex113
 function minmax(t)
     minimum(t), maximum(t)
 end
 ````
 
-````julia:ex115
+````julia:ex114
 let
     tuple = (1, 2, 3, 4, 5)
     minmax(tuple)
@@ -985,19 +977,19 @@ end
 
 For example, the following function prints all but the first arguments passed in the function:
 
-````julia:ex116
+````julia:ex115
 function printall(args...)
     println(args[2:end])
 end
 ````
 
-````julia:ex117
+````julia:ex116
 printall(1,2,3,4,5)
 ````
 
 The operator `...` also *scatters* a tuple to pass it into a function. The following code is an example to demonstrate this:
 
-````julia:ex118
+````julia:ex117
 let
     area_rectangle(x, y) = x * y
     rectangle = (3, 5)
@@ -1007,32 +999,32 @@ end
 
 ### Arrays and tuples
 
-````julia:ex119
+````julia:ex118
 md"Arrays and Tuples
 zip is a built-in function that takes two or more sequences and returns a collection of tuples where each tuple contains one element from each sequence. This example zips a string and an array:"
 ````
 
-````julia:ex120
+````julia:ex119
 s = "abcd";
 ````
 
-````julia:ex121
+````julia:ex120
 t = [1, 2, 3];
 ````
 
 This is what it looks like if we zip `s` and `t`:
 
-````julia:ex122
+````julia:ex121
 zip(s, t)
 ````
 
-````julia:ex123
+````julia:ex122
 typeof(zip(s, t))
 ````
 
 The `Zip` type is sort of an iterator, and thus we can loop through it.
 
-````julia:ex124
+````julia:ex123
 for pair in zip(s, t)
     pair
 end
@@ -1040,7 +1032,7 @@ end
 
 We can also use collect to make it an array:
 
-````julia:ex125
+````julia:ex124
 collect(zip(s, t))
 ````
 
@@ -1048,7 +1040,7 @@ collect(zip(s, t))
 
 1. Dictionaries can be used as iterators that iterate the key-value pairs. You can use it in a for loop like this:
 
-````julia:ex126
+````julia:ex125
 let
     d = Dict('a'=>1, 'b'=>2, 'c'=>3);
     for (key, value) in d
@@ -1059,7 +1051,7 @@ end
 
 2. You can use an array of tuples to initialize a new dictionary:
 
-````julia:ex127
+````julia:ex126
 let
     t = [('a', 1), ('c', 3), ('b', 2)];
     d = Dict(t)
@@ -1070,7 +1062,7 @@ end
 
 We can create a text file using `open(filename, mode)`, write to a file using `write(iostream, str)`, and close a file using `close(iostream)`. The following code serves as an example.
 
-````julia:ex128
+````julia:ex127
 let
     fout = open("output1.txt", "w")
     write(fout, "Her name is Alice.\nHis name is Bob.")
@@ -1095,7 +1087,7 @@ Check also the functions [`write`](https://docs.julialang.org/en/v1.9/base/io-ne
 
 A lot of things can go wrong when you try to read and write files. If you try to open a file that doesn’t exist or that you don’t have permission, you get a SystemError. In these cases, we can use `try`-`catch` statement to handle these exceptions, and `finally` to execute instructions when the given block of code exits. An example is given as follows:
 
-````julia:ex129
+````julia:ex128
 let
     try
         i = 1;
@@ -1125,7 +1117,7 @@ We listed here some basic but useful functions. To learn more about these functi
 
 If we want to type a matrix 2 x 3 matrix, one way to do it is to use white space ` `for horizontal concatenation, and use semicolon for vertical concatenation.
 
-````julia:ex130
+````julia:ex129
 [1 2 3 ; 4 5 6]
 ````
 
@@ -1135,7 +1127,7 @@ We note that the convention is slightly different from MATLAB. See [documentatio
 
 To access the element at (2,3), we type:
 
-````julia:ex131
+````julia:ex130
 let
     A = [1 2 3 ; 4 5 6]
     A[2,3] = 7
@@ -1147,17 +1139,17 @@ end
 
 Use `'` to transpose a matrix / vector:
 
-````julia:ex132
+````julia:ex131
 [2, 3]'
 ````
 
-````julia:ex133
+````julia:ex132
 [1 2 3; 4 5 6]'
 ````
 
 ### Solve for A x = b
 
-````julia:ex134
+````julia:ex133
 let
     A = [1 2;3 4]
     b = [1,0]
@@ -1169,15 +1161,15 @@ end
 
 The function `ones` (resp. `zeros`). Generate an all-1 (resp, all-0) vector matrix
 
-````julia:ex135
+````julia:ex134
 ones(3,3)
 ````
 
-````julia:ex136
+````julia:ex135
 ones(Integer,3)
 ````
 
-````julia:ex137
+````julia:ex136
 size([1 2 3 ; 4 5 6])
 ````
 
@@ -1185,15 +1177,15 @@ size([1 2 3 ; 4 5 6])
 
 To compute eigenvalues and eigenvectors, we need to import the `LinearAlgebra` module. We type:
 
-````julia:ex138
+````julia:ex137
 import LinearAlgebra
 ````
 
-````julia:ex139
+````julia:ex138
 LinearAlgebra.eigvals([1 2 ; 3 4])
 ````
 
-````julia:ex140
+````julia:ex139
 LinearAlgebra.eigvecs([1 2 ; 3 4])
 ````
 
@@ -1237,7 +1229,7 @@ It should be a good exercise to think about which rule should apply in the above
 
 Sometimes you are not looking for an exact string, but a particular pattern, say for example, date of the format `YYYY-MM-DD`. Then, [regular expressions](https://docs.julialang.org/en/v1/manual/strings/#man-regex-literals) just comes in handy:
 
-````julia:ex141
+````julia:ex140
 begin
     #' The input string containing two dates
     date = "Alice's birthday is 1991-01-01, and Bob's birthday is 1992-02-02."

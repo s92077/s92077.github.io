@@ -1,2 +1,6 @@
 # This file was generated, do not modify it. # hide
-[1 2 3; 4 5 6]'
+let
+    A = [1 2;3 4]
+    b = [1,0]
+    A \ b
+end

@@ -1,1 +1,1 @@
-(1, 5)
+printall (generic function with 1 method)

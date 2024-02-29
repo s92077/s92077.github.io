@@ -1,1 +1,1 @@
-minmax (generic function with 1 method)
+(1, 5)

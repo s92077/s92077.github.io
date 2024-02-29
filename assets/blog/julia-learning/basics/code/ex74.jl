@@ -1,2 +1,2 @@
 # This file was generated, do not modify it. # hide
-collect(str)
+join(['a', 'b', 'c'])

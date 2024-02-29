@@ -1,1 +1,3 @@
-Vector{Any} (alias for Array{Any, 1})
+2-element Vector{String}:
+ "Cheddar"
+ "Gouda"

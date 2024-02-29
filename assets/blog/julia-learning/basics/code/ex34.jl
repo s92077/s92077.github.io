@@ -1,2 +1,6 @@
 # This file was generated, do not modify it. # hide
-circle_area_inline(2)
+begin
+    if 0 > 0
+        Text("1 is positive")
+    end
+end

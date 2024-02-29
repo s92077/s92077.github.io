@@ -1,3 +1,4 @@
-2-element Vector{SubString{String}}:
+3-element Vector{SubString{String}}:
  "a"
- "b-c"
+ "b"
+ "c"

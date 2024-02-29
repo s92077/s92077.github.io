@@ -1,1 +1,1 @@
--1 is negative
+NaN is neither positive nor negative

@@ -1,2 +1,2 @@
 # This file was generated, do not modify it. # hide
-ones(3,3)
+ones(Integer,3)

@@ -1,2 +1,4 @@
 # This file was generated, do not modify it. # hide
-collect(eachindex(cheeses))
+for item in cheeses
+    println(item)
+end

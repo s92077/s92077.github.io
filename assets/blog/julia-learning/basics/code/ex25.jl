@@ -1,2 +1,5 @@
 # This file was generated, do not modify it. # hide
-message = "a message"
+let
+    x = 0
+    x += 1
+end

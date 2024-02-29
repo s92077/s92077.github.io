@@ -1,1 +1,1 @@
-nothing
+zip("abcd", [1, 2, 3])

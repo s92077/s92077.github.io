@@ -1,2 +1,2 @@
 # This file was generated, do not modify it. # hide
-ncodeunits(str)
+findnext("abc", "abcabc", 2)

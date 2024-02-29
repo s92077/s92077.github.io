@@ -1,1 +1,1 @@
-'d': ASCII/Unicode U+0064 (category Ll: Letter, lowercase)
+'🍌': Unicode U+1F34C (category So: Symbol, other)

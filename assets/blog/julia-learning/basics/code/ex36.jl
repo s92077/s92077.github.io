@@ -1,8 +1,12 @@
 # This file was generated, do not modify it. # hide
 begin
-    if -1 > 0
-        Text("-1 is positive")
+    if NaN == 0
+        Text("NaN is 0")
+    elseif NaN > 0
+        Text("NaN is positive")
+    elseif NaN < 0
+        Text("NaN is negative")
     else
-        Text("-1 is negative")
+        Text("NaN is neither positive nor negative")
     end
 end

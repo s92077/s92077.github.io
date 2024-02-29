@@ -1,2 +1,4 @@
 # This file was generated, do not modify it. # hide
-collect(eachindex(str))
+for letter in str
+    println(letter)
+end

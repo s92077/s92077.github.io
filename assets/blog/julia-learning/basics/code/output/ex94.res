@@ -1,1 +1,6 @@
-"Any Julia function can be applied elementwise to any array with the dot syntax."
+5-element Vector{Float64}:
+  3.141592653589793
+ 12.566370614359172
+ 28.274333882308138
+ 50.26548245743669
+ 78.53981633974483

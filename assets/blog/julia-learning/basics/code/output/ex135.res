@@ -1,4 +1,4 @@
-3×3 Matrix{Float64}:
- 1.0  1.0  1.0
- 1.0  1.0  1.0
- 1.0  1.0  1.0
+3-element Vector{Integer}:
+ 1
+ 1
+ 1

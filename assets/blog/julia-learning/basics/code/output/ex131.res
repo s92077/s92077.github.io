@@ -1,3 +1,2 @@
-2×3 Matrix{Int64}:
- 1  2  3
- 4  5  7
+1×2 adjoint(::Vector{Int64}) with eltype Int64:
+ 2  3

@@ -1,2 +1,2 @@
 # This file was generated, do not modify it. # hide
-ones(Integer,3)
+size([1 2 3 ; 4 5 6])

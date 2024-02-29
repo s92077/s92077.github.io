@@ -1,2 +1,2 @@
 # This file was generated, do not modify it. # hide
-sizeof("c")
+sizeof("\u1CC4")

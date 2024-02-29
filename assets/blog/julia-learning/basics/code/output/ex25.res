@@ -1,1 +1,1 @@
-"a message"
+1

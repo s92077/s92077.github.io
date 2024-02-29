@@ -1,5 +1,2 @@
 # This file was generated, do not modify it. # hide
-let
-    a, b = 1, 2
-    a, b = b, a
-end
+typeof((1, 2)), ismutable((1, 2))

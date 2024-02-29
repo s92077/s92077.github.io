@@ -1,4 +1,6 @@
 # This file was generated, do not modify it. # hide
-for i in eachindex(cheeses)
-    println(cheeses[i])
+let
+    characters = ["a", "b", "c"]
+    append!(characters, ["start"])
+    push!(characters, "end")
 end

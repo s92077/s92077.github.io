@@ -1,2 +1,4 @@
-1×2 adjoint(::Vector{Int64}) with eltype Int64:
- 2  3
+3×2 adjoint(::Matrix{Int64}) with eltype Int64:
+ 1  4
+ 2  5
+ 3  6

@@ -1,0 +1,6 @@
+Input string: Alice's birthday is 1991-01-01, and Bob's birthday is 1992-02-02.
+First found date: 1991-01-01
+Second found date: 1992-02-02
+Swap the dates: Alice's birthday is 1992-02-02, and Bob's birthday is 1991-01-01.
+The type of r".." string: Regex
+The type of s".." string: SubstitutionString{String}

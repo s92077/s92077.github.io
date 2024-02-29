@@ -1,4 +1,2 @@
 # This file was generated, do not modify it. # hide
-function printall(args...)
-    println(args[2:end])
-end
+printall(1,2,3,4,5)

@@ -1,2 +1,4 @@
 # This file was generated, do not modify it. # hide
-typeof(zip(s, t))
+for pair in zip(s, t)
+    pair
+end

@@ -1,1 +1,1 @@
-zip("abcd", [1, 2, 3])
+Base.Iterators.Zip{Tuple{String, Vector{Int64}}}

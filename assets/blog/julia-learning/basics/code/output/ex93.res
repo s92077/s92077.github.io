@@ -1,6 +1,1 @@
-5-element Vector{Int64}:
-  1
-  4
-  9
- 16
- 25
+"Any Julia function can be applied elementwise to any array with the dot syntax."
