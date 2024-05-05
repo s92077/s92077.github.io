@@ -1253,3 +1253,7 @@ begin
 end
 ````
 
+````julia:ex141
+rm("output1.txt", force = true); # hide
+````
+

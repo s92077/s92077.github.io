@@ -317,3 +317,5 @@ end
 
 @time sum([1 2 3 4])
 
+rm("output.txt", force = true); # hide
+

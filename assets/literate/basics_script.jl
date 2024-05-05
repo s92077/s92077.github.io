@@ -500,3 +500,5 @@ begin
     println("The type of s\"..\" string: ", typeof(substitution))
 end
 
+rm("output1.txt", force = true); # hide
+
