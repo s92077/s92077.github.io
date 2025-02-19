@@ -1,1 +1,2 @@
 MethodError: no method matching setindex!(::String, ::Char, ::Int64)
+The function `setindex!` exists, but no method is defined for this combination of argument types.

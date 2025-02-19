@@ -1,4 +1,5 @@
 MethodError: no method matching Main.FD_SANDBOX_5514522325621768181.Point(::Int64, ::Float64)
+The type `Main.FD_SANDBOX_5514522325621768181.Point` exists, but no method is defined for this combination of argument types when trying to construct it.
 
 Closest candidates are:
   Main.FD_SANDBOX_5514522325621768181.Point(::T, !Matched::T) where T<:Real

@@ -1,2 +1,4 @@
-LoadError: UndefVarError: `@md_str` not defined
+LoadError: UndefVarError: `@md_str` not defined in `Main.FD_SANDBOX_14319441467625551212`
+Suggestion: check for spelling errors or missing imports.
+Hint: a global variable of this name may be made accessible by importing Markdown in the current active module Main
 in expression starting at none:1

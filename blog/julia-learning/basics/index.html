@@ -313,6 +313,7 @@ c
     test_str = <span class=hljs-string >&quot;AAA&quot;</span>
     test_str[<span class=hljs-number >1</span>] = <span class=hljs-string >&#x27;a&#x27;</span>
 <span class=hljs-keyword >end</span></code></pre><pre><code class="plaintext hljs">MethodError: no method matching setindex!(::String, ::Char, ::Int64)
+The function `setindex!` exists, but no method is defined for this combination of argument types.
 </code></pre>
 <p>Instead, to modify the string, we can re-assign a new string to str.</p>
 <pre><code class="julia hljs"><span class=hljs-keyword >let</span>
@@ -538,7 +539,9 @@ Gouda
 <span class=hljs-keyword >end</span></code></pre><pre><code class="plaintext hljs">15</code></pre>
 <h3 id=arrays_and_tuples ><a href="#arrays_and_tuples" class=header-anchor >Arrays and tuples</a></h3>
 <pre><code class="julia hljs"><span class=hljs-string >md&quot;Arrays and Tuples
-zip is a built-in function that takes two or more sequences and returns a collection of tuples where each tuple contains one element from each sequence. This example zips a string and an array:&quot;</span></code></pre><pre><code class="plaintext hljs">LoadError: UndefVarError: `@md_str` not defined
+zip is a built-in function that takes two or more sequences and returns a collection of tuples where each tuple contains one element from each sequence. This example zips a string and an array:&quot;</span></code></pre><pre><code class="plaintext hljs">LoadError: UndefVarError: `@md_str` not defined in `Main.FD_SANDBOX_14319441467625551212`
+Suggestion: check for spelling errors or missing imports.
+Hint: a global variable of this name may be made accessible by importing Markdown in the current active module Main
 in expression starting at none:1
 </code></pre>
 <pre><code class="julia hljs">s = <span class=hljs-string >&quot;abcd&quot;</span>;</code></pre>
