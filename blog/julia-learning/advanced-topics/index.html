@@ -396,7 +396,7 @@ end</code></pre>
 <span class=hljs-keyword >end</span></code></pre><pre><code class="plaintext hljs">@containervariable (macro with 1 method)</code></pre>
 <p>The macro call <code>@containervariable letters 1</code> is replaced by <code>:&#40;letters1 &#61; letters&#91;1&#93;&#41;</code>.</p>
 <h3 id=measuring_performance ><a href="#measuring_performance" class=header-anchor >Measuring Performance</a></h3>
-<pre><code class="julia hljs"><span class=hljs-meta >@time</span> sum([<span class=hljs-number >1</span> <span class=hljs-number >2</span> <span class=hljs-number >3</span> <span class=hljs-number >4</span>])</code></pre><pre><code class="plaintext hljs">  0.000003 seconds (2 allocations: 112 bytes)
+<pre><code class="julia hljs"><span class=hljs-meta >@time</span> sum([<span class=hljs-number >1</span> <span class=hljs-number >2</span> <span class=hljs-number >3</span> <span class=hljs-number >4</span>])</code></pre><pre><code class="plaintext hljs">  0.000002 seconds (2 allocations: 112 bytes)
 10</code></pre>
 <h3 id=interactive_utilities ><a href="#interactive_utilities" class=header-anchor >Interactive Utilities</a></h3>
 <pre><code class="julia hljs"><span class=hljs-meta >@code_lowered</span> sum([<span class=hljs-number >1</span> <span class=hljs-number >2</span> <span class=hljs-number >3</span> <span class=hljs-number >4</span>])</code></pre>
