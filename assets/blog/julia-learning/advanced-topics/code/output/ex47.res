@@ -1,1 +1,0 @@
-"The way it works is the following:"

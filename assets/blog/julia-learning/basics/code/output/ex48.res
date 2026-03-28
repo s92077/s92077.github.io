@@ -1,1 +1,0 @@
-'᳄': Unicode U+1CC4 (category Po: Punctuation, other)

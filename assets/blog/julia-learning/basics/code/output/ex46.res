@@ -1,1 +1,0 @@
-'d': ASCII/Unicode U+0064 (category Ll: Letter, lowercase)

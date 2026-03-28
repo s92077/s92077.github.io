@@ -1,1 +1,0 @@
-Square anchored at (4, 6) with side length 3

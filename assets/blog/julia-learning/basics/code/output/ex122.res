@@ -1,1 +1,0 @@
-Base.Iterators.Zip{Tuple{String, Vector{Int64}}}

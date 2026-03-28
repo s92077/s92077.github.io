@@ -1,1 +1,0 @@
-'🍌': Unicode U+1F34C (category So: Symbol, other)
