@@ -1,5 +1,13 @@
-<!DOCTYPE html><html lang="en"> <head><!-- Global Metadata --><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><link rel="icon" type="image/svg+xml" href="/favicon.svg"><meta name="generator" content="Astro v6.1.1"><!-- Canonical URL --><link rel="canonical" href="https://s92077.github.io/blog/"><!-- Primary Meta Tags --><title>Blog | Yu-Liang Wu</title><meta name="title" content="Blog | Yu-Liang Wu"><meta name="description" content="Personal portfolio and research blog of Yu-Liang Wu, focusing on mathematics and academic research."><!-- Open Graph / Facebook --><meta property="og:type" content="website"><meta property="og:url" content="https://s92077.github.io/blog/"><meta property="og:title" content="Blog | Yu-Liang Wu"><meta property="og:description" content="Personal portfolio and research blog of Yu-Liang Wu, focusing on mathematics and academic research."><meta property="og:image" content="https://s92077.github.io/blog-placeholder-1.jpg"><!-- Twitter --><meta property="twitter:card" content="summary_large_image"><meta property="twitter:url" content="https://s92077.github.io/blog/"><meta property="twitter:title" content="Blog | Yu-Liang Wu"><meta property="twitter:description" content="Personal portfolio and research blog of Yu-Liang Wu, focusing on mathematics and academic research."><meta property="twitter:image" content="https://s92077.github.io/blog-placeholder-1.jpg"><meta name="astro-view-transitions-enabled" content="true"><meta name="astro-view-transitions-fallback" content="animate"><script type="module" src="/_astro/ClientRouter.astro_astro_type_script_index_0_lang.CcBgSAbq.js"></script><script>
+<!DOCTYPE html><html lang="en"> <head><!-- Global Metadata --><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)"><meta name="theme-color" content="#09090b" media="(prefers-color-scheme: dark)"><meta name="color-scheme" content="light dark"><link rel="icon" type="image/svg+xml" href="/favicon.svg"><meta name="generator" content="Astro v6.1.1"><!-- Canonical URL --><link rel="canonical" href="https://s92077.github.io/blog/"><!-- Primary Meta Tags --><title>Blog | Yu-Liang Wu</title><meta name="title" content="Blog | Yu-Liang Wu"><meta name="description" content="Personal portfolio and research blog of Yu-Liang Wu, focusing on mathematics and academic research."><!-- Open Graph / Facebook --><meta property="og:type" content="website"><meta property="og:url" content="https://s92077.github.io/blog/"><meta property="og:title" content="Blog | Yu-Liang Wu"><meta property="og:description" content="Personal portfolio and research blog of Yu-Liang Wu, focusing on mathematics and academic research."><meta property="og:image" content="https://s92077.github.io/blog-placeholder-1.jpg"><!-- Twitter --><meta property="twitter:card" content="summary_large_image"><meta property="twitter:url" content="https://s92077.github.io/blog/"><meta property="twitter:title" content="Blog | Yu-Liang Wu"><meta property="twitter:description" content="Personal portfolio and research blog of Yu-Liang Wu, focusing on mathematics and academic research."><meta property="twitter:image" content="https://s92077.github.io/blog-placeholder-1.jpg"><meta name="astro-view-transitions-enabled" content="true"><meta name="astro-view-transitions-fallback" content="animate"><script type="module" src="/_astro/ClientRouter.astro_astro_type_script_index_0_lang.CcBgSAbq.js"></script><script>
+      // Blocking theme script
       (function () {
+        const theme =
+          localStorage.getItem("theme") ||
+          (window.matchMedia("(prefers-color-scheme: dark)").matches
+            ? "dark"
+            : "light");
+        document.documentElement.classList.toggle("dark", theme === "dark");
+
         const setTheme = () => {
           const theme =
             localStorage.getItem("theme") ||
@@ -8,16 +16,16 @@
               : "light");
           document.documentElement.classList.toggle("dark", theme === "dark");
         };
-        setTheme();
+
+        // Re-apply theme after View Transition swaps
         document.addEventListener("astro:after-swap", setTheme);
 
-        // Handle welcoming smooth scroll on refresh (with FOUC prevention)
+        // Handle anchor smooth scroll with FOUC prevention
         const handleInitialScroll = () => {
           if (window.location.hash) {
             const hash = window.location.hash;
             const target = document.querySelector(hash);
             if (target) {
-              // Now that fonts and layout are ready, scroll smoothly
               target.scrollIntoView({
                 behavior: "smooth",
                 block: "start",
@@ -26,16 +34,7 @@
           }
         };
 
-        // Suppress browser's instant jump to provide a consistent "welcoming" scroll
-        if (window.location.hash) {
-          if ("scrollRestoration" in history) {
-            history.scrollRestoration = "manual";
-          }
-          window.scrollTo(0, 0);
-        }
-
         window.addEventListener("load", () => {
-          // Wait for fonts to be ready to ensure landing at the exact same pixel position
           if ("fonts" in document) {
             document.fonts.ready.then(handleInitialScroll);
           } else {
