@@ -9,10 +9,126 @@
       localStorage?.setItem("theme", document.documentElement.getAttribute("data-theme") ?? "light");
     }).observe(document.documentElement, { attributes: true, attributeFilter: ["data-theme"] });
   })();
-</script><link rel="stylesheet" href="/_astro/BaseHead.DYDrBV4s.css">
+</script><link rel="stylesheet" href="/_astro/BaseHead.BLejHUzf.css">
 <style>::view-transition-old(root),::view-transition-new(root){animation:none;mix-blend-mode:normal}.switching-theme,.switching-theme *,.switching-theme *:before,.switching-theme *:after{transition:none!important}.switching-theme .mobile-nav-bar,.switching-theme aside{background-color:var(--surface)!important;backdrop-filter:none!important;-webkit-backdrop-filter:none!important}#bg-animation-container{view-transition-name:dynamic-bg}::view-transition-old(dynamic-bg),::view-transition-new(dynamic-bg){animation:none}::view-transition-new(root){z-index:999;will-change:clip-path}::view-transition-old(root){z-index:1}.mobile-nav-bar[data-astro-cid-pux6a34n]{background-color:color-mix(in srgb,var(--surface) 92%,transparent);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px)}
 </style>
-<link rel="stylesheet" href="/_astro/search.CXOjeUv_.css"></head> <body> <a href="#main" class="skip-link">Skip to content</a> <div class="md:flex min-h-dvh"> <!-- 1. Mobile top bar --><header class="md:hidden fixed w-full top-0 z-50 h-14 flex items-center justify-between px-5 border-b border-border shrink-0 print:hidden mobile-nav-bar" data-astro-cid-pux6a34n=""> <a href="/" class="font-sans font-bold text-[1rem] leading-none text-fg" aria-label="Yu-Liang Wu" data-astro-cid-pux6a34n=""> Yu-Liang Wu </a> <div class="flex items-center gap-1" data-astro-cid-pux6a34n=""> <button class="search-trigger icon-btn" aria-label="Search" title="Search (/)"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="8"></circle><path d="m21 21-4.3-4.3"></path></svg></button><script type="module" src="/_astro/Search.astro_astro_type_script_index_0_lang.DoSYdmwj.js"></script> <button data-theme-toggle="" class="icon-btn" aria-label="Toggle color theme" title="Toggle color theme"> <!-- Sun (shown in dark mode) --> <svg class="hidden dark:block w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"> <circle cx="12" cy="12" r="4"></circle> <path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"></path> </svg> <!-- Moon (shown in light mode) --> <svg class="dark:hidden w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"> <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path> </svg> </button> <script type="module">const r=e=>{const t=document.documentElement,c=t.getAttribute("data-theme")==="dark"?"light":"dark",a=()=>{t.setAttribute("data-theme",c),t.classList.add("switching-theme")};if(!document.startViewTransition){a(),setTimeout(()=>t.classList.remove("switching-theme"),50);return}const n=e.clientX,i=e.clientY,o=Math.hypot(Math.max(n,innerWidth-n),Math.max(i,innerHeight-i)),s=document.startViewTransition(a);s.ready.then(()=>{document.documentElement.animate({clipPath:[`circle(0px at ${n}px ${i}px)`,`circle(${o}px at ${n}px ${i}px)`]},{duration:450,easing:"cubic-bezier(0.16, 1, 0.3, 1)",pseudoElement:"::view-transition-new(root)"})}),s.finished.finally(()=>{t.classList.remove("switching-theme")})};document.querySelectorAll("[data-theme-toggle]").forEach(e=>{e.addEventListener("click",t=>r(t))});</script> <button id="nav-hamburger" aria-label="Toggle menu" aria-expanded="false" class="icon-btn" data-astro-cid-pux6a34n=""> <svg id="icon-menu" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-astro-cid-pux6a34n=""> <line x1="3" y1="6" x2="21" y2="6" data-astro-cid-pux6a34n=""></line> <line x1="3" y1="12" x2="21" y2="12" data-astro-cid-pux6a34n=""></line> <line x1="3" y1="18" x2="21" y2="18" data-astro-cid-pux6a34n=""></line> </svg> <svg id="icon-close" class="hidden" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-astro-cid-pux6a34n=""> <line x1="18" y1="6" x2="6" y2="18" data-astro-cid-pux6a34n=""></line> <line x1="6" y1="6" x2="18" y2="18" data-astro-cid-pux6a34n=""></line> </svg> </button> </div> </header> <!-- 2. Mobile dropdown --> <div id="mobile-nav" class="md:hidden fixed top-14 inset-x-0 z-40 bg-surface border-b border-border invisible opacity-0 -translate-y-1 transition-all duration-150" data-astro-cid-pux6a34n=""> <nav class="px-5 py-3 flex flex-col" aria-label="Mobile navigation" data-astro-cid-pux6a34n=""> <a href="/" class="nav-link py-2.5" data-nav-link="" data-astro-cid-pux6a34n=""> Home </a><a href="/publications" class="nav-link py-2.5" data-nav-link="" data-astro-cid-pux6a34n=""> Publications </a><a href="/teaching" class="nav-link py-2.5" data-nav-link="" data-astro-cid-pux6a34n=""> Teaching </a><a href="/blog" class="nav-link py-2.5" data-nav-link="" aria-current="page" data-astro-cid-pux6a34n=""> Blog </a><a href="/tags" class="nav-link py-2.5" data-nav-link="" data-astro-cid-pux6a34n=""> Tags </a> <div class="flex items-center gap-5 mt-4 pt-4 border-t border-border" data-astro-cid-pux6a34n=""> <a href="mailto:Yu-Liang.Wu@oulu.fi" class="text-faint hover:text-fg" aria-label="Email" data-astro-cid-pux6a34n=""><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="16" x="2" y="4" rx="2"></rect><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"></path></svg></a> </div> </nav> </div> <div id="mobile-nav-overlay" class="md:hidden fixed inset-0 top-14 z-30 invisible" aria-hidden="true" data-astro-cid-pux6a34n=""></div> <!-- 3. Desktop sidebar --> <aside class="hidden md:flex flex-col w-52 shrink-0 bg-surface px-6 py-10 fixed top-0 left-0 h-screen z-10 print:hidden" data-astro-cid-pux6a34n=""> <div class="mb-12" data-astro-cid-pux6a34n=""> <a href="/" class="font-sans font-bold text-[1rem] leading-none text-fg block mb-1" aria-label="Yu-Liang Wu" data-astro-cid-pux6a34n=""> Yu-Liang Wu </a>  </div> <nav class="flex flex-col gap-0.5 flex-1" aria-label="Desktop navigation" data-astro-cid-pux6a34n=""> <a href="/" class="nav-link" data-nav-link="" data-astro-cid-pux6a34n=""> Home </a><a href="/publications" class="nav-link" data-nav-link="" data-astro-cid-pux6a34n=""> Publications </a><a href="/teaching" class="nav-link" data-nav-link="" data-astro-cid-pux6a34n=""> Teaching </a><a href="/blog" class="nav-link" data-nav-link="" aria-current="page" data-astro-cid-pux6a34n=""> Blog </a><a href="/tags" class="nav-link" data-nav-link="" data-astro-cid-pux6a34n=""> Tags </a> </nav> <div class="mt-auto pt-6 border-t border-border flex items-center justify-between" data-astro-cid-pux6a34n=""> <div class="flex items-center gap-3.5" data-astro-cid-pux6a34n=""> <a href="mailto:Yu-Liang.Wu@oulu.fi" class="text-muted hover:text-fg transition-colors" aria-label="Email" data-astro-cid-pux6a34n=""><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="16" x="2" y="4" rx="2"></rect><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"></path></svg></a> </div> <div class="flex items-center gap-0.5 -mr-1.5" data-astro-cid-pux6a34n=""> <button class="search-trigger icon-btn" aria-label="Search" title="Search (/)"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="8"></circle><path d="m21 21-4.3-4.3"></path></svg></button> <button data-theme-toggle="" class="icon-btn" aria-label="Toggle color theme" title="Toggle color theme"> <!-- Sun (shown in dark mode) --> <svg class="hidden dark:block w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"> <circle cx="12" cy="12" r="4"></circle> <path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"></path> </svg> <!-- Moon (shown in light mode) --> <svg class="dark:hidden w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"> <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path> </svg> </button>  </div> </div> </aside>  <script type="module">const s=document.getElementById("nav-hamburger"),t=document.getElementById("mobile-nav"),n=document.getElementById("mobile-nav-overlay"),a=document.getElementById("icon-menu"),o=document.getElementById("icon-close"),l=i=>{const e=i??s?.getAttribute("aria-expanded")!=="true";t?.classList.toggle("invisible",!e),t?.classList.toggle("opacity-0",!e),t?.classList.toggle("-translate-y-1",!e),t?.classList.toggle("visible",e),t?.classList.toggle("opacity-100",e),t?.classList.toggle("translate-y-0",e),n?.classList.toggle("invisible",!e),n?.classList.toggle("visible",e),a?.classList.toggle("hidden",e),o?.classList.toggle("hidden",!e),s?.setAttribute("aria-expanded",String(e))};s?.addEventListener("click",()=>l());n?.addEventListener("click",()=>l(!1));document.addEventListener("barba:before",()=>l(!1));</script> <!--
+<link rel="stylesheet" href="/_astro/search.CXOjeUv_.css"><style id="MJX-SVG-styles">
+mjx-container[jax="SVG"] {
+  direction: ltr;
+}
+
+mjx-container[jax="SVG"] > svg {
+  overflow: visible;
+  min-height: 1px;
+  min-width: 1px;
+}
+
+mjx-container[jax="SVG"] > svg a {
+  fill: blue;
+  stroke: blue;
+}
+
+mjx-container[jax="SVG"][display="true"] {
+  display: block;
+  text-align: center;
+  margin: 1em 0;
+}
+
+mjx-container[jax="SVG"][display="true"][width="full"] {
+  display: flex;
+}
+
+mjx-container[jax="SVG"][justify="left"] {
+  text-align: left;
+}
+
+mjx-container[jax="SVG"][justify="right"] {
+  text-align: right;
+}
+
+g[data-mml-node="merror"] > g {
+  fill: red;
+  stroke: red;
+}
+
+g[data-mml-node="merror"] > rect[data-background] {
+  fill: yellow;
+  stroke: none;
+}
+
+g[data-mml-node="mtable"] > line[data-line], svg[data-table] > g > line[data-line] {
+  stroke-width: 70px;
+  fill: none;
+}
+
+g[data-mml-node="mtable"] > rect[data-frame], svg[data-table] > g > rect[data-frame] {
+  stroke-width: 70px;
+  fill: none;
+}
+
+g[data-mml-node="mtable"] > .mjx-dashed, svg[data-table] > g > .mjx-dashed {
+  stroke-dasharray: 140;
+}
+
+g[data-mml-node="mtable"] > .mjx-dotted, svg[data-table] > g > .mjx-dotted {
+  stroke-linecap: round;
+  stroke-dasharray: 0,140;
+}
+
+g[data-mml-node="mtable"] > g > svg {
+  overflow: visible;
+}
+
+[jax="SVG"] mjx-tool {
+  display: inline-block;
+  position: relative;
+  width: 0;
+  height: 0;
+}
+
+[jax="SVG"] mjx-tool > mjx-tip {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+mjx-tool > mjx-tip {
+  display: inline-block;
+  padding: .2em;
+  border: 1px solid #888;
+  font-size: 70%;
+  background-color: #F8F8F8;
+  color: black;
+  box-shadow: 2px 2px 5px #AAAAAA;
+}
+
+g[data-mml-node="maction"][data-toggle] {
+  cursor: pointer;
+}
+
+mjx-status {
+  display: block;
+  position: fixed;
+  left: 1em;
+  bottom: 1em;
+  min-width: 25%;
+  padding: .2em .4em;
+  border: 1px solid #888;
+  font-size: 90%;
+  background-color: #F8F8F8;
+  color: black;
+}
+
+foreignObject[data-mjx-xml] {
+  font-family: initial;
+  line-height: normal;
+  overflow: visible;
+}
+
+mjx-container[jax="SVG"] path[data-c], mjx-container[jax="SVG"] use[data-c] {
+  stroke-width: 3;
+}
+</style></head> <body><svg xmlns="http://www.w3.org/2000/svg" style="display:none" data-mjx-defs=""><defs></defs></svg> <a href="#main" class="skip-link">Skip to content</a> <div class="md:flex min-h-dvh"> <!-- 1. Mobile top bar --><header class="md:hidden fixed w-full top-0 z-50 h-14 flex items-center justify-between px-5 border-b border-border shrink-0 print:hidden mobile-nav-bar" data-astro-cid-pux6a34n=""> <a href="/" class="font-sans font-bold text-[1rem] leading-none text-fg" aria-label="Yu-Liang Wu" data-astro-cid-pux6a34n=""> Yu-Liang Wu </a> <div class="flex items-center gap-1" data-astro-cid-pux6a34n=""> <button class="search-trigger icon-btn" aria-label="Search" title="Search (/)"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="8"></circle><path d="m21 21-4.3-4.3"></path></svg></button><script type="module" src="/_astro/Search.astro_astro_type_script_index_0_lang.DoSYdmwj.js"></script> <button data-theme-toggle="" class="icon-btn" aria-label="Toggle color theme" title="Toggle color theme"> <!-- Sun (shown in dark mode) --> <svg class="hidden dark:block w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"> <circle cx="12" cy="12" r="4"></circle> <path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"></path> </svg> <!-- Moon (shown in light mode) --> <svg class="dark:hidden w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"> <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path> </svg> </button> <script type="module">const r=e=>{const t=document.documentElement,c=t.getAttribute("data-theme")==="dark"?"light":"dark",a=()=>{t.setAttribute("data-theme",c),t.classList.add("switching-theme")};if(!document.startViewTransition){a(),setTimeout(()=>t.classList.remove("switching-theme"),50);return}const n=e.clientX,i=e.clientY,o=Math.hypot(Math.max(n,innerWidth-n),Math.max(i,innerHeight-i)),s=document.startViewTransition(a);s.ready.then(()=>{document.documentElement.animate({clipPath:[`circle(0px at ${n}px ${i}px)`,`circle(${o}px at ${n}px ${i}px)`]},{duration:450,easing:"cubic-bezier(0.16, 1, 0.3, 1)",pseudoElement:"::view-transition-new(root)"})}),s.finished.finally(()=>{t.classList.remove("switching-theme")})};document.querySelectorAll("[data-theme-toggle]").forEach(e=>{e.addEventListener("click",t=>r(t))});</script> <button id="nav-hamburger" aria-label="Toggle menu" aria-expanded="false" class="icon-btn" data-astro-cid-pux6a34n=""> <svg id="icon-menu" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-astro-cid-pux6a34n=""> <line x1="3" y1="6" x2="21" y2="6" data-astro-cid-pux6a34n=""></line> <line x1="3" y1="12" x2="21" y2="12" data-astro-cid-pux6a34n=""></line> <line x1="3" y1="18" x2="21" y2="18" data-astro-cid-pux6a34n=""></line> </svg> <svg id="icon-close" class="hidden" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-astro-cid-pux6a34n=""> <line x1="18" y1="6" x2="6" y2="18" data-astro-cid-pux6a34n=""></line> <line x1="6" y1="6" x2="18" y2="18" data-astro-cid-pux6a34n=""></line> </svg> </button> </div> </header> <!-- 2. Mobile dropdown --> <div id="mobile-nav" class="md:hidden fixed top-14 inset-x-0 z-40 bg-surface border-b border-border invisible opacity-0 -translate-y-1 transition-all duration-150" data-astro-cid-pux6a34n=""> <nav class="px-5 py-3 flex flex-col" aria-label="Mobile navigation" data-astro-cid-pux6a34n=""> <a href="/" class="nav-link py-2.5" data-nav-link="" data-astro-cid-pux6a34n=""> Home </a><a href="/publications" class="nav-link py-2.5" data-nav-link="" data-astro-cid-pux6a34n=""> Publications </a><a href="/teaching" class="nav-link py-2.5" data-nav-link="" data-astro-cid-pux6a34n=""> Teaching </a><a href="/blog" class="nav-link py-2.5" data-nav-link="" aria-current="page" data-astro-cid-pux6a34n=""> Blog </a><a href="/tags" class="nav-link py-2.5" data-nav-link="" data-astro-cid-pux6a34n=""> Tags </a> <div class="flex items-center gap-5 mt-4 pt-4 border-t border-border" data-astro-cid-pux6a34n=""> <a href="mailto:Yu-Liang.Wu@oulu.fi" class="text-faint hover:text-fg" aria-label="Email" data-astro-cid-pux6a34n=""><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="16" x="2" y="4" rx="2"></rect><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"></path></svg></a> </div> </nav> </div> <div id="mobile-nav-overlay" class="md:hidden fixed inset-0 top-14 z-30 invisible" aria-hidden="true" data-astro-cid-pux6a34n=""></div> <!-- 3. Desktop sidebar --> <aside class="hidden md:flex flex-col w-52 shrink-0 bg-surface px-6 py-10 fixed top-0 left-0 h-screen z-10 print:hidden" data-astro-cid-pux6a34n=""> <div class="mb-12" data-astro-cid-pux6a34n=""> <a href="/" class="font-sans font-bold text-[1rem] leading-none text-fg block mb-1" aria-label="Yu-Liang Wu" data-astro-cid-pux6a34n=""> Yu-Liang Wu </a>  </div> <nav class="flex flex-col gap-0.5 flex-1" aria-label="Desktop navigation" data-astro-cid-pux6a34n=""> <a href="/" class="nav-link" data-nav-link="" data-astro-cid-pux6a34n=""> Home </a><a href="/publications" class="nav-link" data-nav-link="" data-astro-cid-pux6a34n=""> Publications </a><a href="/teaching" class="nav-link" data-nav-link="" data-astro-cid-pux6a34n=""> Teaching </a><a href="/blog" class="nav-link" data-nav-link="" aria-current="page" data-astro-cid-pux6a34n=""> Blog </a><a href="/tags" class="nav-link" data-nav-link="" data-astro-cid-pux6a34n=""> Tags </a> </nav> <div class="mt-auto pt-6 border-t border-border flex items-center justify-between" data-astro-cid-pux6a34n=""> <div class="flex items-center gap-3.5" data-astro-cid-pux6a34n=""> <a href="mailto:Yu-Liang.Wu@oulu.fi" class="text-muted hover:text-fg transition-colors" aria-label="Email" data-astro-cid-pux6a34n=""><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="16" x="2" y="4" rx="2"></rect><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"></path></svg></a> </div> <div class="flex items-center gap-0.5 -mr-1.5" data-astro-cid-pux6a34n=""> <button class="search-trigger icon-btn" aria-label="Search" title="Search (/)"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="8"></circle><path d="m21 21-4.3-4.3"></path></svg></button> <button data-theme-toggle="" class="icon-btn" aria-label="Toggle color theme" title="Toggle color theme"> <!-- Sun (shown in dark mode) --> <svg class="hidden dark:block w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"> <circle cx="12" cy="12" r="4"></circle> <path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"></path> </svg> <!-- Moon (shown in light mode) --> <svg class="dark:hidden w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"> <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path> </svg> </button>  </div> </div> </aside>  <script type="module">const s=document.getElementById("nav-hamburger"),t=document.getElementById("mobile-nav"),n=document.getElementById("mobile-nav-overlay"),a=document.getElementById("icon-menu"),o=document.getElementById("icon-close"),l=i=>{const e=i??s?.getAttribute("aria-expanded")!=="true";t?.classList.toggle("invisible",!e),t?.classList.toggle("opacity-0",!e),t?.classList.toggle("-translate-y-1",!e),t?.classList.toggle("visible",e),t?.classList.toggle("opacity-100",e),t?.classList.toggle("translate-y-0",e),n?.classList.toggle("invisible",!e),n?.classList.toggle("visible",e),a?.classList.toggle("hidden",e),o?.classList.toggle("hidden",!e),s?.setAttribute("aria-expanded",String(e))};s?.addEventListener("click",()=>l());n?.addEventListener("click",()=>l(!1));document.addEventListener("barba:before",()=>l(!1));</script> <!--
         Barba wrapper must be the direct parent of the container.
         Barba appends the incoming container here — keeping it inside
         the flex layout so the sidebar is never disturbed.
@@ -21,4 +137,4 @@ View all tags
 <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg> </a> </div>  </header> <div id="posts-grid" data-reveal-group=""> <div class="post-item group relative" data-reveal=""> <h2 class="text-xl my-2 group-hover:text-accent" style="view-transition-name: title-learning-julia"> <a href="/blog/learning-julia" class="after:absolute after:inset-0 after:z-0"> Learning Julia </a> </h2> <div class="flex items-center gap-2 mb-2"> <time datetime="2023-06-07T00:00:00.000Z" class="text-xs text-faint">Jun 7, 2023</time> <span class="text-border-2 text-xs" aria-hidden="true">·</span> <span class="text-xs text-faint">1 min read</span> </div> <p class="text-sm text-muted leading-relaxed mb-3"> Workshop notes on programming in Julia — covering installation, basics, plotting, and advanced topics. </p> <div class="flex flex-wrap gap-1.5 relative z-10"> <a href="/tags?tag=julia" class="tag"> Julia </a><a href="/tags?tag=tutorial" class="tag"> tutorial </a><a href="/tags?tag=programming" class="tag"> programming </a> </div> </div> </div>  </div> </main> </div> </div> <div id="search-modal" class="search-modal fixed inset-0 z-[200] flex items-start justify-center pt-[16vh] px-4 invisible opacity-0 transition-opacity duration-150" role="dialog" aria-label="Search"><div id="search-backdrop" class="absolute inset-0"></div><div class="search-container relative w-full max-w-xl bg-surface border border-border overflow-hidden transition-[transform,opacity] duration-150 scale-[0.97] opacity-0"><div id="search" class="pagefind-init" data-pagefind-ui="" data-bundle-path="/pagefind/" data-ui-options="{&quot;showImages&quot;:false,&quot;excerptLength&quot;:20,&quot;resetStyles&quot;:true}"></div> <script type="module" src="/_astro/Search.astro_astro_type_script_index_0_lang.B4VPFthu.js"></script><!-- Keyboard shortcut footer --><div class="search-footer flex items-center gap-5 px-4 py-2.5 border-t border-border/35"><span class="flex items-center gap-1.5 text-[0.65rem] text-faint"><kbd class="search-kbd">↑↓</kbd> navigate
 </span><span class="flex items-center gap-1.5 text-[0.65rem] text-faint"><kbd class="search-kbd">↵</kbd> open
 </span><span class="flex items-center gap-1.5 text-[0.65rem] text-faint ml-auto"><kbd class="search-kbd">esc</kbd> close
-</span></div></div></div> <script type="module" src="/_astro/BaseLayout.astro_astro_type_script_index_0_lang.DpZOcCba.js"></script>  </body></html>
+</span></div></div></div> <script type="module" src="/_astro/BaseLayout.astro_astro_type_script_index_0_lang.eZ7ssz3K.js"></script>  </body></html>
